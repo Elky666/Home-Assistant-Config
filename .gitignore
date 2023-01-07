@@ -25,6 +25,7 @@ ssh
 ip_bans.yaml
 secrets.yaml
 known_devices.yaml
+govee_learning.yaml
 .google.token
 .sonoff.json
 *.conf
