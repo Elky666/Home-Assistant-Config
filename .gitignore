@@ -34,7 +34,7 @@ govee_learning.yaml
 *.tmp
 *.fault
 *.txt
-*.1
+*.log.*
 *.db
 *.db-shm
 *.db-wal
