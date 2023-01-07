@@ -16,10 +16,7 @@ deps
 downloads
 esphome
 image
-www/cameras
-www/icon
-www/sounds
-www/community
+www/*
 media
 tts
 ssh
