@@ -1,0 +1,6 @@
+media_player.kitchen:
+  friendly_name: Kitchen Sonos
+media_player.living_room:
+  friendly_name: Living Room Sonos
+media_player.bedroom_1:
+  friendly_name: Bedroom 1 Sonos

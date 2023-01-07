@@ -1,0 +1,6 @@
+# This handles the loading of my groups
+#
+# https://www.home-assistant.io/integrations/group/
+#
+
+group: !include_dir_named ../group/

@@ -1,0 +1,80 @@
+id: '76fb232d-ad8f-4057-b3f4-7656e07fb1a9'
+alias: Light Landing
+initial_state: true
+description: ''
+trigger:
+  - platform: state
+    entity_id:
+    - light.landing_light
+    to: 'on'
+condition: []
+action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.home_alarm_triggered
+        state: 'off'
+      - condition: state
+        entity_id: input_boolean.home_sleep
+        state: 'off'
+      sequence:
+      - service: light.turn_on 
+        data_template:
+          entity_id:
+            - light.landing_light
+          color_temp: >
+            {% if now().hour in [22, 0, 1, 2, 3, 4, 5, 6] %} 
+              400
+            {% else %}
+              111
+            {% endif %}   
+          brightness_pct: >
+            {% if now().hour in [22, 0, 1, 2, 3, 4, 5, 6] %} 
+              10
+            {% else %}
+              100
+            {% endif %}
+          transition: 2
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.home_alarm_triggered
+        state: 'off'
+      - condition: state
+        entity_id: input_boolean.home_sleep
+        state: 'on'
+      sequence:
+      - service: light.turn_on 
+        data_template:
+          entity_id:
+            - light.landing_light
+          color_temp: 400
+          brightness_pct: 5
+          transition: 2
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.home_alarm_triggered
+        state: 'on'
+      sequence:
+      - service: light.turn_on
+        data:
+          color_name: red
+          brightness_pct: 100
+        target:
+          entity_id: light.landing_light
+    - conditions:
+        - condition: and
+          conditions:
+          - condition: state
+            entity_id: input_boolean.home_night
+            state: 'on'
+          - condition: state
+            entity_id: sensor.holiday_name
+            state: Halloween
+      sequence:
+      - service: light.turn_on
+        data:
+          color_name: green
+          brightness_pct: 100
+        target:
+          entity_id: light.landing_light
+mode: single

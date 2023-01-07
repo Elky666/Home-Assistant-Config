@@ -1,0 +1,238 @@
+goodnight:
+  alias: Goodnight
+  icon: mdi:bed-empty
+  sequence:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: switch.bedroom_1_bedside_fan_plug
+        state: 'on'
+#      - condition: state
+#        entity_id: fan.sonoff_1000cc2f24
+#        state: 'on'
+      sequence:
+      - service: select.select_option
+        data:
+          option: power_off
+        target:
+          entity_id: select.livingroom_activities
+        alias: Turn off Livingroom TV
+      - service: media_player.turn_off
+        data: {}
+        target:
+          entity_id:
+            - media_player.lg_webos_tv_up77006lb
+            - media_player.lg_webos_tv_uk6300plb
+        alias: Turn off TVs
+      - service: light.turn_off
+        data: {}
+        target:
+          entity_id: 
+            - light.kitchen_led_strip
+            - light.livingroom_lamp
+            - light.livingroom_tv_led_strip
+            - light.bedroom_2_lamp
+            - light.bedroom_2_hyperion
+            - light.bedroom_2_light
+            - light.bedroom_3_hyperion
+            - light.bedroom_3_lamp
+            - light.bedroom_3_light
+            - light.bedroom_2_led
+        alias: Turn off lights
+      - service: switch.turn_off
+        data: {}
+        target:
+          entity_id:
+            - switch.fly_zapper_plug
+            - switch.bathroom_fan_switch
+            - switch.kitchen_light_light_switch
+            - switch.dining_room_switch_2
+            - switch.diningroom_light_switch
+            - switch.toliet_light_switch
+            - switch.livingroom_light
+            - switch.av_surge_protector_mss426_projector_plug
+            - switch.av_surge_protector_mss426_projector_screen_plug
+            - switch.sonoff_100149da02_1
+            - switch.livingroom_surge_protector_mss426_christmas_candles_plug
+            - switch.livingroom_surge_protector_mss426_christmas_tree_lights_plug
+        alias: Turn off switches
+      # Turn on Bedroom 1 Harmony Hub
+      - service: remote.turn_on
+        target:
+          entity_id: remote.bedroom_1_hub
+        data:
+          activity: "Watch Kodi"
+      - service: light.turn_on
+        data:
+          entity_id:
+            - light.bedroom_1_led_strip
+          transition: 2
+      - delay: "00:05:00"
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.home_sleep
+    # person 2 home and up
+    - conditions:
+#      - condition: state
+#        entity_id: fan.sonoff_1000cc2f24
+#        state: 'off'
+      - condition: state
+        entity_id: switch.bedroom_1_bedside_fan_plug
+        state: 'off'
+      - condition: state
+        entity_id: input_boolean.person2_home
+        state: 'off'
+      sequence:
+      - service: light.turn_on
+        data: {}
+        target:
+          entity_id: 
+            - light.bedroom_1_lamps
+      - service: fan.set_percentage
+        data:
+          percentage: 100
+        target:
+          entity_id: fan.sonoff_1000cc2f24
+      - service: select.select_option
+        data:
+          option: power_off
+        target:
+          entity_id: select.livingroom_activities
+        alias: Turn off Livingroom TV
+      - service: media_player.turn_off
+        data: {}
+        target:
+          entity_id:
+            - media_player.lg_webos_tv_up77006lb
+            - media_player.lg_webos_tv_uk6300plb
+        alias: Turn off TVs
+      - service: light.turn_off
+        data: {}
+        target:
+          entity_id: 
+            - light.kitchen_led_strip
+            - light.livingroom_lamp
+            - light.livingroom_tv_led_strip
+            - light.bedroom_2_lamp
+            - light.bedroom_2_hyperion
+            - light.bedroom_2_light
+            - light.bedroom_3_hyperion
+            - light.bedroom_3_lamp
+            - light.bedroom_3_light
+            - light.bedroom_2_led
+      - service: switch.turn_off
+        data: {}
+        target:
+          entity_id:
+            - switch.fly_zapper_plug
+            - switch.bathroom_fan_switch
+            - switch.kitchen_light_light_switch
+            - switch.dining_room_switch_2
+            - switch.diningroom_light_switch
+            - switch.toliet_light_switch
+            - switch.livingroom_light
+            - switch.av_surge_protector_mss426_projector_plug
+            - switch.av_surge_protector_mss426_projector_screen_plug
+            - switch.sonoff_100149da02_1
+            - switch.livingroom_surge_protector_mss426_christmas_candles_plug
+            - switch.livingroom_surge_protector_mss426_christmas_tree_lights_plug
+      - service: remote.turn_on
+        target:
+          entity_id: remote.bedroom_1_hub
+        data:
+          activity: "Watch Kodi"
+      - service: light.turn_on
+        data:
+          entity_id:
+            - light.bedroom_1_led_strip
+          transition: 2
+      - delay: "00:05:00"
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.home_sleep
+    # person 2 away
+    - conditions:
+#      - condition: state
+#        entity_id: fan.sonoff_1000cc2f24
+#        state: 'off'
+      - condition: state
+        entity_id: switch.bedroom_1_bedside_fan_plug
+        state: 'off'
+      - condition: state
+        entity_id: input_boolean.person2_home
+        state: 'on'
+      sequence:
+      - service: light.turn_on
+        data: {}
+        target:
+          entity_id: 
+            - light.bedroom_1_lamps
+      - service: fan.set_percentage
+        data:
+          percentage: 100
+        target:
+          entity_id: fan.sonoff_1000cc2f24
+      - service: switch.turn_on
+        data:
+          entity_id: switch.bedroom_1_bedside_fan_plug
+      - service: select.select_option
+        data:
+          option: power_off
+        target:
+          entity_id: select.livingroom_activities
+        alias: Turn off Livingroom TV
+      - service: media_player.turn_off
+        data: {}
+        target:
+          entity_id:
+            - media_player.lg_webos_tv_up77006lb
+            - media_player.lg_webos_tv_uk6300plb
+        alias: Turn off TVs
+      - service: light.turn_off
+        data: {}
+        target:
+          entity_id: 
+            - light.kitchen_led_strip
+            - light.livingroom_lamp
+            - light.livingroom_tv_led_strip
+            - light.bedroom_2_lamp
+            - light.bedroom_2_hyperion
+            - light.bedroom_2_light
+            - light.bedroom_3_hyperion
+            - light.bedroom_3_lamp
+            - light.bedroom_3_light
+            - light.bedroom_2_led
+        alias: Turn off lights
+      - service: switch.turn_off
+        data: {}
+        target:
+          entity_id:
+            - switch.fly_zapper_plug
+            - switch.bathroom_fan_switch
+            - switch.kitchen_light_light_switch
+            - switch.dining_room_switch_2
+            - switch.diningroom_light_switch
+            - switch.toliet_light_switch
+            - switch.livingroom_light
+            - switch.av_surge_protector_mss426_projector_plug
+            - switch.av_surge_protector_mss426_projector_screen_plug
+            - switch.sonoff_100149da02_1
+            - switch.livingroom_surge_protector_mss426_christmas_candles_plug
+            - switch.livingroom_surge_protector_mss426_christmas_tree_lights_plug
+        alias: Turn off switches
+      # Turn on Bedroom 1 Harmony Hub
+      - service: remote.turn_on
+        target:
+          entity_id: remote.bedroom_1_hub
+        data:
+          activity: "Watch Kodi"
+      - service: light.turn_on
+        data:
+          entity_id:
+            - light.bedroom_1_led_strip
+          transition: 2
+      - delay: "00:05:00"
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.home_sleep
+  mode: single

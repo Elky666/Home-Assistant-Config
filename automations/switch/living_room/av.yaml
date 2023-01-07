@@ -1,0 +1,34 @@
+id: '058d6904-e162-4d7e-9eb0-a06f1a1d2faf'
+alias: AV Plugs Turn On
+description: ''
+initial_state: true
+trigger:
+  - at: '20:00:00'
+    platform: time
+condition:
+  - condition: state
+    entity_id: input_boolean.home_home
+    state: 'on'
+action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.home_holiday
+        state: 'on'
+      sequence:
+        - service: switch.turn_on
+          entity_id:
+            - switch.av_surge_protector_mss426_projector_plug
+            - switch.av_surge_protector_mss426_projector_screen_plug
+    - conditions:
+      - condition: time
+        weekday:
+        - fri
+        - sat
+      sequence:
+        - service: switch.turn_on
+          entity_id:
+            - switch.av_surge_protector_mss426_projector_plug
+            - switch.av_surge_protector_mss426_projector_screen_plug
+    default: []
+mode: single 

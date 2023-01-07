@@ -1,0 +1,19 @@
+id: '0b93b910-efde-444e-847d-70662cd6ceff'
+alias: Climate Bedroom 1 Radiator Warning
+initial_state: true
+trigger:
+  - entity_id: binary_sensor.climate_bedroom_1_heating_warning
+    platform: state
+    to: 'on'
+    for: '01:00:00'
+condition: []
+action:
+  - service: script.notify_message_engine
+    data:
+      who: home_app
+      title: "Heating Warning"
+      message: "Warning Bedroom 1 Radiator has been heating for 60 minutes"
+  - service: switch.turn_off
+    data:
+      entity_id: switch.heating_bedroom_1_control_switch
+mode: single

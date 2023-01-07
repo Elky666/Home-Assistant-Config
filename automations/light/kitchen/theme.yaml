@@ -1,0 +1,58 @@
+id: '47c4b495-35f1-44e2-bffe-13c05b3cf071'
+alias: Light Kitchen LED Strip Theme
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - light.kitchen_led_strip
+    to: "on"
+condition: []
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: sensor.holiday_name
+            state: Christmas
+          - condition: state
+            entity_id: input_boolean.home_alarm_triggered
+            state: "off"
+        sequence:
+          - service: lifx.effect_move
+            data:
+              theme: santa
+              speed: 30
+              power_on: false
+            target:
+              entity_id: light.kitchen_led_strip
+      - conditions:
+          - condition: state
+            entity_id: sensor.holiday_name
+            state: Halloween
+          - condition: state
+            entity_id: input_boolean.home_alarm_triggered
+            state: "off"
+        sequence:
+          - service: lifx.effect_move
+            data:
+              speed: 30
+              theme: halloween
+              power_on: false
+            target:
+              entity_id: light.kitchen_led_strip
+      - conditions:
+          - condition: state
+            entity_id: input_boolean.home_alarm_triggered
+            state: "on"
+        sequence:
+          - service: lifx.effect_stop
+            data: {}
+            target:
+              entity_id: light.kitchen_led_strip
+          - service: lifx.set_state
+            data:
+              brightness_pct: 100
+              color_name: red
+            target:
+              entity_id: light.kitchen_led_strip

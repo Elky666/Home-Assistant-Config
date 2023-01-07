@@ -1,0 +1,12 @@
+person.person_1:
+  friendly_name: !secret name_person_1
+  entity_picture: "/local/person/person_1.jpg"
+person.person_2:
+  friendly_name: !secret name_person_2
+  entity_picture: "/local/person/person_2.jpg"
+person.person_4:
+  friendly_name: !secret name_person_4
+  entity_picture: "/local/person/person_4.jpg"
+person.person_5:
+  friendly_name: !secret name_person_5
+  entity_picture: "/local/person/person_5.jpg"

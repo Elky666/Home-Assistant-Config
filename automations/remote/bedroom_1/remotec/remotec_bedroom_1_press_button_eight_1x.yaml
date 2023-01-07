@@ -1,0 +1,21 @@
+id: '01f4c141-2750-459a-a547-49452d30b344'
+alias: Remotec Bedroom 1 Press Button Eight 1x
+initial_state: true
+trigger:
+  - platform: event
+    event_type: zwave_js_value_notification
+    event_data:
+      device_id: "1da9e491b068a3646da5c3398a8da391"
+      property_key: "008"
+      value: "KeyPressed"
+condition:
+  - condition: state
+    entity_id: fan.sonoff_1000cc2f24
+    state: 'off'
+action:
+  - service: fan.set_percentage
+    target:
+      entity_id: fan.sonoff_1000cc2f24 
+    data:
+      percentage: 100
+mode: single

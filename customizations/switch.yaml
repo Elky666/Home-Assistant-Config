@@ -1,0 +1,45 @@
+#Bedroom 2
+switch.sonoff_1000f535fe_1:
+  friendly_name: Bedroom 2 USB Plug
+  icon: mdi:usb-port
+switch.bedroom_2_tv:
+  friendly_name: TV
+  icon: mdi:television
+switch.bedroom_2_echo_show_plug:
+  friendly_name: Echo Show
+  icon: mdi:power-socket-uk
+switch.bedroom_2_tv_plug:
+  friendly_name: TV
+  icon: mdi:power-socket-uk
+switch.bedroom_2_vero_plug:
+  friendly_name: Vero
+  icon: mdi:power-socket-uk
+switch.bedroom_2_light_switch:
+  friendly_name: Light Switch
+  icon: mdi:light-switch
+#Bedroom 3
+switch.sonoff_1000f53b8e_1:
+  friendly_name: Bedroom 3 USB Plug
+  icon: mdi:usb-port
+switch.bedroom_3_tv_power:
+  friendly_name: TV
+  icon: mdi:television
+#Living Room
+switch.livingroom_1_light_switch:
+  friendly_name: Light Switch 1
+  icon: mdi:light-switch
+switch.livingroom_2_light_switch:
+  friendly_name: Light Switch 2
+  icon: mdi:light-switch
+switch.av_surge_protector_mss426_projector_plug:
+  friendly_name: Projector
+  icon: mdi:projector
+switch.av_surge_protector_mss426_projector_screen_plug:
+  friendly_name: Projector Screen
+  icon: mdi:projector-screen-variant
+switch.livingroom_surge_protector_mss426_christmas_tree_lights_plug:
+  friendly_name: Christams Tree
+  icon: mdi:pine-tree
+switch.livingroom_surge_protector_mss426_christmas_candles_plug:
+  friendly_name: Christams Candles
+  icon: mdi:candle

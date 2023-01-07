@@ -1,0 +1,6 @@
+# Input booleans for bits
+#
+# https://www.home-assistant.io/components/input_boolean/
+#
+
+input_boolean: !include_dir_named ../input_booleans/

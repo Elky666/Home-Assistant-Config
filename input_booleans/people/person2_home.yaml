@@ -1,0 +1,2 @@
+name: !secret name_person_2
+icon: mdi:human-female

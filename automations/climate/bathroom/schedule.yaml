@@ -1,0 +1,79 @@
+id: d87a2c30-5f49-48a1-807a-c6983acbeefa
+alias: Climate Bathroom Radiator Schedule
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: time_pattern
+    minutes: /10
+  - platform: state
+    entity_id:
+      - switch.heating_bathroom_control_switch
+    to: "on"
+  - platform: state
+    entity_id:
+      - input_number.heating_minimum
+      - input_number.heating_average
+      - input_number.heating_maximum
+      - input_boolean.home_away
+action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.home_home
+        state: "on"
+      - condition: state
+        entity_id: input_boolean.home_away
+        state: 'off'
+      - condition: time
+        weekday:
+        - mon
+        - tue
+        - thu
+        - fri
+        - sat
+      sequence:
+        - service: climate.set_temperature
+          data_template:
+            entity_id: climate.tado_smart_radiator_thermostat_va4266461696
+            temperature: >
+              {% if now().hour in [7] %}
+                {{ states('input_number.heating_maximum')| float(0) }}
+              {% elif now().hour in [18, 19] %}
+                {{ states('input_number.heating_maximum')| float(0) }}
+              {% else %}
+                {{ states('input_number.heating_minimum')| float(0) }}
+              {% endif %}
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.home_away
+        state: "on"
+      sequence:
+        - service: climate.set_temperature
+          data:
+            entity_id: climate.tado_smart_radiator_thermostat_va4266461696
+            temperature: 5
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.home_home
+        state: "on"
+      - condition: state
+        entity_id: input_boolean.home_away
+        state: "off"
+      - condition: time
+        weekday:
+        - wed
+        - sun
+      sequence:
+        - service: climate.set_temperature
+          data_template:
+            entity_id: climate.tado_smart_radiator_thermostat_va4266461696
+            temperature: >
+              {% if now().hour in [7] %}
+                {{ states('input_number.heating_maximum')| float(0) }}
+              {% elif now().hour in [18, 19, 20] %}
+                {{ states('input_number.heating_maximum')| float(0)+1 }}
+              {% else %}
+                {{ states('input_number.heating_minimum')| float(0) }}
+              {% endif %}
+    default: []

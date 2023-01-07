@@ -1,0 +1,31 @@
+id: 'f247ea10-534d-468b-99ba-95b76ed3cf1c'
+alias: Home Night Input Boolean Change
+initial_state: true
+description: ''
+trigger:
+  - platform: state
+    entity_id: sun.sun
+condition:
+  - condition: state
+    entity_id: input_boolean.home_home
+    state: "on"
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: sun.sun
+            state: "below_horizon"
+        sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.home_night
+      - conditions:
+          - condition: state
+            entity_id: sun.sun
+            state: "above_horizon"
+        sequence:
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.home_night
+    default: []
+mode: single

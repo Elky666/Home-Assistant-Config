@@ -1,0 +1,21 @@
+id: 'a97942cb-344a-4293-ad9d-2744d473ca77'
+alias: Media Living Room Kodi Stop
+initial_state: on
+trigger:
+  - entity_id: media_player.livingroom
+    platform: state
+    from: playing
+    to: idle
+condition: []
+action:
+  - service: light.turn_on
+    data:
+      entity_id:
+        - light.livingroom_lamp
+      transition: 2
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id:
+        - switch.livingroom_surge_protector_mss426_christmas_candles_plug
+mode: single

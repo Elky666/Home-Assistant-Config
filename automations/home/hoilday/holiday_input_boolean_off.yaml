@@ -1,0 +1,15 @@
+id: 94b89800-bf57-4bd7-b197-4203713441b8
+alias: Home Holiday Input Boolean Off
+initial_state: true
+description: ''
+trigger:
+  - platform: calendar
+    event: end
+    offset: 0:0:0
+    entity_id: calendar.school_holidays
+condition: []
+action:
+  - service: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.home_holiday
+mode: single

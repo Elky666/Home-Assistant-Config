@@ -1,0 +1,69 @@
+id: a15c3545-2297-474e-9a29-cfcaf800565a
+alias: Climate Bedroom 3 Radiator Schedule
+initial_state: true
+trigger:
+  - platform: time_pattern
+    minutes: '/10'
+  - platform: state
+    entity_id: switch.heating_bedroom_3_control_switch
+    to: 'on'
+  - platform: state
+    entity_id:
+      - input_number.heating_minimum
+      - input_number.heating_average
+      - input_number.heating_maximum
+      - input_boolean.person4_home
+  - platform: state
+    entity_id: fan.sonoff_1000cc1c61
+condition:
+  - condition: state
+    entity_id: switch.heating_control_switch
+    state: 'on'
+action:
+  - choose:
+    - conditions:
+      - condition: and
+        conditions:
+        - condition: state
+          entity_id: input_boolean.person4_home
+          state: 'on'
+        - condition: state
+          entity_id: fan.sonoff_1000cc1c61
+          state: 'off'
+      sequence:
+      - service: climate.set_temperature
+        data_template:
+          entity_id: climate.tado_smart_radiator_thermostat_va0943328000
+          temperature: >
+            {% if now().hour in [7, 8, 9, 10, 11, 12, 13, 14, 15, 16] %}
+              {{ states('input_number.heating_average')| float(0)-2 }}
+            {% elif now().hour in [6, 17, 18, 19, 20, 21, 22] %}
+              {{ states('input_number.heating_maximum')| float(0)-2 }}
+            {% else %}
+              {{ states('input_number.heating_minimum')| float(0) }}
+            {% endif %}
+    - conditions:
+      - condition: or
+        conditions:
+        - condition: state
+          entity_id: input_boolean.person4_home
+          state: 'on'
+        - condition: state
+          entity_id: fan.sonoff_1000cc1c61
+          state: 'on'
+      sequence:
+      - service: climate.set_temperature
+        data_template:
+          entity_id: climate.tado_smart_radiator_thermostat_va0943328000
+          temperature: 5
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.person4_home
+        state: 'off'
+      sequence:
+      - service: climate.set_temperature
+        data_template:
+          entity_id: climate.tado_smart_radiator_thermostat_va0943328000
+          temperature: 5
+    default: []
+mode: single

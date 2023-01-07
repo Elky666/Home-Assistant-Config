@@ -1,0 +1,17 @@
+# The arlo implementation from twrecked allows you to integrate your Arlo 
+# devices in Home Assistant.
+#
+# https://github.com/twrecked/hass-aarlo/
+#
+
+aarlo:
+  username: !secret arlo_username
+  password: !secret arlo_password
+  refresh_devices_every: 2
+  stream_timeout: 120
+  backend: sse
+  tfa_source: imap
+  tfa_type: email
+  tfa_host: imap.gmail.com
+  tfa_username: !secret gmail_username
+  tfa_password: !secret gmail_app_password

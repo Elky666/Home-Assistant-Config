@@ -1,0 +1,29 @@
+climate.tado_smart_radiator_thermostat_va0096931328:
+  friendly_name: Kitchen Radiator
+  icon: mdi:radiator
+climate.tado_smart_radiator_thermostat_va0114429440:
+  friendly_name: Living Room Radiator
+  icon: mdi:radiator
+climate.tado_smart_radiator_thermostat_va0943328000:
+  friendly_name: Bedroom 3 Radiator
+  icon: mdi:radiator
+# bedroom 1 radiator
+climate.tado_smart_radiator_thermostat_va1775569408:
+  friendly_name: Bedroom 1 Radiator
+  icon: mdi:radiator
+sensor.tado_smart_radiator_thermostat_va1775569408_current_humidity:
+  friendly_name: Bedroom 1 Radiator Current Humidity
+sensor.tado_smart_radiator_thermostat_va1775569408_current_temperature:
+  friendly_name: Bedroom 1 Radiator Current Temperature
+climate.tado_smart_radiator_thermostat_va1993674240:
+  friendly_name: Toilet Radiator
+  icon: mdi:radiator
+climate.tado_smart_radiator_thermostat_va2514946816:
+  friendly_name: Bedroom 2 Radiator
+  icon: mdi:radiator
+climate.tado_smart_radiator_thermostat_va4266461696:
+  friendly_name: Bathroom Radiator
+  icon: mdi:radiator
+climate.tado_smart_thermostat_ru3754558976:
+  friendly_name: Hallway Thermostat
+  icon: mdi:radiator

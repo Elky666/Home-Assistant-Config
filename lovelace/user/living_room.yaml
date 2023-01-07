@@ -1,0 +1,35 @@
+theme: Backend-selected
+icon: mdi:sofa
+title: Living Room
+path: living-room
+badges: []
+cards:
+  - type: custom:mushroom-chips-card
+    chips:
+      - type: entity
+        entity: >-
+          sensor.tado_smart_radiator_thermostat_va1775569408_current_temperature
+  - type: vertical-stack
+    title: Lights
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-light-card
+            entity: light.livingroom_lamp
+            fill_container: true
+            show_brightness_control: true
+            collapsible_controls: true
+            use_light_color: true
+          - type: custom:mushroom-light-card
+            entity: light.livingroom_tv_led_strip
+            fill_container: true
+            show_brightness_control: true
+            show_color_control: true
+            collapsible_controls: true
+            use_light_color: true
+      - type: horizontal-stack
+        cards:
+          - type: tile
+            entity: switch.livingroom_1_light_switch
+          - type: tile
+            entity: switch.livingroom_2_light_switch

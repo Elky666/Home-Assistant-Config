@@ -1,0 +1,6 @@
+name: Heating Control
+entities:
+  - switch.heating_control_switch
+  - input_number.heating_maximum
+  - input_number.heating_average
+  - input_number.heating_minimum

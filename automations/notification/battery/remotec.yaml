@@ -1,0 +1,31 @@
+################################################################################
+#
+# Send a notification when a remotec battery is low
+#
+################################################################################
+
+id: '4280a152-a0d8-4172-9593-1a29032eeaa6'
+alias: Notification Remotec Battery Low
+description: ""
+initial_state: on
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - binary_sensor.scene_master_8_button_remote_low_battery_level
+      - binary_sensor.scene_master_8_button_remote_low_battery_level_2
+      - binary_sensor.scene_master_8_button_remote_low_battery_level_3
+    to: "on"
+action:
+  # find the name of the device with update
+  - variables:
+      device: "{{ trigger.to_state.attributes.friendly_name }}"
+  # send out the message telling about the update
+  - service: script.notify_message_engine
+    data:
+      who: pushover
+      title: Remotec Battery Low
+      message: >-
+        "{{ device }} Battery Low"
+      priority: 0
+      sound: incoming

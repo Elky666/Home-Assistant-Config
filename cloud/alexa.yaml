@@ -1,0 +1,78 @@
+filter:
+  include_entities:
+  # Camera
+  - camera.kitchen_high
+  # Lights
+  - light.bedroom_1_lamps
+  - light.bedroom_1_led_strip
+  - light.bedroom_1_light
+  - light.bedroom_2_lamp
+  - light.bedroom_2_led
+  - light.bedroom_2_light
+  - light.bedroom_3_lamp
+  - light.bedroom_3_led
+  - light.bedroom_3_light
+  # Switchs
+  - switch.bedroom_1_bedside_fan_plug
+  - switch.alexa_light
+  # Scripts
+  - script.goodnight
+  exclude_entities:
+    - switch.tyler_s_playstation
+entity_config:
+  # Camera
+  camera.kitchen_high:
+    name: Kitchen Camera
+    description: Kitchen Camera
+    display_categories: CAMERA
+  # Lights
+  light.bedroom_1_lamps:
+    name: Bedroom 1 Lamps
+    description: Bedroom 1 Lamps
+    display_categories: LIGHT
+  light.bedroom_1_led_strip:
+    name: Bedroom 1 Led
+    description: Bedroom 1 Led
+    display_categories: LIGHT
+  light.bedroom_1_light:
+    name: Bedroom 1 Light
+    description: Bedroom 1 Light
+    display_categories: LIGHT
+  light.bedroom_2_lamp:
+    name: Bedroom 2 Lamp
+    description: Bedroom 2 Lamp
+    display_categories: LIGHT
+  light.bedroom_2_led:
+    name: Bedroom 2 Led
+    description: Bedroom 2 Led
+    display_categories: LIGHT
+  light.bedroom_2_light:
+    name: Bedroom 2 Light
+    description: Bedroom 2 Light
+    display_categories: LIGHT
+  light.bedroom_3_lamp:
+    name: Bedroom 3 Lamp
+    description: Bedroom 3 Lamp
+    display_categories: LIGHT
+  light.bedroom_3_led:
+    name: Bedroom 3 Led
+    description: Bedroom 3 Led
+    display_categories: LIGHT
+  light.bedroom_3_light:
+    name: Bedroom 13 Light
+    description: Bedroom 3 Light
+    display_categories: LIGHT
+  # Fans
+  # Switchs
+  switch.bedroom_1_bedside_fan_plug:
+    name: Bedside Fan
+    description: Bedside Fan
+    display_categories: SWITCH
+  switch.alexa_light:
+    name: Light
+    description: Turn on Lights based on room
+    display_categories: SWITCH
+  script.goodnight:
+    name: Goodnight
+    description: Script to run at Bedtime
+    display_categories: ACTIVITY_TRIGGER

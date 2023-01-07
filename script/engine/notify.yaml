@@ -1,0 +1,114 @@
+notify_message_engine:
+  alias: Notification Engine
+  icon: mdi:message-alert-outline
+  mode: single
+  fields:
+    who:
+      description: Notification service to use
+      example: pushover
+    title:
+      description: Message Title
+      example: Error
+    message:
+      description: The main body of the message to send
+      example: Your Tea is Done
+    priority:
+      description: Priority of the messgae (Pushover) (-2,-1,0,1,2)
+      example: '-1'
+    sound:
+      description: Sound to play when receiving notifications (See https://pushover.net/api#sounds)
+      example: incoming
+    url:
+      description: Add a URL to message
+      example: https://www.home-assistant.io/
+    attachment:
+      description: Image attachments
+      example: local/image.png
+    displaytime:
+      description: Length in milliseconds the message stays on screen.
+      example: '20000'
+    duration:
+      description: The duration in seconds for which the notification will be displayed.
+      example: '4'
+    fontsize:
+      description: Has to be one of small, medium, large or max.
+      example: medium
+    position:
+      description: Has to be one of bottom-right, bottom-left, top-right, top-left or center.
+      example: bottom-right
+    transparency:
+      description: Has to be one of 0%, 25%, 50%, 75% or 100%.
+      example: 75%
+    timeout:
+      description: The timeout in seconds for trying to send the notification to the device.
+      example: '5'
+    color:
+      description: Has to be one of grey, black, indigo, green, red, cyan, teal, amber or pink.
+      example: red
+    interrupt:
+      description: If set to true, 1, on etc., the notification is interactive and can be dismissed or selected to display more details. Depending on the running app (e.g., Netflix), this may stop playback.
+      example: '0'
+  sequence:
+    - choose:
+        - conditions:
+            - condition: template
+              value_template: >- 
+                {{ who == 'pushover' }}
+          sequence:
+            - service: notify.pushover
+              data:
+                title: '{{ title }}'
+                message: '{{ message }}'
+                data:
+                  priority: '{{ priority }}'
+                  sound: '{{ sound }}'
+                  url: '{{ url }}'
+                  attachment: '{{ attachment }}'
+        - conditions:
+            - condition: template
+              value_template: >-
+                {{ who == 'kodi' }}
+          sequence:
+            - service: notify.livingroom_kodi
+              data:
+                title: '{{ title }}'
+                message: '{{ message }}'
+                data:
+                  displaytime: '{{ displaytime }}'
+                  icon: '{{ icon }}'
+            - service: notify.bedroom_1_kodi
+              data:
+                title: '{{ title }}'
+                message: '{{ message }}'
+                data:
+                  displaytime: '{{ displaytime }}'
+                  icon: '{{ icon }}'
+        - conditions:
+            - condition: template
+              value_template: >-
+                {{ who == 'home_app' }}
+          sequence:
+            - service: notify.mobile_app_damian_s_phone
+              data:
+                title: '{{ title }}'
+                message: '{{ message }}'
+                data:
+                  ttl: 0
+                  priority: high
+        - conditions:
+            - condition: template
+              value_template: >-
+                {{ who == 'sony_tv' }}
+          sequence:
+            - service: notify.sony_android_tv
+              data:
+                title: '{{ title }}'
+                message: '{{ message }}'
+                data:
+                  duration: '{{ duration }}'
+                  position: '{{ position }}'
+                  fontsize: '{{ fontsize }}'
+                  transparency: '{{ transparency }}'
+                  color: '{{ color }}'
+                  interrupt: '{{ interrupt }}'
+                  image: {'url':'{{ url }}'}

@@ -1,0 +1,8 @@
+name: Home Mode
+entities:
+  - input_boolean.home_away
+  - input_boolean.home_home
+  - input_boolean.home_holiday
+  - input_boolean.home_night
+  - input_boolean.home_sleep
+  - input_boolean.home_alarm_triggered

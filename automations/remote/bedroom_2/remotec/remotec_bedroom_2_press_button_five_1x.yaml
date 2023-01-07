@@ -1,0 +1,15 @@
+id: 'fd7494f0-3c00-4508-abaf-f2861bc061c9'
+alias: Remotec Bedroom 2 Press Button Five 1x
+initial_state: true
+trigger:
+  - platform: event
+    event_type: zwave_js_value_notification
+    event_data:
+      device_id: "f15945068fd22bbbec21a85bf34472a2"
+      property_key: "005"
+      value: "KeyPressed"
+action:
+  - service: fan.turn_off
+    target:
+      entity_id: fan.sonoff_1000cc26b0
+mode: single

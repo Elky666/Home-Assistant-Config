@@ -1,0 +1,42 @@
+id: '8d212b81-34ce-4423-801a-ba515ff6d204'
+alias: Livingroom Sky
+initial_state: on
+description: ''
+trigger:
+  - platform: state
+    entity_id:
+    - media_player.sky_q_livingroom
+condition:
+  - condition: state
+    entity_id: input_boolean.home_night
+    state: 'on'
+action:
+  - choose:
+    - conditions:
+      - condition: template
+        value_template: 'value_template: ''{{ trigger.to_state.attributes.skyq_media_type == "pvr" }}'''
+      sequence:
+      - service: light.turn_on
+        data:
+          entity_id: 
+          - light.livingroom_lamp
+          - light.livingroom_tv_led_strip
+          brightness: 63
+          transition: 2
+      - service: switch.turn_off
+        data:
+          entity_id:
+            - switch.livingroom_1_light_switch
+            - switch.livingroom_2_light_switch
+    - conditions:
+      - condition: template
+        value_template: 'value_template: ''{{ trigger.to_state.attributes.skyq_media_type == "live" }}'''
+      sequence:
+      - service: light.turn_on
+        data:
+          entity_id:
+            - light.livingroom_lamp
+            - light.livingroom_tv_led_strip
+          brightness: 255
+          transition: 2
+mode: single

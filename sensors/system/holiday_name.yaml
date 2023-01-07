@@ -1,0 +1,31 @@
+################################################################################
+#
+# https://community.home-assistant.io/t/custom-holiday-sensor/280872
+#
+################################################################################
+
+- platform: template
+  sensors:
+    holiday_name:
+      unique_id: '8bdb6718-4bdc-4c98-a2c4-e4d1120005a1'
+      friendly_name: "Holiday Name"
+      value_template: >
+        {% set holidays=[
+        {"name":"Christmas","month":12, "day":null,"year":null,"dow":null, "num_of_dow":null},
+        {"name":"Thanksgiving","month":11,"day":null,"year":null,"dow":3, "num_of_dow":4},
+        {"name":"New Years","month":1,"day":1,"year":null,"dow":null, "num_of_dow":null},
+        {"name":"4th of July","month":7,"day":4,"year":null,"dow":null, "num_of_dow":null},
+        {"name":"Halloween","month":10,"day":31,"year":null,"dow":null, "num_of_dow":null},
+        {"name":"Saint Patrick's Day","month":3,"day":17,"year":null,"dow":null, "num_of_dow":null}
+        ]
+        %}
+        {% set holidays= (holidays | sort(attribute='Month')) %}
+        {% set thisholiday = namespace(name='') %}
+        {% for holiday in holidays -%}
+        {%- if thisholiday.name | length == 0 and (holiday.month != undefined or holiday.day != undefined or holiday.year != undefined or holiday.dow != undefined or holiday.num_of_dow !=undefined)  %}
+          {%- if now().month == holiday.month and (now().day == holiday.day or holiday.day == undefined) and (holiday.dow==now().weekday() or holiday.dow == undefined) and (holiday.num_of_dow == undefined or (now().day>=((holiday.num_of_dow-1)*7) and now().day<(holiday.num_of_dow*7))) %}
+            {% set thisholiday.name = holiday.name %}
+          {%- endif%}
+        {%- endif%}
+        {%- endfor %}
+        {{thisholiday.name}}

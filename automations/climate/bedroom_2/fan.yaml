@@ -1,0 +1,57 @@
+id: 42f6a612-38ba-4f00-9992-0e1b2c0aaa5e
+alias: Climate Bedroom 2 Fan
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - fan.sonoff_1000cc26b0
+    to: "on"
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+  - platform: state
+    entity_id: sensor.tado_smart_radiator_thermostat_va2514946816_current_temperature
+  - platform: state
+    entity_id: input_boolean.person5_home
+condition:
+  - condition: state
+    entity_id: fan.sonoff_1000cc26b0
+    state: "on"
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+action:
+  - choose:
+      - conditions:
+          - condition: not
+            conditions:
+              - condition: state
+                entity_id: sensor.season
+                state: winter
+        sequence:
+          - service: fan.set_percentage
+            data_template:
+              percentage: >
+                {% if states('sensor.tado_smart_radiator_thermostat_va2514946816_current_temperature') | float < 20 %}
+                  33
+                {% elif states('sensor.tado_smart_radiator_thermostat_va2514946816_current_temperature') | float < 25 %}
+                  66
+                {% elif states('sensor.tado_smart_radiator_thermostat_va2514946816_current_temperature') | float < 35 %}
+                  100
+                {% endif %}
+            target:
+              entity_id: fan.sonoff_1000cc26b0
+      - conditions:
+          - condition: state
+            entity_id: sensor.season
+            state: winter
+        sequence:
+          - service: fan.set_percentage
+            data:
+              percentage: 33
+            target:
+              entity_id: fan.sonoff_1000cc26b0

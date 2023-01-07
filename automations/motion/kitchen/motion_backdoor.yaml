@@ -1,0 +1,107 @@
+id: '22bc56d4-1eaa-4f67-ac6a-7f30b965cef7'
+alias: Motion Backdoor
+description: ''
+initial_state: true
+trigger:
+  - platform: state
+    entity_id: binary_sensor.fibaro_door_window_sensor_2_window_door_is_open
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 7
+condition: []
+action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: media_player.sony_kd_55x8509c
+        state: "off"
+      - condition: state
+        entity_id: media_player.livingroom
+        state: idle
+      - condition: state
+        entity_id: binary_sensor.fibaro_door_window_sensor_2_window_door_is_open
+        state: "on"
+      sequence:
+      - service: notify.alexa_media
+        data:
+          target:
+            - media_player.livingroom_2
+          data:
+            type: announce
+          message: "Backdoor Open"
+      - service: switch.turn_off
+        data:
+          entity_id:
+            - switch.heating_dining_room_control_switch
+            - switch.heating_livingroom_control_switch
+            - switch.heating_hallway_control_switch
+    - conditions:
+      - condition: state
+        entity_id: media_player.sony_kd_55x8509c
+        state: "off"
+      - condition: state
+        entity_id: media_player.livingroom
+        state: playing
+      - condition: state
+        entity_id: binary_sensor.fibaro_door_window_sensor_2_window_door_is_open
+        state: "off"
+      sequence:
+      - service: script.notify_message_engine
+        data:
+          who: kodi
+          title: Door
+          message: Backdoor is open
+          displaytime: 10000
+          icon: warning
+      - service: switch.turn_off
+        data:
+          entity_id:
+            - switch.heating_dining_room_control_switch
+            - switch.heating_livingroom_control_switch
+            - switch.heating_hallway_control_switch
+    - conditions:
+      - condition: state
+        entity_id: media_player.sony_kd_55x8509c
+        state: playing
+      - condition: state
+        entity_id: media_player.livingroom
+        state: idle
+      - condition: state
+        entity_id: binary_sensor.fibaro_door_window_sensor_2_window_door_is_open
+        state: "on"
+      sequence:
+      - service: script.notify_message_engine
+        data:
+          who: sony_tv
+          title: Door
+          message: Backdoor is open
+          url: https://3emjd6zd8m05hjxzpqoutukdp6lv1wuu.ui.nabu.casa/local/icon/door_open.png
+          duration: 4
+          fontsize: medium
+          position: bottom-right
+          transparency: 50%
+          timeout: 5
+          color: red
+          interrupt: 0
+      - service: switch.turn_off
+        data:
+          entity_id:
+            - switch.heating_dining_room_control_switch
+            - switch.heating_livingroom_control_switch
+            - switch.heating_hallway_control_switch
+    - conditions:
+      - condition: state
+        entity_id: switch.heating_control_switch
+        state: "on"
+      - condition: state
+        entity_id: binary_sensor.fibaro_door_window_sensor_2_window_door_is_open
+        state: "off"
+      sequence:
+      - service: switch.turn_on
+        data:
+          entity_id:
+            - switch.heating_dining_room_control_switch
+            - switch.heating_livingroom_control_switch
+            - switch.heating_hallway_control_switch
+mode: single

@@ -1,0 +1,17 @@
+id: 'fd56e2a6-9025-4b9d-b299-96c75f8888f9'
+alias: Remotec Bedroom 2 Press Button Six 1x
+initial_state: true
+trigger:
+  - platform: event
+    event_type: zwave_js_value_notification
+    event_data:
+      device_id: "f15945068fd22bbbec21a85bf34472a2"
+      property_key: "006"
+      value: "KeyPressed"
+action:
+  - service: fan.set_percentage
+    target:
+      entity_id: fan.sonoff_1000cc26b0
+    data:
+      percentage: 33
+mode: single

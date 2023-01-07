@@ -1,0 +1,6 @@
+name: 'Heating Average'
+min: 0
+max: 25
+step: 1
+mode: slider
+icon: mdi:radiator

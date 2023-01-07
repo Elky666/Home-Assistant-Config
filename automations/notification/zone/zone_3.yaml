@@ -1,0 +1,29 @@
+id: 'ad33f16d-7128-45ee-8d4e-3224c80ef2bd'
+alias: Notification Zone 3
+initial_state: on
+trigger:
+  - platform: zone
+    entity_id:
+      - person.person_4
+      - person.person_5
+    zone: zone.trelawne
+    event: enter
+  - platform: zone
+    entity_id:
+      - person.person_4
+      - person.person_5
+    zone: zone.trelawne
+    event: leave
+action:
+  - variables:
+      event: "{{'has left' if trigger.event == 'leave' else 'arrived at' }}"
+      person: "{{ trigger.to_state.attributes.friendly_name }}"
+      zone: "{{ trigger.zone.attributes.friendly_name }}"
+  - service: script.notify_message_engine
+    data:
+      who: pushover
+      title: "Tracker"
+      message: "{{ person }} {{ event }} {{ zone }}"
+      priority: -1
+      sound: incoming
+mode: single

@@ -1,0 +1,22 @@
+id: '155238b4-dffa-42d3-84a0-b5e971fdcf73'
+alias: Security Disarmed Cameras
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - alarm_control_panel.house_alarm
+    to: disarmed
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
+condition: []
+action:
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id:
+        - switch.kitchen_privacy_mode
+        - switch.livingroom_privacy_mode

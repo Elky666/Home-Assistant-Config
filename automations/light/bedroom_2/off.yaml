@@ -1,0 +1,26 @@
+id: '4cd6040f-ce4a-4c57-bda4-b5de3f9a6d54'
+alias: Light Bedroom 2 Light Off
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: template
+    value_template: >-
+      {{ states('sensor.time') == (
+      states.input_datetime.bedroom_2_light.attributes.timestamp | int - 300 ) |
+      timestamp_custom('%H:%M', False) }}
+#  - platform: time
+#    at: input_datetime.bedroom_2_light
+  - platform: state
+    entity_id:
+      - input_boolean.person5_home
+    to: "off"
+condition: []
+action:
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id:
+        - light.bedroom_2_lamp
+        - light.bedroom_2_led
+        - light.bedroom_2_light

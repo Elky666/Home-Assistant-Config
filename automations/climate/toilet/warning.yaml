@@ -1,0 +1,18 @@
+id: 3b513c6b-b67e-4fd7-a339-b7ffb272df76
+alias: Climate Toilet Warning
+initial_state: on
+trigger:
+  - entity_id: binary_sensor.climate_toilet_heating_warning
+    for: 01:00:00
+    platform: state
+    to: 'on'
+condition: []
+action:
+  - service: script.notify_message_engine
+    data:
+      who: home_app
+      title: "Heating Warning"
+      message: 'Warning Toilet Radiator has been heating for 60 minutes'
+  - service: switch.turn_off
+    data:
+      entity_id: switch.heating_toilet_control_switch

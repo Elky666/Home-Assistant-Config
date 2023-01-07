@@ -1,0 +1,18 @@
+id: '21c68f73-2fb0-4a3b-b42f-8de09af0aece'
+alias: Camera Aarlo Snapshot
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - camera.aarlo_garden
+      - camera.aarlo_side
+    for: 00:00:03
+    from: 'recently active'
+    to: 'recording'
+condition: []
+action:
+  - data_template:
+      entity_id: "{{ trigger.entity_id }}"
+    service: camera.aarlo_request_snapshot

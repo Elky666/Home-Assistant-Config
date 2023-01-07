@@ -1,0 +1,29 @@
+id: '83d8e232-4e32-4be7-8449-a9a0fe2992d2'
+alias: Notification Zone 2
+initial_state: on
+trigger:
+  - platform: zone
+    entity_id:
+      - person.person_4
+      - person.person_5
+    zone: zone.thurston_community_collage
+    event: enter
+  - platform: zone
+    entity_id:
+      - person.person_4
+      - person.person_5
+    zone: zone.thurston_community_collage
+    event: leave
+action:
+  - variables:
+      event: "{{'has left' if trigger.event == 'leave' else 'arrived at' }}"
+      person: "{{ trigger.to_state.attributes.friendly_name }}"
+      zone: "{{ trigger.zone.attributes.friendly_name }}"
+  - service: script.notify_message_engine
+    data:
+      who: pushover
+      title: "Tracker"
+      message: "{{ person }} {{ event }} {{ zone }}"
+      priority: -1
+      sound: incoming
+mode: single

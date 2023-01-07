@@ -1,0 +1,19 @@
+id: 'd5b6125f-355b-44ce-8928-1303b93dd93e'
+alias: Switch Living Room USB
+initial_state: true
+trigger:
+  - platform: template
+    value_template: 
+      "{% set alarm_time = states('sensor.bedroom_1_echo_show_next_alarm') | as_datetime %}
+      {% set minutes_before = 120 %} 
+      {% if alarm_time != None %}
+      {{ now() >= alarm_time - timedelta(minutes = minutes_before) }}
+      {% else %} 
+        False 
+      {% endif %}"
+condition: []
+action:
+  - service: switch.turn_on
+    data:
+      entity_id: switch.sonoff_100149da02_1
+mode: single

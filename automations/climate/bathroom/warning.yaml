@@ -1,0 +1,21 @@
+id: '00cc666b-1b98-4554-b308-1cff0a133b1b'
+alias: Climate Bathroom Radiator Warning
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - entity_id: binary_sensor.climate_bathroom_heating_warning
+    for: '01:00:00'
+    platform: state
+    to: "on"
+condition: []
+action:
+  - service: script.notify_message_engine
+    data:
+      who: home_app
+      title: "Heating Warning"
+      message: "Warning Bathroom Radiator has been heating for 60 minutes"
+  - service: switch.turn_off
+    data: {}
+    target:
+      entity_id: switch.heating_bathroom_control_switch

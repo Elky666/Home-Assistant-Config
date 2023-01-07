@@ -1,0 +1,6 @@
+# This handles the loading of my groups
+#
+# https://www.home-assistant.io/integrations/group/
+#
+
+media_player: !include_dir_merge_list ../media_player/

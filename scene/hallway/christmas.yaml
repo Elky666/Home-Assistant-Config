@@ -1,0 +1,63 @@
+id: '589ec450-4d4a-4d14-be3e-984a7a757111'
+name: Hallway Christmas
+icon: mdi:hexagram-outline
+entities:
+  light.hallway_light_1:
+    min_color_temp_kelvin: 1500
+    max_color_temp_kelvin: 9000
+    min_mireds: 111
+    max_mireds: 666
+    effect_list:
+    - effect_colorloop
+    - effect_pulse
+    - effect_stop
+    supported_color_modes:
+    - color_temp
+    - hs
+    color_mode: hs
+    brightness: 100
+    hs_color:
+    - 120
+    - 100
+    rgb_color:
+    - 0
+    - 0
+    - 255
+    xy_color:
+    - 0.136
+    - 0.04
+    friendly_name: Hallway Light 1
+    supported_features: 36
+    state: 'on'
+  light.hallway_light_2:
+    min_color_temp_kelvin: 1500
+    max_color_temp_kelvin: 9000
+    min_mireds: 111
+    max_mireds: 666
+    effect_list:
+    - effect_colorloop
+    - effect_pulse
+    - effect_stop
+    supported_color_modes:
+    - color_temp
+    - hs
+    color_mode: hs
+    brightness: 26
+    hs_color:
+    - 120
+    - 100
+    rgb_color:
+    - 0
+    - 255
+    - 0
+    xy_color:
+    - 0.172
+    - 0.747
+    friendly_name: Hallway Light 2
+    supported_features: 36
+    state: 'on'
+metadata:
+  light.hallway_light_1:
+    entity_only: true
+  light.hallway_light_2:
+    entity_only: true

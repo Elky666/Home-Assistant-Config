@@ -1,0 +1,6 @@
+name: People Home
+entities:
+  - input_boolean.person1_home
+  - input_boolean.person2_home
+  - input_boolean.person4_home
+  - input_boolean.person5_home

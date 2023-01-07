@@ -1,0 +1,15 @@
+id: '783eef07-f6d5-40bf-b550-4f3dc8e65cfd'
+alias: Person 4 Returns Home
+initial_state: true
+trigger:
+  - platform: zone
+    entity_id: person.person_4
+    zone: zone.home
+    event: enter
+condition: []
+action:
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.person4_home
+mode: single

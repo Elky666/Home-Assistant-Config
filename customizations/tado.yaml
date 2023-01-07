@@ -1,0 +1,51 @@
+# kitchen
+sensor.tado_smart_radiator_thermostat_va0096931328_current_humidity:
+  friendly_name: Dinning Room Radiator Current Humidity
+sensor.tado_smart_radiator_thermostat_va0096931328_current_temperature:
+  friendly_name: Dinning Room Radiator Current Temperature
+# Bedroom 2
+sensor.tado_smart_radiator_thermostat_va2514946816_current_humidity:
+  friendly_name: Radiator Current Humidity
+sensor.tado_smart_radiator_thermostat_va2514946816_current_temperature:
+  friendly_name: Radiator Current Temperature
+binary_sensor.va2514946816_battery_state:
+  friendly_name: Tado Bedroom 2 Radiator Battery
+binary_sensor.va2514946816_connection_state:
+  friendly_name: Tado Bedroom 2 Radiator Connection
+# Bedroom 3
+climate.tado_smart_radiator_thermostat_va0096931328:
+  friendly_name: Dinning Room Radiator
+binary_sensor.va0096931328_battery_state:
+  friendly_name: Dinning Room Radiator Battery
+binary_sensor.va0096931328_connection_state:
+  friendly_name: Dinning Room Radiator Connection
+binary_sensor.ru3754558976_battery_state:
+  friendly_name: Tado Hallway Thermostat Battery
+binary_sensor.ru3754558976_connection_state:
+  friendly_name: Tado Hallway Thermostat Connection
+binary_sensor.va0114429440_battery_state:
+  friendly_name: Tado Livingroom Radiator Battery
+binary_sensor.va0114429440_connection_state:
+  friendly_name: Tado Livingroom Radiator Connection
+binary_sensor.va0943328000_battery_state:
+  friendly_name: Tado Bedroom 3 Radiator Battery
+binary_sensor.va0943328000_connection_state:
+  friendly_name: Tado Bedroom 3 Radiator Connection
+binary_sensor.va1775569408_battery_state:
+  friendly_name: Bedroom 1 Radiator Battery
+binary_sensor.va1775569408_connection_state:
+  friendly_name: Bedroom 1 Radiator Connection
+binary_sensor.va1993674240_battery_state:
+  friendly_name: Tado Toilet Radiator Battery
+binary_sensor.va1993674240_connection_state:
+  friendly_name: Tado Toilet Radiator Connection
+binary_sensor.va4266461696_battery_state:
+  friendly_name: Tado Bathroom Radiator Battery
+binary_sensor.va4266461696_connection_state:
+  friendly_name: Tado Bathroom Radiator Connection
+binary_sensor.ib2075461120_connection_state:
+  friendly_name: Tado Internet Bridge
+
+
+
+

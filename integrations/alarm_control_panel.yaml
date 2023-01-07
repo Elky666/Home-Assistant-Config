@@ -1,0 +1,27 @@
+# The manual alarm control panel platform enables you to create an 
+# alarm system in Home Assistant.
+#
+# https://www.home-assistant.io/integrations/manual/
+#
+
+alarm_control_panel:
+  - platform: aarlo
+    away_mode_name: Armed
+    home_mode_name: Home
+    night_mode_name: night
+    trigger_time: 1
+    alarm_volume: 8
+  - platform: manual
+    name: House Alarm
+    code: !secret alarm_code
+    arming_time: 30
+    delay_time: 20
+    trigger_time: 4
+    disarmed:
+      trigger_time: 0
+    armed_home:
+      arming_time: 0
+      delay_time: 0
+    armed_night:
+      arming_time: 0
+      delay_time: 0

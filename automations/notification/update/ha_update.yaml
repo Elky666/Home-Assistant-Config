@@ -1,0 +1,18 @@
+id: '1fee2bb3-8a40-4212-a080-4fe37536279f'
+alias: Notification Home Assistant Update
+description: update
+trigger:
+  - platform: state
+    entity_id:
+    - binary_sensor.home_assistant_versions_update_available
+    to: 'on'
+condition: []
+action:
+  - service: script.notify_message_engine
+    data:
+      who: pushover
+      title: "Tracker"
+      message: "Home Assistant {{ state_attr('sensor.home_assistant_versions') }} is available."
+      priority: 0
+      sound: incoming
+mode: single

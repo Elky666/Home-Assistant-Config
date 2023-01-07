@@ -1,0 +1,26 @@
+theme: Backend-selected
+icon: mdi:bed-king
+title: Bedroom 1
+path: bedroom-1
+badges: []
+cards:
+  - type: custom:mushroom-chips-card
+    chips:
+      - type: entity
+        entity: >-
+          sensor.tado_smart_radiator_thermostat_va1775569408_current_temperature
+  - type: vertical-stack
+    title: Fan
+    cards:
+      - type: custom:mushroom-fan-card
+        entity: fan.sonoff_1000cc2f24
+        icon_animation: true
+        fill_container: true
+        tap_action:
+          action: toggle
+        hold_action:
+          action: none
+        double_tap_action:
+          action: none
+        secondary_info: none
+        name: Ceiling Fan

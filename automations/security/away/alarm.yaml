@@ -1,0 +1,27 @@
+id: '95735e51-c57b-425d-b93f-9150680c71c2'
+alias: Security Away Alarm
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - input_boolean.home_away
+    to: "on"
+condition: []
+action:
+  - service: switch.turn_off
+    data: {}
+    target:
+      entity_id:
+  - service: alarm_control_panel.alarm_arm_away
+    data:
+      code: !secret alarm_code
+    target:
+      entity_id: 
+        - alarm_control_panel.house_alarm
+        - alarm_control_panel.aarlo_home
+#  - service: alarm_control_panel.alarm_arm_away
+#    data: {}
+#    target:
+#      entity_id: alarm_control_panel.aarlo_home

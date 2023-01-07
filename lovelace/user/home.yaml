@@ -1,0 +1,69 @@
+theme: Backend-selected
+title: Home
+icon: mdi:home
+badges: []
+cards:
+  - type: vertical-stack
+    cards:
+      - type: custom:mushroom-chips-card
+        chips:
+          - type: weather
+            entity: weather.met_office_maypole_green_3_hourly
+            show_conditions: true
+            show_temperature: true
+          - type: entity
+            entity: alarm_control_panel.house_alarm
+            icon_color: blue-grey
+            icon: mdi:shield-half-full
+  - square: true
+    columns: 4
+    type: grid
+    cards:
+      - type: custom:mushroom-person-card
+        entity: person.person_1
+        fill_container: true
+        icon_type: entity-picture
+        secondary_info: none
+        layout: vertical
+        tap_action:
+          action: none
+        hold_action:
+          action: none
+        double_tap_action:
+          action: none
+      - type: custom:mushroom-person-card
+        entity: person.person_2
+        fill_container: true
+        icon_type: entity-picture
+        secondary_info: none
+        layout: vertical
+        tap_action:
+          action: none
+        hold_action:
+          action: none
+        double_tap_action:
+          action: none
+      - type: custom:mushroom-person-card
+        entity: person.person_4
+        fill_container: true
+        icon_type: entity-picture
+        secondary_info: none
+        layout: vertical
+        tap_action:
+          action: none
+        hold_action:
+          action: none
+        double_tap_action:
+          action: none
+      - type: custom:mushroom-person-card
+        entity: person.person_5
+        fill_container: true
+        icon_type: entity-picture
+        secondary_info: none
+        layout: vertical
+        tap_action:
+          action: none
+        hold_action:
+          action: none
+        double_tap_action:
+          action: none

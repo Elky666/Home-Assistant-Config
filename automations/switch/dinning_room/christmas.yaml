@@ -1,0 +1,47 @@
+id: '5e6e89ab-100f-4281-bb63-37eaa95237c6'
+alias: Switch Christmas Dinning Room
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: time
+    at: "21:59:30"
+  - platform: state
+    entity_id:
+      - input_boolean.home_night
+    to: "on"
+condition:
+  - condition: template
+    value_template: "{{ ( now().month == 1 and now().day < 7 ) or ( now().month == 12 ) }}"
+action:
+  - choose:
+      - conditions:
+          - condition: time
+            after: "21:59:00"
+        sequence:
+          - service: switch.turn_off
+            data: {}
+            target:
+              entity_id:
+                - switch.dining_room_switch_2
+      - conditions:
+          - condition: state
+            entity_id: input_boolean.home_night
+            state: "on"
+        sequence:
+          - service: switch.turn_on
+            data: {}
+            target:
+              entity_id:
+                - switch.dining_room_switch_2
+          - delay:
+              hours: 0
+              minutes: 0
+              seconds: 1
+              milliseconds: 0
+          - service: remote.send_command
+            data:
+              device: dinning_room_christmas_led
+              command: button_3
+            target:
+              entity_id: remote.kitchen_remote

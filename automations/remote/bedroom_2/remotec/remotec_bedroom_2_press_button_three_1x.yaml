@@ -1,0 +1,15 @@
+id: '7f86feb7-2366-446c-b2f9-b2382833c15a'
+alias: Remotec Bedroom 2 Press Button Three 1x
+initial_state: true
+trigger:
+  - platform: event
+    event_type: zwave_js_value_notification
+    event_data:
+      device_id: "f15945068fd22bbbec21a85bf34472a2"
+      property_key: "003"
+      value: "KeyPressed"
+action:
+  - service: switch.toggle
+    data: {}
+    target:
+      entity_id: switch.bedroom_2_tv

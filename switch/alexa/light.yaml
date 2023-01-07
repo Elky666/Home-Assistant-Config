@@ -1,0 +1,65 @@
+- platform: template
+  switches:
+    alexa_light:
+      friendly_name: 'Alexa Light'
+      unique_id: 'cec9f546-a611-4762-ba39-65a1e5216e4f'
+      value_template: >-
+        {{ is_state('light.bedroom_1_light', 'on')
+            or is_state('switch.livingroom_light', 'on')
+            or is_state('light.bedroom_2_light', 'on')
+            or is_state('light.bedroom_3_light', 'on')
+            or is_state('switch.kitchen_light', 'on')}}
+      turn_on:
+        - delay:
+            seconds: 0.5
+        - service: alexa_media.update_last_called
+        - delay:
+            seconds: 0.5
+        - service: switch.turn_on
+          data_template:
+            entity_id: >-
+              {% if is_state('sensor.sensors_last_alexa', 'media_player.livingroom_2') %}
+                switch.livingroom_light
+              {% elif is_state('sensor.sensors_last_alexa', 'media_player.kitchen_sonos') %}
+                switch.kitchen_light
+              {% endif %}
+        - service: light.turn_on
+          data_template:
+            entity_id: >-
+              {% if is_state('sensor.sensors_last_alexa', 'media_player.bedroom_1_echo_show') %}
+                light.bedroom_1_light
+              {% elif is_state('sensor.sensors_last_alexa', 'media_player.bedroom_2_echo_show') %}
+                light.bedroom_2_light
+              {% elif is_state('sensor.sensors_last_alexa', 'media_player.bedroom_3_echo_show') %}  
+                light.bedroom_3_light
+              {% endif %}
+      turn_off:
+        - delay:
+            seconds: 0.5
+        - service: alexa_media.update_last_called
+        - delay:
+            seconds: 0.5
+        - service: switch.turn_off
+          data_template:
+            entity_id: >-
+              {% if is_state('sensor.sensors_last_alexa', 'media_player.livingroom_2') %}
+                switch.livingroom_light
+              {% elif is_state('sensor.sensors_last_alexa', 'media_player.kitchen_sonos') %}
+                switch.kitchen_light
+              {% endif %}
+        - service: light.turn_off
+          data_template:
+            entity_id: >-
+              {% if is_state('sensor.sensors_last_alexa', 'media_player.bedroom_1_echo_show') %}
+                light.bedroom_1_light
+              {% elif is_state('sensor.sensors_last_alexa', 'media_player.bedroom_2_echo_show') %}
+                light.bedroom_2_light
+              {% elif is_state('sensor.sensors_last_alexa', 'media_player.bedroom_3_echo_show') %}  
+                light.bedroom_3_light
+              {% endif %}
+      icon_template: >-
+        {% if is_state('switch.alexa_light', 'on') %}
+          mdi:lightbulb
+        {% else %}
+          mdi:lightbulb-off
+        {% endif %}

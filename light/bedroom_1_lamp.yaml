@@ -1,0 +1,6 @@
+- platform: group
+  name: "Bedroom 1 Lamps"
+  unique_id: 'e9126d49-b8e4-465b-b149-3c3177d2fd8d'
+  entities:
+    - light.bedroom_1_lamp_1
+    - light.bedroom_1_lamp_2

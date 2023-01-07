@@ -1,0 +1,6 @@
+# Input datetime
+#
+# https://www.home-assistant.io/integrations/input_datetime/
+#
+
+input_datetime: !include_dir_named ../input_datetime/

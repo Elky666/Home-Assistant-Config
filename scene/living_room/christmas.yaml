@@ -1,0 +1,10 @@
+id: '1da6cb81-a534-4cb4-ba38-3a3994b30f20'
+name: Living Room Christmas
+icon: mdi:hexagram-outline
+entities:
+  light.livingroom_tv_led_strip:
+    color: red
+    state: 'on'
+  light.livingroom_lamp:
+    color: green
+    state: 'on'

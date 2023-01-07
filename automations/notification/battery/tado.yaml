@@ -1,0 +1,36 @@
+################################################################################
+#
+# Send a notification when a tado battery is low
+#
+################################################################################
+
+id: '95e68be2-cade-4b69-93ce-040f0201e2cc'
+alias: Notification Tado Battery Low
+description: ""
+initial_state: on
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - binary_sensor.va4266461696_battery_state
+      - binary_sensor.va1775569408_battery_state
+      - binary_sensor.va2514946816_battery_state
+      - binary_sensor.va0096931328_battery_state
+      - binary_sensor.va0943328000_battery_state
+      - binary_sensor.ru3754558976_battery_state
+      - binary_sensor.va0114429440_battery_state
+      - binary_sensor.va1993674240_battery_state
+    to: "on"
+action:
+  # find the name of the device with update
+  - variables:
+      device: "{{ trigger.to_state.attributes.friendly_name }}"
+  # send out the message telling about the update
+  - service: script.notify_message_engine
+    data:
+      who: pushover
+      title: Tado Battery Low
+      message: >-
+        "{{ device }} Battery Low"
+      priority: 0
+      sound: incoming

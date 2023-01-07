@@ -1,0 +1,26 @@
+id: '289fb276-2b5b-4099-b220-8d531e3f7da0'
+alias: Home Sleep Switch
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - input_boolean.home_sleep
+    to: "on"
+condition: []
+action:
+  - service: switch.turn_off
+    data: {}
+    target:
+      entity_id:
+        - switch.kitchen_light
+        - switch.dining_room_switch_2
+        - switch.diningroom_light_switch
+        - switch.livingroom_1_light_switch
+        - switch.livingroom_2_light_switch
+        - switch.livingroom_surge_protector_mss426_christmas_candles_plug
+        - switch.livingroom_surge_protector_mss426_christmas_tree_lights_plug
+        - switch.av_surge_protector_mss426_projector_plug
+        - switch.av_surge_protector_mss426_projector_screen_plug
+        

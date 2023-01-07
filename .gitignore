@@ -1,13 +1,10 @@
 # Example .gitignore file for your config dir.
 # An * ensures that everything will be ignored.
-*
+
 # You can whitelist files/folders with !, these will not be ignored.
 !.gitignore
 !*.md
-!/group/
-!/group/*.yaml
-!/zones/
-!/zones/*.yaml
+
 # Ignore folders.
 .aarlo
 .cache
@@ -22,24 +19,17 @@ image
 www/*
 media
 tts
-ssh
+.ssh
 
 # Ensure these YAML files are ignored, otherwise your secret data/credentials will leak.
 ip_bans.yaml
 secrets.yaml
 known_devices.yaml
 govee_learning.yaml
-#.google.token
-#.sonoff.json
-#*.conf
-#*.log
-#*.old
-#*.tmp
-#*.fault
-#*.txt
-#*.log.*
-#*.db
-#*.db-shm
-#*.db-wal
-
-#integrations/service_account.json
+*.conf
+*.log.*
+*.old
+*.txt
+*.log
+*.db
+zigbee.*

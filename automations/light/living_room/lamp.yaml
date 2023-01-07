@@ -1,0 +1,95 @@
+id: '2a56f4e3-13e3-4b81-ac1e-3bb880c8da9e'
+alias: Lights Living Room Lamp On
+initial_state: true
+description: ''
+trigger:
+  - platform: state
+    entity_id: input_boolean.home_night
+    to: "on"
+  - platform: state
+    entity_id: light.livingroom_lamp
+    to: "on"
+condition:
+  - condition: not
+    conditions:
+      - condition: state
+        entity_id: media_player.livingroom
+        state: playing
+action:
+  - choose:
+    - conditions:
+        - condition: and
+          conditions:
+          - condition: state
+            entity_id: input_boolean.home_night
+            state: 'on'
+          - condition: state
+            entity_id: sensor.holiday_name
+            state: Valentines
+      sequence:
+      - service: light.turn_on
+        data:
+          brightness: 255
+          color_name: pink
+          transition: 2
+        target:
+          entity_id: light.livingroom_lamp
+    - conditions:
+        - condition: and
+          conditions:
+          - condition: state
+            entity_id: input_boolean.home_night
+            state: 'on'
+          - condition: state
+            entity_id: sensor.holiday_name
+            state: Halloween
+      sequence:
+      - service: light.turn_on
+        data:
+          color_name: orange
+          transition: 2
+        target:
+          entity_id: light.livingroom_lamp
+    - conditions:
+        - condition: and
+          conditions:
+          - condition: state
+            entity_id: input_boolean.home_night
+            state: 'on'
+          - condition: state
+            entity_id: sensor.holiday_name
+            state: Christmas
+      sequence:
+      - service: light.turn_on
+        data:
+          brightness: 255
+          color_name: green
+          transition: 2
+        target:
+          entity_id: light.livingroom_lamp
+    - conditions:
+        - condition: and
+          conditions:
+          - condition: state
+            entity_id: input_boolean.home_night
+            state: 'off'
+          - condition: state
+            entity_id: light.livingroom_lamp
+            state: 'on'
+      sequence:
+      - service: light.turn_on
+        data:
+          brightness: 255
+          color_temp: 111
+          transition: 2
+        target:
+          entity_id: light.livingroom_lamp
+    default:
+      - service: light.turn_on
+        data:
+          brightness: 255
+          color_temp: 111
+          transition: 2
+        target:
+          entity_id: light.livingroom_lamp 
+mode: single

@@ -1,0 +1,22 @@
+id: '0f51afd2-2d98-473d-b5af-ec919dc02774'
+alias: Alarm Clock Bedroom 3 Fan
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: template
+    value_template: 
+      "{% set alarm_time = states('sensor.bedroom_3_echo_show_next_alarm') | as_datetime %}
+      {% set minutes_before = 1 %} 
+      {% if alarm_time != None %}
+      {{ now() >= alarm_time - timedelta(minutes = minutes_before) }}
+      {% else %} 
+        False 
+      {% endif %}"
+condition: []
+action:
+  - delay: 00:01:00
+  - service: fan.turn_off
+    data: {}
+    target:
+      entity_id: fan.sonoff_1000cc1c61

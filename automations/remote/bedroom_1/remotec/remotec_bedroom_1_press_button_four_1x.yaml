@@ -1,0 +1,16 @@
+id: '05f7f439-812c-4e8d-a723-7e89632799d7'
+alias: Remotec Bedroom 1 Press Button Four 1x
+initial_state: true
+trigger:
+  - platform: event
+    event_type: zwave_js_value_notification
+    event_data:
+      device_id: "1da9e491b068a3646da5c3398a8da391"
+      property_key: "004"
+      value: "KeyPressed"
+condition: []
+action:
+  - service: light.toggle
+    data:
+      entity_id: light.bedroom_1_led_strip
+mode: single

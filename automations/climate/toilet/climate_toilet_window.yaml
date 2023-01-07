@@ -1,0 +1,28 @@
+id: b5eee0da-40ec-47a4-892c-8700302a3409
+alias: Climate Toilet Window
+initial_state: true
+trigger:
+  - platform: state
+    entity_id: binary_sensor.door_window_sensor_7_window_door_is_open_2
+condition: []
+action:
+  - if:
+    - condition: state
+      entity_id: binary_sensor.door_window_sensor_7_window_door_is_open_2
+      state: 'on'
+    then:
+    - service: switch.turn_off
+      data:
+        entity_id: switch.heating_toilet_control_switch
+  - if:
+    - condition: state
+      entity_id: binary_sensor.door_window_sensor_7_window_door_is_open_2
+      state: 'off'
+    - condition: state
+      entity_id: switch.heating_control_switch
+      state: 'on'
+    then:
+    - service: switch.turn_on
+      data:
+        entity_id: switch.heating_toilet_control_switch
+mode: single

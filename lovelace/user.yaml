@@ -1,0 +1,8 @@
+title: User
+custom_header: !include custom_header.yaml
+views:
+  - !include user/home.yaml
+  - !include user/living_room.yaml
+  - !include user/bedroom_1.yaml
+  - !include user/bedroom_2.yaml
+  - !include user/bedroom_3.yaml

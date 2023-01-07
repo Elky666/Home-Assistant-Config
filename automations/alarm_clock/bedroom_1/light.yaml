@@ -1,0 +1,26 @@
+id: '6b2c3b4b-9ed0-41c6-8935-47d173d36719'
+alias: Alarm Clock Bedroom 1 Light
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: template
+    value_template: 
+      "{% set alarm_time = states('sensor.bedroom_1_echo_show_next_alarm') | as_datetime %}
+      {% set minutes_before = 1 %} 
+      {% if alarm_time != None %}
+      {{ now() >= alarm_time - timedelta(minutes = minutes_before) }}
+      {% else %} 
+        False 
+      {% endif %}"
+condition:
+  - condition: state
+    entity_id: input_boolean.home_night
+    state: "on"
+action:
+  - delay: 00:16:00
+  - service: light.turn_on
+    data:
+      transition: 2
+    target:
+      entity_id: light.bedroom_1_light

@@ -1,0 +1,25 @@
+id: 'c20a927b-601c-4bc6-8844-18ee48af1928'
+alias: Alarm Clock Bedroom 3 Light
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: template
+    value_template: 
+      "{% set alarm_time = states('sensor.bedroom_3_echo_show_next_alarm') | as_datetime %}
+      {% set minutes_before = 1 %} 
+      {% if alarm_time != None %}
+      {{ now() >= alarm_time - timedelta(minutes = minutes_before) }}
+      {% else %} 
+        False 
+      {% endif %}"
+condition:
+  - condition: state
+    entity_id: input_boolean.home_night
+    state: "on"
+action:
+  - delay: 00:01:00
+  - service: light.turn_on
+    data: {}
+    target:
+      entity_id: light.bedroom_3_light

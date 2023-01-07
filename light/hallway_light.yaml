@@ -1,0 +1,7 @@
+- platform: group
+  name: "Hallway Light"
+  unique_id: '412b73cb-8f80-44be-8afe-8b0118a85259'
+  all: true
+  entities:
+    - light.hallway_light_1
+    - light.hallway_light_2

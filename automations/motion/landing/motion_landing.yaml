@@ -1,0 +1,29 @@
+id: '934af0ae-ac00-4fbd-b08b-bde0be8b8930'
+alias: Landing Landing
+initial_state: true
+trigger:
+  - platform: state
+    entity_id: binary_sensor.trisensor_motion_detection_2
+condition: 
+  - condition: state
+    entity_id: input_boolean.home_night
+    state: 'on'
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.trisensor_motion_detection_2
+            state: 'on'
+        sequence:
+          - service: switch.turn_on
+            data:
+              entity_id: switch.landing_light_switch
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.trisensor_motion_detection_2
+            state: 'off'
+        sequence:
+          - service: switch.turn_off
+            data:
+              entity_id: switch.landing_light_switch
+mode: restart

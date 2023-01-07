@@ -1,0 +1,18 @@
+################################################################################
+#
+# date/time sensor https://www.home-assistant.io/integrations/time_date/
+#
+################################################################################
+
+- platform: template
+  sensors:
+    sensors_hall_landing_average_temperature:
+      friendly_name: 'Hall/Landing Average Temperature'
+      unit_of_measurement: "C"
+      unique_id: 62c47d73-e7c0-4d3d-b2d0-7ea555a2412c
+      value_template: >
+        {% set hallway_radiator = state_attr('climate.tado_smart_thermostat_ru3754558976', 'temperature') | float(0) %}
+        {% set hall_sensor = states('sensor.trisensor_air_temperature' ) | float(0) %}
+        {% set landing_sensor = states('sensor.trisensor_air_temperature_2' ) | float(0) %}
+        {% set front_door_sensor = states('sensor.fibaro_door_window_sensor_2_air_temperature_2' ) | float(0) %}
+        {{ ((hallway_radiator + hall_sensor + landing_sensor + front_door_sensor) / 4) | round(1, default=0) }}

@@ -1,0 +1,19 @@
+- platform: template
+  switches:
+    bedroom_2_tv:
+      friendly_name: 'Bedroom 2 TV'
+      unique_id: 'af2a8c96-f40b-4484-b0e3-8b206e86cb9d'
+      value_template: >-
+        {{ is_state('media_player.lg_webos_tv_up77006lb', 'on')}}
+      turn_on:
+        - service: remote.send_command
+          entity_id: remote.bedroom_2_rm_remote_remote
+          data:
+            device: television
+            command: power
+      turn_off:
+        - service: remote.send_command
+          entity_id: remote.bedroom_2_rm_remote_remote
+          data:
+            device: television
+            command: power

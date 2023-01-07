@@ -1,0 +1,20 @@
+id: '4965f9e5-5b54-47fb-b3a2-5257fd68d2ac'
+alias: Security Disarmed Alarm
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - input_boolean.home_away
+      - input_boolean.home_sleep
+    to: "off"
+condition: []
+action:
+  - service: alarm_control_panel.alarm_disarm
+    data:
+      code: !secret alarm_code
+    target:
+      entity_id: 
+        - alarm_control_panel.house_alarm
+        - alarm_control_panel.aarlo_home

@@ -1,0 +1,47 @@
+id: 'badd19c6-682c-41bf-ae08-bcaba1bb2e1a'
+alias: Switch Christmas Hall
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: time
+    at: "21:59:30"
+  - platform: state
+    entity_id:
+      - input_boolean.home_night
+    to: "on"
+condition:
+  - condition: template
+    value_template: "{{ ( now().month == 1 and now().day < 7 ) or ( now().month == 12 ) }}"
+action:
+  - choose:
+      - conditions:
+          - condition: time
+            after: "21:59:00"
+        sequence:
+          - service: switch.turn_off
+            data: {}
+            target:
+              entity_id:
+                - switch.christmas_stairs_lights_plug
+      - conditions:
+          - condition: state
+            entity_id: input_boolean.home_night
+            state: "on"
+        sequence:
+          - service: switch.turn_on
+            data: {}
+            target:
+              entity_id:
+                - switch.christmas_stairs_lights_plug
+          - delay:
+              hours: 0
+              minutes: 0
+              seconds: 1
+              milliseconds: 0
+          - service: remote.send_command
+            data:
+              device: hallway_christmas_led
+              command: button_4
+            target:
+              entity_id: remote.loft_remote

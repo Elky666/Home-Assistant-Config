@@ -1,0 +1,6 @@
+# This handles the loading of my input select
+#
+# https://www.home-assistant.io/components/input_select/
+#
+
+input_select: !include_dir_named ../input_select/

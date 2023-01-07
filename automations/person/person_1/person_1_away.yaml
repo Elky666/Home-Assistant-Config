@@ -1,0 +1,20 @@
+################################################################################
+#
+# When person 1 leaves home turn off boolean input
+#
+################################################################################
+
+id: 'cb615731-e63f-4efd-ac82-f804ce587eac'
+alias: Person 1 Leaves Home
+initial_state: true
+trigger:
+  - platform: zone
+    entity_id: person.person_1
+    zone: zone.home
+    event: leave
+condition: []
+action:
+  - service: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.person1_home
+mode: single

@@ -1,0 +1,75 @@
+theme: Backend-selected
+icon: mdi:bed-empty
+title: Bedroom 3
+path: bedroom-3
+badges: []
+cards:
+  - type: custom:mushroom-chips-card
+    chips:
+      - type: entity
+        entity: >-
+          sensor.tado_smart_radiator_thermostat_va0943328000_current_temperature
+  - type: vertical-stack
+    title: Fan
+    cards:
+      - type: custom:mushroom-fan-card
+        entity: fan.sonoff_1000cc1c61
+        icon_animation: true
+        fill_container: true
+        tap_action:
+          action: toggle
+        hold_action:
+          action: none
+        double_tap_action:
+          action: none
+        secondary_info: none
+        name: Ceiling Fan
+  - type: vertical-stack
+    title: Light's
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-light-card
+            entity: light.bedroom_3_light
+            fill_container: true
+            use_light_color: true
+            show_brightness_control: true
+            show_color_control: true
+            collapsible_controls: true
+            name: Light
+          - type: custom:mushroom-light-card
+            entity: light.bedroom_3_lamp
+            fill_container: true
+            show_brightness_control: true
+            collapsible_controls: true
+            name: Lamp
+      - type: custom:mushroom-light-card
+        entity: light.bedroom_3_led
+        use_light_color: true
+        show_brightness_control: true
+        show_color_control: true
+        collapsible_controls: true
+        name: LED Lights
+  - type: vertical-stack
+    title: Switch's
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: tile
+            entity: switch.sonoff_1000f53b8e_1
+            show_entity_picture: true
+            name: USB Plug
+          - type: tile
+            entity: switch.bedroom_3_tv_power
+            show_entity_picture: true
+  - type: vertical-stack
+    title: Media
+    cards:
+      - type: custom:mushroom-media-player-card
+        entity: media_player.lg_webos_tv_uk6300plb
+        use_media_info: true
+        volume_controls:
+          - volume_mute
+          - volume_set
+          - volume_buttons
+        collapsible_controls: true

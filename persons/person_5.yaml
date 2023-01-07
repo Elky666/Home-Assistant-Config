@@ -1,0 +1,4 @@
+- name: person_5
+  id: '9b3fe0e0-5751-4647-abae-c1ce4585f7e6'
+  device_trackers:
+    - !secret person_5_device_tracker_1

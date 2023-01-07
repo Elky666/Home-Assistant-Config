@@ -1,0 +1,18 @@
+id: 'climate_thermostat_warning'
+alias: Climate Thermostat Warning
+initial_state: true
+trigger:
+  - entity_id: binary_sensor.climate_hallway_heating_warning
+    for: 01:00:00
+    platform: state
+    to: 'on'
+condition: []
+action:
+  - service: script.notify_message_engine
+    data:
+      who: home_app
+      title: "Heating Warning"
+      message: 'Warning Thermostat has been heating for 60 minutes'
+  - service: switch.turn_off
+    data:
+      entity_id: switch.heating_hallway_control_switch

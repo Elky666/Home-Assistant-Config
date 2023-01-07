@@ -1,0 +1,6 @@
+person_2_home:
+  zone: home
+  devices:
+    - person.person_2
+  tolerance: 10
+  unit_of_measurement: m

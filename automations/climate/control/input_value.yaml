@@ -1,0 +1,53 @@
+id: '20f1587d-6c84-4191-82c2-8e4f30c9e8cf'
+alias: Climate Control Input Value
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: event
+    event_type:
+      - automation_reloaded
+  - platform: state
+    entity_id:
+      - sensor.outdoor_module_temperature
+condition:
+  - condition: state
+    entity_id: switch.heating_control_switch
+    state: "on"
+action:
+  - service: input_number.set_value
+    data_template:
+      value: >
+        {% if states('sensor.outdoor_module_temperature') | float < 5 %}
+          20
+        {% elif states('sensor.outdoor_module_temperature') | float < 10 %}
+          19
+        {% elif states('sensor.outdoor_module_temperature') | float < 13 %}
+          17
+        {% endif %}
+    target:
+      entity_id: input_number.heating_maximum
+  - service: input_number.set_value
+    data_template:
+      value: >
+        {% if states('sensor.outdoor_module_temperature') | float < 5 %}
+          19
+        {% elif states('sensor.outdoor_module_temperature') | float < 10 %}
+          18
+        {% elif states('sensor.outdoor_module_temperature') | float < 13 %}
+          16
+        {% endif %}
+    target:
+      entity_id: input_number.heating_average
+  - service: input_number.set_value
+    data_template:
+      value: >
+        {% if states('sensor.outdoor_module_temperature') | float < 5 %}
+          16
+        {% elif states('sensor.outdoor_module_temperature') | float < 10 %}
+          15
+        {% elif states('sensor.outdoor_module_temperature') | float < 13 %}
+          14
+        {% endif %}
+    target:
+      entity_id: input_number.heating_minimum

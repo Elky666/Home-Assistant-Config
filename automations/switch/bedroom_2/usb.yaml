@@ -1,0 +1,33 @@
+id: '5e08e44b-328e-40d7-8578-2f2345cd893c'
+alias: USB Bedroom 2
+description: ''
+initial_state: true
+trigger:
+  - platform: state
+    entity_id:
+    - sensor.amelia_s_phone_battery_level
+condition:
+  - condition: state
+    entity_id: input_boolean.person5_home
+    state: 'on'
+action:
+  - choose:
+    - conditions:
+      - condition: numeric_state
+        entity_id: sensor.amelia_s_phone_battery_level
+        above:  99
+      sequence:
+      - service: switch.turn_off
+        data: {}
+        target:
+          entity_id: switch.sonoff_1000f535fe_1
+    - conditions:
+      - condition: numeric_state
+        entity_id: sensor.amelia_s_phone_battery_level
+        below: 26
+      sequence:
+      - service: switch.turn_on
+        data: {}
+        target:
+          entity_id: switch.sonoff_1000f535fe_1
+mode: single

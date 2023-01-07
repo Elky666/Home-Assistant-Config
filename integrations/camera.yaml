@@ -1,0 +1,8 @@
+# The camera integration allows you to use IP cameras with Home Assistant.
+#
+# https://www.home-assistant.io/integrations/camera/
+#
+
+camera:
+  - platform: aarlo
+    ffmpeg_arguments: "-pred 1 -q:v 2"

@@ -1,0 +1,53 @@
+id: '51dc5aee-2593-499e-8f1a-0b3cf03a6de5'
+alias: Lights Living Room Led Stip Theme
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: state
+    entity_id: calendar.holidays
+condition: []
+action:
+  - choose:
+      - conditions:
+          - condition: and
+            conditions:
+              - condition: state
+                entity_id: calendar.holidays
+                state: "on"
+              - condition: state
+                entity_id: calendar.holidays
+                attribute: message
+                state: Valentine's Day
+        sequence:
+          - service: lifx.set_state
+            data:
+              color_name: fuchsia
+            target:
+              entity_id: light.livingroom_tv_led_strip
+      - conditions:
+          - condition: and
+            conditions:
+              - condition: state
+                entity_id: calendar.holidays
+                state: "on"
+              - condition: state
+                entity_id: calendar.holidays
+                attribute: message
+                state: St Patrick's Day
+        sequence:
+          - service: lifx.set_state
+            data:
+              color_name: darkgreen
+            target:
+              entity_id: light.livingroom_tv_led_strip
+      - conditions:
+          - condition: state
+            entity_id: calendar.holidays
+            state: "off"
+        sequence:
+          - service: lifx.set_state
+            data:
+              color_name: darkblue
+            target:
+              entity_id: light.livingroom_tv_led_strip

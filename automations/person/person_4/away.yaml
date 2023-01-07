@@ -1,0 +1,15 @@
+id: '788af322-fdef-4471-8b9f-9b2bcdf3f372'
+alias: Person 4 Leaves Home
+initial_state: true
+trigger:
+  - platform: zone
+    entity_id: person.person_4
+    zone: zone.home
+    event: leave
+condition: []
+action:
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.person4_home
+mode: single

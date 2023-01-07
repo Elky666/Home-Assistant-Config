@@ -1,0 +1,7 @@
+name: Alexa
+entities:
+  - media_player.bedroom_1_echo_show
+  - media_player.bedroom_2_echo_show
+  - media_player.bedroom_3_echo_show
+  - media_player.livingroom_2
+  - media_player.kitchen_sonos

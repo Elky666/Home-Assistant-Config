@@ -1,0 +1,15 @@
+id: 'b5373b2d-436c-4f2e-b583-373ff5087027'
+alias: Switch Playstation On
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - at: '10:00:00'
+    platform: time
+condition: []
+action:
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: 
+        - switch.tyler_s_playstation

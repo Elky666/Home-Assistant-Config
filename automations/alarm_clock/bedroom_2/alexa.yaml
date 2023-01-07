@@ -1,0 +1,21 @@
+id: '21e152d8-0caf-4759-8d6d-8a26ce30d440'
+alias: Alarm Clock Bedroom 2 Alexa
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - sensor.bedroom_2_echo_show_next_alarm
+    from: unavailable
+condition: []
+action:
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.alarm_clock_bedroom_2
+  - service: input_datetime.set_datetime
+    data:
+      time: "{{ as_timestamp(states('sensor.bedroom_2_echo_show_next_alarm')) | timestamp_custom('%H:%M') }}"
+    target:
+      entity_id: input_datetime.bedroom_2_alarm_clock

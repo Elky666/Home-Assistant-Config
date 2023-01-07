@@ -1,0 +1,16 @@
+id: '386bab4b-a3d6-49ed-82e7-182b41f4fd7f'
+alias: Remotec Bedroom 2 Press Button Four 1x
+initial_state: true
+trigger:
+  - platform: event
+    event_type: zwave_js_value_notification
+    event_data:
+      device_id: "f15945068fd22bbbec21a85bf34472a2"
+      property_key: "004"
+      value: "KeyPressed"
+action:
+  - service: switch.toggle
+    data: {}
+    target:
+      entity_id: switch.sonoff_1000f535fe_1
+mode: single

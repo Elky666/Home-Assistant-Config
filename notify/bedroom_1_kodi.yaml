@@ -1,0 +1,6 @@
+- platform: kodi
+  name: bedroom_1_kodi
+  host: 192.168.1.109
+  port: 80
+  username: !secret bedroom1_kodi_user
+  password: !secret bedroom1_kodi_pass

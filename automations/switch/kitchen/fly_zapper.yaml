@@ -1,0 +1,27 @@
+id: 'e6e0d9e2-90fe-4001-a2df-e71525fddddb'
+alias: Switch Fly Zapper
+initial_state: true
+description: ''
+trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.home_night
+    to: 'on'
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 0
+  - platform: time
+    at: '20:00:00'
+condition:
+  - condition: not
+    conditions:
+    - condition: state
+      entity_id: sensor.season
+      state: winter
+action:
+  - service: switch.toggle
+    data: {}
+    target:
+      entity_id: switch.fly_zapper_plug
+mode: single

@@ -1,0 +1,21 @@
+id: '343c14f0-f610-47c9-9177-8999cfc72c1f'
+alias: Media Bedroom 1 Kodi Play
+initial_state: true
+trigger:
+  - entity_id: media_player.bedroom1kodi
+    for: '00:00:02'
+    platform: state
+    to: playing
+condition:
+  - condition: state
+    entity_id: input_boolean.home_sleep
+    state: 'on'
+action:
+  - service: light.turn_off
+    data:
+      entity_id:
+        - light.bedroom_1_lamp_1
+        - light.bedroom_1_lamp_2
+        - light.bedroom_1_led_strip
+      transition: 2
+mode: single

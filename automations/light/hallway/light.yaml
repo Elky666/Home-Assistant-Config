@@ -1,0 +1,79 @@
+id: 'a8f22262-d940-447c-b987-87e1b5472d3f'
+alias: Light Hallway
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - light.hallway_light_1
+      - light.hallway_light_2
+    to: "on"
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 5
+condition: []
+action:
+  - choose:
+      - conditions:
+          - condition: and
+            conditions:
+              - condition: state
+                entity_id: input_boolean.home_alarm_triggered
+                state: "off"
+              - condition: state
+                entity_id: binary_sensor.holiday_on
+                state: "off"
+        sequence:
+          - service: lifx.set_state
+            data_template:
+              color_temp: >
+                {% if now().hour in [22, 0, 1, 2, 3, 4, 5, 6] %} 
+                  400
+                {% else %}
+                  111
+                {% endif %}   
+              brightness: >
+                {% if now().hour in [22, 0, 1, 2, 3, 4, 5, 6] %} 
+                  51
+                {% else %}
+                  255
+                {% endif %}
+            target:
+              entity_id: 
+                - light.hallway_light_1
+                - light.hallway_light_2
+      - conditions:
+          - condition: and
+            conditions:
+              - condition: state
+                entity_id: input_boolean.home_alarm_triggered
+                state: "off"
+              - condition: state
+                entity_id: binary_sensor.holiday_on
+                state: "on"
+        sequence:
+          - service: scene.turn_on
+            data_template:
+              entity_id: >
+                {% if states('sensor.holiday_name.name') == 'Christmas' %}
+                  -scene.hallway_christmas
+                {% elif states('sensor.holiday_name.name') == 'xmas' %}
+                  scene.hallway_christmas
+                {% else %}
+                  10
+                {% endif %}
+      - conditions:
+          - condition: state
+            entity_id: input_boolean.home_alarm_triggered
+            state: "on"
+        sequence:
+          - service: lifx.set_state
+            data:
+              color_name: red
+              brightness_pct: 100
+            target:
+              entity_id: 
+                - light.hallway_light_1
+                - light.hallway_light_2

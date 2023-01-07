@@ -1,0 +1,50 @@
+id: a51bce11-75a4-447d-b1e5-6f7421e5f1b4
+alias: Climate Dining Room Schedule
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: time_pattern
+    minutes: /10
+  - platform: state
+    entity_id:
+      - switch.heating_dining_room_control_switch
+    to: "on"
+  - platform: state
+    entity_id:
+      - input_number.heating_minimum
+      - input_number.heating_maximum
+      - input_boolean.home_away
+condition:
+  - condition: state
+    entity_id: switch.heating_dining_room_control_switch
+    state: "on"
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: input_boolean.home_away
+            state: "off"
+        sequence:
+          - service: climate.set_temperature
+            data_template:
+              temperature: >
+                {% if now().hour in [8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 22] %}
+                  {{ states('input_number.heating_average')| float(0) }}
+                {% elif now().hour in [7, 18, 19, 20, 21] %}
+                  {{ states('input_number.heating_maximum')| float(0) }}
+                {% else %}
+                  {{ states('input_number.heating_minimum')| float(0) }}
+                {% endif %}
+            target:
+              entity_id: climate.tado_smart_radiator_thermostat_va0096931328
+      - conditions:
+          - condition: state
+            entity_id: input_boolean.home_away
+            state: "on"
+        sequence:
+          - service: climate.set_temperature
+            data:
+              temperature: 5
+            target:
+              entity_id: climate.tado_smart_radiator_thermostat_va0096931328

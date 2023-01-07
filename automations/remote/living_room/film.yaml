@@ -1,0 +1,28 @@
+id: 'eb1cf3d2-bb7d-44d5-b58e-082133d22d05'
+alias: Watch Film
+description: ''
+initial_state: true
+trigger:
+  - entity_id: switch.livingroom_watch_film
+    platform: state
+    to: 'on'
+condition:
+  - condition: state
+    entity_id: switch.av_surge_protector_mss426_projector_plug
+    state: "on"
+action:
+  - service: notify.alexa_media
+    data:
+      target:
+        - media_player.livingroom_2
+        - media_player.bedroom_2_echo_show
+        - media_player.bedroom_3_echo_show
+      data:
+        type: announce
+    data_template:
+      message: >
+        '{{ ["Film time", 
+          "If you don't want to watch disney princess films, i would come down now", 
+          "Yippee-ki-yay, lets watch a movie",
+          "The sights, the sounds, now playing in you'r local cinema"] | random }}'
+mode: single

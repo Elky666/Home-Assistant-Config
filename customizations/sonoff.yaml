@@ -1,0 +1,12 @@
+fan.sonoff_1000cc2f24:
+  friendly_name: Bedroom 1 Ceiling Fan
+fan.sonoff_1000cc26b0:
+  friendly_name: Bedroom 2 Ceiling Fan
+fan.sonoff_1000cc1c61:
+  friendly_name: Bedroom 3 Ceiling Fan
+light.sonoff_1000cc2f24_1:
+  friendly_name: Bedroom 1 Ceiling Light
+light.sonoff_1000cc26b0_1:
+  friendly_name: Bedroom 2 Ceiling Light
+light.sonoff_1000cc1c61_1:
+  friendly_name: Bedroom 3 Ceiling Light

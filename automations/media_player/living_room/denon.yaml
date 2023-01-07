@@ -1,0 +1,30 @@
+id: '8dbfe9fa-c5a0-44ef-bf5c-a23bbdaeb6cf'
+alias: Media Denon
+initial_state: true
+description: 'Denon contorl sub'
+trigger:
+  - platform: state
+    entity_id:
+    - media_player.denon_avr_x2300w
+condition: []
+action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: media_player.denon_avr_x2300w
+        state: 'on'
+      sequence:
+      - service: switch.turn_on
+        data: {}
+        target:
+          entity_id: switch.livingroom_surge_protector_mss426_subwoofer_plug
+    - conditions:
+      - condition: state
+        entity_id: media_player.denon_avr_x2300w
+        state: 'off'
+      sequence:
+      - service: switch.turn_off
+        data: {}
+        target:
+          entity_id: switch.livingroom_surge_protector_mss426_subwoofer_plug
+mode: single

@@ -1,0 +1,6 @@
+- platform: template
+  sensors:
+    climate_bedroom_3_heating_warning:
+      friendly_name: "Heating in Bedroom 3"
+      unique_id: 'b46db520-4fa0-4270-8a1c-d95b64b44749'
+      value_template: '{{ state_attr("climate.tado_smart_radiator_thermostat_va0943328000","hvac_action") == "heating" }}'    

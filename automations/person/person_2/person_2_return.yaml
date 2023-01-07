@@ -1,0 +1,20 @@
+################################################################################
+#
+# When person 2 returns home turn on boolean input
+#
+################################################################################
+
+id: '6975e68c-c7e7-419d-9243-ce4f04eb7aed'
+alias: Person 2 Returns Home
+initial_state: true
+trigger:
+  - platform: zone
+    entity_id: person.person_2
+    zone: zone.home
+    event: enter
+condition: []
+action:
+  - service: input_boolean.turn_on
+    target:
+      entity_id: input_boolean.person2_home
+mode: single

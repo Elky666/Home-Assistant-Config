@@ -1,0 +1,52 @@
+id: c65204c4-2d5c-4081-88c6-5311f86d807c
+alias: Climate Dining Room Open
+initial_state: true
+trigger:
+  - platform: state
+    entity_id: 
+      - binary_sensor.door_window_sensor_7_window_door_is_open
+      - binary_sensor.fibaro_door_window_sensor_2_window_door_is_open
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 10
+condition:
+  - condition: state
+    entity_id: switch.heating_control_switch
+    state: "on"
+action:
+  - choose:
+    - conditions:
+      - condition: or
+        conditions:
+        - condition: state
+          entity_id: binary_sensor.door_window_sensor_7_window_door_is_open
+          state: 'on'
+        - condition: state
+          entity_id: binary_sensor.fibaro_door_window_sensor_2_window_door_is_open
+          state: 'on'
+      sequence:
+      - service: switch.turn_off
+        data:
+          entity_id: 
+            - switch.heating_dining_room_control_switch
+            - switch.heating_livingroom_control_switch
+            - switch.heating_hallway_control_switch
+    - conditions:
+      - condition: or
+        conditions:
+        - condition: state
+          entity_id: binary_sensor.door_window_sensor_7_window_door_is_open
+          state: 'off'
+        - condition: state
+          entity_id: binary_sensor.fibaro_door_window_sensor_2_window_door_is_open
+          state: 'off'
+      sequence:
+      - service: switch.turn_on
+        data:
+          entity_id:
+            - switch.heating_dining_room_control_switch
+            - switch.heating_livingroom_control_switch
+            - switch.heating_hallway_control_switch
+    default: []
+mode: single

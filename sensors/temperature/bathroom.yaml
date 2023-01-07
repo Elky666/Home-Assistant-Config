@@ -1,0 +1,16 @@
+################################################################################
+#
+# date/time sensor https://www.home-assistant.io/integrations/time_date/
+#
+################################################################################
+
+- platform: template
+  sensors:
+    sensors_bathroom_average_temperature:
+      friendly_name: 'Bathroom Average Temperature'
+      unit_of_measurement: "C"
+      unique_id: f0f278a8-08d6-4a3b-9f11-26dd0e0b85aa
+      value_template: >
+        {% set bathroom_radiator = state_attr('climate.tado_smart_radiator_thermostat_va4266461696', 'temperature') | float(0) %}
+        {% set bathroom_sensor = states('sensor.lumi_lumi_weather_temperature' ) | float(0) %}
+        {{ ((bathroom_radiator + bathroom_sensor) / 2) | round(1, default=0) }}

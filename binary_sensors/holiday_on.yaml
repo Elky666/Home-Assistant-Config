@@ -1,0 +1,6 @@
+- platform: template
+  sensors:
+    holiday_on:
+      unique_id: '4c6b0c5d-6669-48f2-b1df-dfc0427995d4'
+      friendly_name: "Holiday Today"
+      value_template: "{{states('sensor.holiday_name') | length != 0 }}"

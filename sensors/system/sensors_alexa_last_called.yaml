@@ -1,0 +1,7 @@
+- platform: template
+  sensors:
+    sensors_last_alexa:
+      friendly_name: 'Last Used Alexa'
+      unique_id: e51b2321-d2df-46cb-83cc-d09f5617c54e
+      value_template: >
+        {{ expand(states.group.alexa) | selectattr('attributes.last_called','eq',True) | map(attribute='entity_id') | first }}

@@ -1,0 +1,30 @@
+id: 'f350a324-3eb0-48c7-b5cb-7bf7f196de8b'
+alias: Lights Bedroom 1 Light
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: state
+    entity_id: light.bedroom_1_light
+    to: "on"
+condition:
+  - condition: state
+    entity_id: input_boolean.home_alarm_triggered
+    state: "off"
+action:
+  - service: lifx.set_state
+    data_template:
+      entity_id: light.bedroom_1_light
+      color_temp: >
+        {% if now().hour in [23, 0, 1, 2, 3, 4, 5] %} 
+          454
+        {% else %}
+          153
+        {% endif %}   
+      brightness_pct: >
+        {% if now().hour in [23, 0, 1, 2, 3, 4, 5] %} 
+          50
+        {% else %}
+          100
+        {% endif %}
+      transition: 3

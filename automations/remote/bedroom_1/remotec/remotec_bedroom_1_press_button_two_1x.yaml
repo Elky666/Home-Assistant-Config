@@ -1,0 +1,16 @@
+id: 'f6e1a028-74a0-46e7-b242-ce07c4fa3385'
+alias: Remotec Bedroom 1 Press Button Two 1x
+initial_state: true
+trigger:
+  - platform: event
+    event_type: zwave_js_value_notification
+    event_data:
+      device_id: "1da9e491b068a3646da5c3398a8da391"
+      property_key: "002"
+      value: "KeyPressed"
+condition: []
+action:
+  - service: switch.toggle
+    data:
+      entity_id: switch.bedroom_1_bedside_fan_plug
+mode: single

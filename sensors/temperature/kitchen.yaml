@@ -1,0 +1,17 @@
+################################################################################
+#
+# date/time sensor https://www.home-assistant.io/integrations/time_date/
+#
+################################################################################
+
+- platform: template
+  sensors:
+    sensors_kitchen_average_temperature:
+      friendly_name: 'Kitchen Average Temperature'
+      unit_of_measurement: "C"
+      unique_id: 7373290b-59f8-4b4e-b974-89d117e8ee1b
+      value_template: >
+        {% set dinning_room_radiator = state_attr('climate.tado_smart_radiator_thermostat_va0096931328', 'temperature') | float(0) %}
+        {% set kitchen_sensor = states('sensor.multisensor_6_air_temperature' ) | float(0) %}
+        {% set backdoor_sensor = states('sensor.fibaro_door_window_sensor_2_air_temperature' ) | float(0) %}
+        {{ ((dinning_room_radiator + kitchen_sensor + backdoor_sensor) / 3) | round(1, default=0) }}

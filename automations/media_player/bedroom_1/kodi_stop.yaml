@@ -1,0 +1,18 @@
+id: '2717ed5d-715d-4f01-9810-6184e8a20b21'
+alias: Media Bedroom 1 Kodi Stop
+initial_state: on
+trigger:
+  - entity_id: media_player.bedroom1kodi
+    platform: state
+    from: playing
+    to: idle
+    for: '00:03:00'
+condition:
+  - condition: state
+    entity_id: input_boolean.home_sleep
+    state: 'on'
+action:
+  - service: switch.turn_off
+    target:
+      entity_id: switch.bedroom_1_hub_watch_kodi
+mode: single
