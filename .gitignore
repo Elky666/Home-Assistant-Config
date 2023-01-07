@@ -6,6 +6,8 @@
 !*.md
 !/group/
 !/group/*.yaml
+!/zones/
+!/zones/*.yaml
 # Ignore folders.
 .aarlo
 .cache

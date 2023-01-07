@@ -1,0 +1,5 @@
+- name: !secret zone_1_name
+  latitude: !secret zone_1_latitude
+  longitude: !secret zone_1_longitude
+  radius: !secret zone_1_radius
+  icon: !secret zone_1_icon
