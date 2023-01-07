@@ -4,8 +4,8 @@
 # You can whitelist files/folders with !, these will not be ignored.
 !.gitignore
 !*.md
-!group/
-!group/*.yaml
+!/group/
+!/group/*.yaml
 # Ignore folders.
 .aarlo
 .cache
@@ -27,17 +27,17 @@ ip_bans.yaml
 secrets.yaml
 known_devices.yaml
 govee_learning.yaml
-.google.token
-.sonoff.json
-*.conf
-*.log
-*.old
-*.tmp
-*.fault
-*.txt
-*.log.*
-*.db
-*.db-shm
-*.db-wal
+#.google.token
+#.sonoff.json
+#*.conf
+#*.log
+#*.old
+#*.tmp
+#*.fault
+#*.txt
+#*.log.*
+#*.db
+#*.db-shm
+#*.db-wal
 
-integrations/service_account.json
+#integrations/service_account.json
