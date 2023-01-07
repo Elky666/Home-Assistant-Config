@@ -5,7 +5,7 @@
 !.gitignore
 !*.md
 !group/
-#!group/
+!group/*.yaml
 # Ignore folders.
 .aarlo
 .cache
