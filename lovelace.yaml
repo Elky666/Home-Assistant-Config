@@ -1,0 +1,10 @@
+mode: yaml
+resources: !include lovelace/resources.yaml
+dashboards:
+  lovelace-user:
+    mode: yaml
+    filename: lovelace/user.yaml
+    title: User
+    icon: mdi:account-group
+    show_in_sidebar: true
+    require_admin: false
