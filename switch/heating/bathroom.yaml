@@ -1,23 +1,15 @@
 - platform: template
   switches:
-    heating_bathroom_control_switch:
+    heating_bathroom_tado:
       friendly_name: 'Heating Bathroom'
-      unique_id: '7881d63b-5e0d-47c6-be83-96f3ba2fca58'
-      value_template: > 
-        {{ is_state('climate.tado_smart_radiator_thermostat_va4266461696', 'heat')}}
+      unique_id: '0cdae812-5d74-438f-a691-34b956bf93bd'
       turn_on:
-        - service: climate.set_hvac_mode
+        - service: climate.set_temperature
           data:
             entity_id: climate.tado_smart_radiator_thermostat_va4266461696
-            hvac_mode: heat
+            temperature: 25
       turn_off:
-        - service: climate.set_hvac_mode
+        - service: climate.set_temperature
           data:
             entity_id: climate.tado_smart_radiator_thermostat_va4266461696
-            hvac_mode: 'off'
-      icon_template: >-
-        {% if is_state('climate.tado_smart_radiator_thermostat_va4266461696', 'heat') %}
-          mdi:radiator
-        {% else %}
-          mdi:radiator-off
-        {% endif %}
+            temperature: 5

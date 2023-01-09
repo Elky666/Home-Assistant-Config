@@ -38,7 +38,7 @@ action:
               entity_id: input_boolean.alarm_clock_bedroom_2
           - service: input_datetime.set_datetime
             data:
-              time: "06:40:00"
+              time: "07:00:00"
             target:
               entity_id: input_datetime.bedroom_2_alarm_clock
       - conditions:
@@ -66,6 +66,15 @@ action:
             weekday:
               - sat
               - sun
+        sequence:
+          - service: input_boolean.turn_off
+            data: {}
+            target:
+              entity_id: input_boolean.alarm_clock_bedroom_2
+      - conditions:
+          - condition: state
+            entity_id: input_boolean.person5_home
+            state: "off"
         sequence:
           - service: input_boolean.turn_off
             data: {}

@@ -1,0 +1,6 @@
+- platform: generic_thermostat
+  name: Bathroom
+  unique_id: '92433d60-ba39-4b02-bbd3-d1e36f9ac625'
+  heater: switch.heating_bathroom_tado
+  target_sensor: sensor.lumi_lumi_weather_temperature
+  away_temp: 5

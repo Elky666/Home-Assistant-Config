@@ -1,0 +1,17 @@
+id: '8e711962-0905-436c-bb81-3aacc11a2828'
+alias: Climate Bedroom 2 Off
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - input_boolean.person5_home
+    to: "off"
+condition: []
+action:
+  - service: climate.set_preset_mode
+    data:
+      preset_mode: "off"
+    target:
+      entity_id: climate.bedroom_2

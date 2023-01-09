@@ -1,0 +1,22 @@
+id: '890b90d1-7bb6-4058-9c1e-41943105f7a7'
+alias: Home Away Light
+description: ''
+initial_state: true
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.home_away
+    to: 'on'
+condition: []
+action:
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id: 
+        - light.bedroom_1_lamps
+        - light.bedroom_1_led_strip
+        - light.bedroom_1_light
+        - light.kitchen_led_strip
+        - light.livingroom_lamp
+        - light.livingroom_tv_led_strip

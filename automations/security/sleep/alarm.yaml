@@ -1,16 +1,16 @@
-id: '2724f9a9-8791-4327-a1f6-536a80b21597'
-alias: Security Away Alarm
+id: '95735e51-c57b-425d-b93f-9150680c71c2'
+alias: Security Sleep Alarm
 description: ""
 initial_state: true
 mode: single
 trigger:
   - platform: state
     entity_id:
-      - input_boolean.home_away
+      - input_boolean.home_sleep
     to: "on"
 condition: []
 action:
-  - service: alarm_control_panel.alarm_arm_away
+  - service: alarm_control_panel.alarm_arm_night
     data:
       code: !secret alarm_code
     target:

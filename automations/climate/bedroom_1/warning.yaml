@@ -1,6 +1,8 @@
 id: '0b93b910-efde-444e-847d-70662cd6ceff'
 alias: Climate Bedroom 1 Radiator Warning
 initial_state: true
+description: ""
+mode: single
 trigger:
   - entity_id: binary_sensor.climate_bedroom_1_heating_warning
     platform: state
@@ -16,4 +18,3 @@ action:
   - service: switch.turn_off
     data:
       entity_id: switch.heating_bedroom_1_control_switch
-mode: single

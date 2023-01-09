@@ -1,0 +1,19 @@
+id: '8d208752-cdfb-4833-b4a1-1905fbf232f4'
+alias: Home Away Media
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - input_boolean.home_away
+    to: "on"
+condition: []
+action:
+  - service: media_player.turn_off
+    data: {}
+    target:
+      entity_id:
+        - media_player.lg_webos_tv_up77006lb
+        - media_player.lg_webos_tv_uk6300plb
+        - media_player.lg_webos_tv_um7100plb

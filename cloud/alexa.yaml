@@ -17,6 +17,7 @@ filter:
   - switch.alexa_light
   # Scripts
   - script.goodnight
+  - script.teatime
   exclude_entities:
     - switch.tyler_s_playstation
 entity_config:
@@ -75,4 +76,8 @@ entity_config:
   script.goodnight:
     name: Goodnight
     description: Script to run at Bedtime
+    display_categories: ACTIVITY_TRIGGER
+  script.teatime:
+    name: Teatime
+    description: Script to run at Teatime
     display_categories: ACTIVITY_TRIGGER

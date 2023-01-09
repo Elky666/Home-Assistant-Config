@@ -1,19 +1,15 @@
 id: '1231d79f-decf-465f-b760-4895c45d9ffb'
 alias: Climate Bedroom 1 Fan
 initial_state: true
+description: ""
+mode: single
 trigger:
   - platform: state
     entity_id: sensor.tado_smart_radiator_thermostat_va1775569408_current_temperature
 condition:
-  condition: and
-  conditions:
     - condition: state
       entity_id: fan.sonoff_1000cc2f24
       state: 'on'
-      for:
-        hours: 1
-        minutes: 0
-        seconds: 0
 action:
     - service: fan.set_percentage
       target:
@@ -27,4 +23,3 @@ action:
           {% elif states('sensor.tado_smart_radiator_thermostat_va1775569408_current_temperature') | float < 35 %}
             100
           {% endif %}
-mode: single

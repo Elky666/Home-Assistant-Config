@@ -1,0 +1,6 @@
+- platform: generic_thermostat
+  name: Bedroom 2
+  unique_id: 'ef3d9b3a-8406-41b8-9e30-c28fa9e9d60e'
+  heater: climate.tado_smart_radiator_thermostat_va2514946816
+  target_sensor: sensor.lumi_lumi_weather_temperature
+  away_temp: 5

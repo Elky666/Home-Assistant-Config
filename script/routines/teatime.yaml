@@ -1,0 +1,20 @@
+teatime:
+  alias: Teatime
+  icon: mdi:food
+  mode: single
+  sequence:
+    - service: notify.alexa_media
+      data:
+        target:
+          - media_player.livingroom_2
+          - media_player.bedroom_2_echo_show
+          - media_player.bedroom_3_echo_show
+        data:
+          type: announce
+      data_template:
+        message: >
+          '{{ ["There is food for anyone who comes down now", 
+            "Come on if you want your food", 
+            "I say, did you know tea is done",
+            "Rubber Dub Dub your grub is on a plate"
+            "Your food would be in the dog by now, if we had one"] | random }}'

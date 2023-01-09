@@ -1,0 +1,24 @@
+id: 'fedd65a7-0d50-4648-89dc-ea1ff6aca0c1'
+alias: Notification Tumble Dryer
+description: ""
+initial_state: on
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - sensor.tumble_dryer_switch_power
+    to: "0.0"
+    for:
+      hours: 0
+      minutes: 1
+      seconds: 0
+condition: []
+action:
+  - service: script.notify_message_engine
+    data:
+      who: pushover
+      title: Appliances
+      message: >-
+        "Tumble Dryer is done"
+      priority: 0
+      sound: incoming

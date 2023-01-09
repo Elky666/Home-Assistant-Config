@@ -1,0 +1,22 @@
+id: 'b08e080b-d87b-4104-acfe-7d65cd8f26f6'
+alias: Alarm Clock Bedroom 2 Activated
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: time
+    at: input_datetime.bedroom_2_alarm_clock
+condition: []
+action:
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.bedroom_2_echo_show
+    data:
+      media_content_type: sound
+      media_content_id: amzn_sfx_scifi_alarm_04
+  - service: media_player.play_media
+    target:
+      entity_id: media_player.bedroom_2_echo_show
+    data:
+      media_content_type: sound
+      media_content_id: amzn_sfx_scifi_alarm_04

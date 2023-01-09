@@ -1,0 +1,7 @@
+# Generic thermostat climate
+#
+# https://www.home-assistant.io/integrations/generic_thermostat/
+# https://www.home-assistant.io/integrations/climate/
+#
+
+climate: !include_dir_merge_list ../climate/

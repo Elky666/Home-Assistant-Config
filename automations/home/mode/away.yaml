@@ -1,0 +1,47 @@
+id: '45c1f35a-9dcc-47ec-960a-d2681125d715'
+alias: Home Mode Away
+initial_state: true
+description: ''
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.person1_home
+    to: 'off'
+  - platform: state
+    entity_id:
+    - input_boolean.person2_home
+    to: 'off'
+  - platform: state
+    entity_id:
+    - input_boolean.person4_home
+    to: 'off'
+  - platform: state
+    entity_id:
+    - input_boolean.person5_home
+    to: 'off'
+condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.person1_home
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.person2_home
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.person4_home
+      state: 'off'
+    - condition: state
+      entity_id: input_boolean.person5_home
+      state: 'off'
+action:
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: 
+        - input_boolean.home_home
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: input_boolean.home_away

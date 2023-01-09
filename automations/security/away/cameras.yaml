@@ -1,0 +1,22 @@
+id: 'a02d434b-b829-4a2c-9a82-07a21d262e7c'
+alias: Security Away Cameras
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - alarm_control_panel.house_alarm
+    to: armed_away
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
+condition: []
+action:
+  - service: switch.turn_off
+    data: {}
+    target:
+      entity_id:
+        - switch.kitchen_privacy_mode
+        - switch.livingroom_privacy_mode

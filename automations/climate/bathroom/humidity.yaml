@@ -1,6 +1,8 @@
 id: ebad34e0-671c-4c23-b0f9-5387bdea7442
 alias: Climate Bathroom Humidity
 initial_state: false
+description: ""
+mode: single
 trigger:
 - platform: state
   entity_id: sensor.lumi_lumi_weather_humidity
@@ -29,5 +31,4 @@ action:
     - service: switch.turn_off
       data:
         entity_id: switch.bathroom_fan_switch
-  default: []
-mode: single
+    default: []

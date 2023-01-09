@@ -8,22 +8,14 @@ trigger:
     entity_id:
       - fan.sonoff_1000cc26b0
     to: "on"
-    for:
-      hours: 0
-      minutes: 0
-      seconds: 10
   - platform: state
     entity_id: sensor.tado_smart_radiator_thermostat_va2514946816_current_temperature
   - platform: state
     entity_id: input_boolean.person5_home
 condition:
-  - condition: state
-    entity_id: fan.sonoff_1000cc26b0
-    state: "on"
-    for:
-      hours: 0
-      minutes: 0
-      seconds: 10
+    - condition: state
+      entity_id: fan.sonoff_1000cc26b0
+      state: 'on'
 action:
   - choose:
       - conditions:

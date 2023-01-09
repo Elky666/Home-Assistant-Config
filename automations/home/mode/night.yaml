@@ -1,0 +1,30 @@
+id: 'ca60e395-969b-40bd-8bba-9eedfbd42ab6'
+alias: Home Mode Night
+description: ''
+initial_state: true
+mode: single
+trigger:
+  - platform: state
+    entity_id: sun.sun
+condition:
+  - condition: state
+    entity_id: input_boolean.home_home
+    state: "on"
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: sun.sun
+            state: "below_horizon"
+        sequence:
+          - service: input_boolean.turn_on
+            target:
+              entity_id: input_boolean.home_night
+      - conditions:
+          - condition: state
+            entity_id: sun.sun
+            state: "above_horizon"
+        sequence:
+          - service: input_boolean.turn_off
+            target:
+              entity_id: input_boolean.home_night

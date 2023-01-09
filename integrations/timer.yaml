@@ -1,0 +1,6 @@
+# This handles the loading of my timers
+#
+# https://www.home-assistant.io/integrations/timer/
+#
+
+timer: !include_dir_named ../timer/

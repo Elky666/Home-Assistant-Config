@@ -1,7 +1,8 @@
 id: '141e4733-5027-4919-b0e8-1a70399044c6'
-alias: Home Night Lights
-initial_state: true
+alias: Home Night Light
 description: ''
+initial_state: true
+mode: single
 trigger:
   - platform: state
     entity_id:
@@ -19,4 +20,3 @@ action:
         - light.kitchen_led_strip
         - light.livingroom_lamp
         - light.livingroom_tv_led_strip
-mode: single

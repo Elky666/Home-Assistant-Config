@@ -1,0 +1,18 @@
+id: '0a41acbd-79eb-4b59-bdde-2820b62aec36'
+alias: Home Sleep Media
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - input_boolean.home_sleep
+    to: "on"
+condition: []
+action:
+  - service: media_player.turn_off
+    data: {}
+    target:
+      entity_id:
+        - media_player.lg_webos_tv_up77006lb
+        - media_player.lg_webos_tv_uk6300plb

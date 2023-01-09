@@ -1,5 +1,7 @@
 id: 'f50b9180-06ed-4426-9a48-665d9927daa6'
 alias: Climate Bedroom 1 Radiator Schedule
+initial_state: true
+description: ""
 mode: single
 trigger:
   - platform: time_pattern

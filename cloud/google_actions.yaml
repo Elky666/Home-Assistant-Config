@@ -3,6 +3,12 @@ filter:
     # Climate
     - climate.tado_smart_radiator_thermostat_va1775569408
     - climate.tado_smart_radiator_thermostat_va4266461696
+    - climate.tado_smart_radiator_thermostat_va2514946816
+    - climate.tado_smart_radiator_thermostat_va0943328000
+    - climate.tado_smart_radiator_thermostat_va0096931328
+    - climate.tado_smart_thermostat_ru3754558976
+    - climate.tado_smart_radiator_thermostat_va1993674240
+    - climate.tado_smart_radiator_thermostat_va0114429440
     # Fans
     - fan.sonoff_1000cc2f24
     - fan.sonoff_1000cc26b0
@@ -26,6 +32,24 @@ entity_config:
   climate.tado_smart_radiator_thermostat_va4266461696:
     name: Bathroom Radiator
     room: Bathroom
+  climate.tado_smart_radiator_thermostat_va2514946816:
+    name: Bedroom 2 Radiator
+    room: Bedroom 2
+  climate.tado_smart_radiator_thermostat_va0943328000:
+    name: Bedroom 3 Radiator
+    room: Bedroom 3
+  climate.tado_smart_radiator_thermostat_va0096931328:
+    name: Dinning Room Radiator
+    room: Dinning Room
+  climate.tado_smart_thermostat_ru3754558976:
+    name: Hallway Radiator
+    room: Hallway
+  climate.tado_smart_radiator_thermostat_va1993674240:
+    name: Toilet Radiator
+    room: Toilet
+  climate.tado_smart_radiator_thermostat_va0114429440:
+    name: Living Room Radiator
+    room: Living Room
   # Fans
   fan.sonoff_1000cc2f24:
     name: Bedroom 1 Ceiling Fan

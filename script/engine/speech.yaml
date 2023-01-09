@@ -1,0 +1,29 @@
+speech_engine:
+  alias: Speech Engine
+  icon: mdi:microphone-message
+  mode: single
+  fields:
+    device:
+      description: Device to use.
+      example: "echo_all"
+    title:
+      description: Title for your notification.
+      example: "Morning"
+    message:
+      description: Message.
+      example: "Wake Up"
+  sequence:
+    - choose:
+        - conditions:
+            - condition: template
+              value_template: >- 
+                {{ who == 'echo_all' }}
+          sequence:
+            - service: notify.alexa_media
+              data:
+                message: '{{ message }}'
+                title: '{{ title }}'
+                target:
+                  - media_player.livingroom_2
+                  - media_player.bedroom_2_echo_show
+                  - media_player.bedroom_3_echo_show

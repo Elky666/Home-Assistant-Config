@@ -15,7 +15,12 @@ action:
       who: home_app
       title: "Heating Warning"
       message: "Warning Bathroom Radiator has been heating for 60 minutes"
-  - service: switch.turn_off
-    data: {}
+  - service: climate.set_preset_mode
+    data:
+      preset_mode: "off"
     target:
-      entity_id: switch.heating_bathroom_control_switch
+      entity_id: climate.bathroom
+#  - service: switch.turn_off
+#    data: {}
+#    target:
+#      entity_id: switch.heating_bathroom_control_switch

@@ -12,10 +12,15 @@ trigger:
     to: "on"
   - platform: state
     entity_id:
+      - climate.bathroom
+    attribute: preset_mode
+  - platform: state
+    entity_id:
       - input_number.heating_minimum
       - input_number.heating_average
       - input_number.heating_maximum
       - input_boolean.home_away
+condition: "{{ not is_state_attr('climate.bathroom', 'hvac_action', 'off') }}"
 action:
   - choose:
     - conditions:
@@ -35,7 +40,8 @@ action:
       sequence:
         - service: climate.set_temperature
           data_template:
-            entity_id: climate.tado_smart_radiator_thermostat_va4266461696
+            entity_id: climate.bathroom
+            # climate.tado_smart_radiator_thermostat_va4266461696
             temperature: >
               {% if now().hour in [7] %}
                 {{ states('input_number.heating_maximum')| float(0) }}
@@ -44,15 +50,15 @@ action:
               {% else %}
                 {{ states('input_number.heating_minimum')| float(0) }}
               {% endif %}
-    - conditions:
-      - condition: state
-        entity_id: input_boolean.home_away
-        state: "on"
-      sequence:
-        - service: climate.set_temperature
-          data:
-            entity_id: climate.tado_smart_radiator_thermostat_va4266461696
-            temperature: 5
+#    - conditions:
+#      - condition: state
+#        entity_id: input_boolean.home_away
+#        state: "on"
+#      sequence:
+#        - service: climate.set_temperature
+#          data:
+#            entity_id: climate.tado_smart_radiator_thermostat_va4266461696
+#            temperature: 5
     - conditions:
       - condition: state
         entity_id: input_boolean.home_home
@@ -67,7 +73,8 @@ action:
       sequence:
         - service: climate.set_temperature
           data_template:
-            entity_id: climate.tado_smart_radiator_thermostat_va4266461696
+            entity_id: climate.bathroom 
+            # climate.tado_smart_radiator_thermostat_va4266461696
             temperature: >
               {% if now().hour in [7] %}
                 {{ states('input_number.heating_maximum')| float(0) }}
