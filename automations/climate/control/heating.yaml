@@ -1,0 +1,37 @@
+id: '032f04e9-f93c-4434-9797-1a378686c708'
+alias: Climate Control Heating
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: numeric_state
+    entity_id: sensor.outdoor_module_temperature
+    for:
+      hours: 0
+      minutes: 10
+      seconds: 0
+condition: []
+action:
+  - choose:
+      - conditions:
+          - condition: numeric_state
+            entity_id: sensor.outdoor_module_temperature
+            above: 14
+        sequence:
+          - service: climate.turn_off
+            data: {}
+            target:
+              entity_id:
+                - climate.bathroom
+                - climate.bedroom_2
+      - conditions:
+          - condition: numeric_state
+            entity_id: sensor.outdoor_module_temperature
+            below: 13
+        sequence:
+          - service: climate.turn_on
+            data: {}
+            target:
+              entity_id:
+                - climate.bathroom
+                - climate.bedroom_2

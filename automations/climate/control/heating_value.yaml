@@ -1,5 +1,5 @@
 id: '20f1587d-6c84-4191-82c2-8e4f30c9e8cf'
-alias: Climate Control Input Value
+alias: Climate Control Heating Value
 initial_state: true
 description: ""
 mode: single
