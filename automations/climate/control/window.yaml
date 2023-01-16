@@ -1,0 +1,112 @@
+id: 'a7c4a997-5c9b-40d5-b37c-4dbba0625890'
+alias: Climate Control Window
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: state
+    entity_id: 
+      - binary_sensor.door_window_sensor_7_window_door_is_open
+      - binary_sensor.door_window_sensor_7_window_door_is_open_2
+      - binary_sensor.door_window_sensor_7_window_door_is_open_3
+      - binary_sensor.door_window_sensor_7_window_door_is_open_4
+      - binary_sensor.door_window_sensor_7_window_door_is_open_5
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
+condition: []
+#  - condition: state
+#    entity_id: climate.bedroom_1
+#    state: "heat"
+action:
+  - choose:
+      # Dining Room
+      - conditions:
+          - condition: or
+            conditions:
+              - condition: state
+                entity_id: binary_sensor.door_window_sensor_7_window_door_is_open
+                state: "on"
+              - condition: state
+                entity_id: binary_sensor.door_window_sensor_7_window_door_is_open_4
+                state: "on"
+        sequence:
+          - service: climate.turn_off
+            data: {}
+            target:
+              entity_id: 
+                - climate.dining_room
+                - climate.hallway_2
+      - conditions:
+          - condition: or
+            conditions:
+              - condition: state
+                entity_id: binary_sensor.door_window_sensor_7_window_door_is_open
+                state: "off"
+              - condition: state
+                entity_id: binary_sensor.door_window_sensor_7_window_door_is_open_4
+                state: "off"
+        sequence:
+          - service: climate.turn_on
+            data: {}
+            target:
+              entity_id: 
+                - climate.dining_room
+                - climate.hallway_2
+      # Toilet
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.door_window_sensor_7_window_door_is_open_2
+            state: "on"
+        sequence:
+          - service: climate.turn_off
+            data: {}
+            target:
+              entity_id: 
+                - climate.toilet
+                - climate.hallway_2
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.door_window_sensor_7_window_door_is_open_2
+            state: "off"
+        sequence:
+          - service: climate.turn_on
+            data: {}
+            target:
+              entity_id: 
+                - climate.toilet
+                - climate.hallway_2
+      # Living Room
+      - conditions:
+          - condition: or
+            conditions:
+              - condition: state
+                entity_id: binary_sensor.door_window_sensor_7_window_door_is_open_3
+                state: "on"
+              - condition: state
+                entity_id: binary_sensor.door_window_sensor_7_window_door_is_open_5
+                state: "on"
+        sequence:
+          - service: climate.turn_off
+            data: {}
+            target:
+              entity_id: 
+                - climate.livingroom_radiator
+                - climate.hallway_2
+      - conditions:
+          - condition: or
+            conditions:
+              - condition: state
+                entity_id: binary_sensor.door_window_sensor_7_window_door_is_open_3
+                state: "off"
+              - condition: state
+                entity_id: binary_sensor.door_window_sensor_7_window_door_is_open_5
+                state: "off"
+        sequence:
+          - service: climate.turn_on
+            data: {}
+            target:
+              entity_id: 
+                - climate.livingroom_radiator
+                - climate.hallway_2

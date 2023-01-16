@@ -1,0 +1,8 @@
+- platform: min_max
+  name: Bathroom Average Temperature
+  unique_id: 'e66c2c84-a3a7-4db6-ab41-d6e1317eda67'
+  type: mean
+  round_digits: 1
+  entity_ids:
+    - sensor.lumi_lumi_weather_temperature
+    - sensor.tado_smart_radiator_thermostat_va4266461696_current_temperature

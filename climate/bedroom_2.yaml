@@ -1,6 +1,11 @@
 - platform: generic_thermostat
-  name: Bedroom 2
+  name: Bedroom 2 Radiator
   unique_id: 'ef3d9b3a-8406-41b8-9e30-c28fa9e9d60e'
-  heater: climate.tado_smart_radiator_thermostat_va2514946816
-  target_sensor: sensor.lumi_lumi_weather_temperature
+  heater: switch.heating_bedroom_2_tado
+  target_sensor: sensor.bedroom_2_average_temperature
+  min_temp: 5
+  max_temp: 25
+  ac_mode: false
+  cold_tolerance: 0.5
   away_temp: 5
+  sleep_temp: 10

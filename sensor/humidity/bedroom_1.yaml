@@ -1,0 +1,7 @@
+- platform: min_max
+  name: Bedroom 1 Average Humidity
+  unique_id: 'b1da6221-2514-42d0-82cb-7f374076f041'
+  type: mean
+  entity_ids:
+    - sensor.lumi_lumi_weather_humidity_4
+    - sensor.tado_smart_radiator_thermostat_va1775569408_current_humidity

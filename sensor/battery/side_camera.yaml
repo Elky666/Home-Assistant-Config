@@ -1,0 +1,8 @@
+- platform: template
+  sensors:
+    camera_aarlo_side:
+      friendly_name: 'Camera Side Battery'
+      unit_of_measurement: "%"
+      unique_id: af889542-7358-4267-98aa-3c9c4071f9bc
+      value_template: >
+        {{ state_attr('camera.aarlo_side', 'battery_level') }}

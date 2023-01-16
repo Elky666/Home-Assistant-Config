@@ -1,0 +1,5 @@
+- platform: group
+  name: home_app_adults
+  services:
+    - service: !secret notify_person_1
+    - service: !secret notify_person_2

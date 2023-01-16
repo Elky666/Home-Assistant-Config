@@ -1,6 +1,8 @@
-id: 'climate_thermostat_warning'
+id: '43cd43f0-fafa-4748-9733-ad0ee07b43bd'
 alias: Climate Thermostat Warning
 initial_state: true
+description: ""
+mode: single
 trigger:
   - entity_id: binary_sensor.climate_hallway_heating_warning
     for: 01:00:00
@@ -13,6 +15,7 @@ action:
       who: home_app
       title: "Heating Warning"
       message: 'Warning Thermostat has been heating for 60 minutes'
-  - service: switch.turn_off
-    data:
-      entity_id: switch.heating_hallway_control_switch
+  - service: climate.turn_off
+    data: {}
+    target:
+      entity_id: climate.hallway_2

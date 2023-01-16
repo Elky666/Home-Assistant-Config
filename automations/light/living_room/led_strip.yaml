@@ -1,0 +1,33 @@
+id: '660123bc-2b9f-4f1a-b163-f495a6c05e70'
+alias: Lights Living Room Led Strip
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - media_player.sony_kd_55x8509c
+condition:
+  - condition: state
+    entity_id: input_boolean.home_sleep
+    state: "on"
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: media_player.sony_kd_55x8509c
+            state: playing
+        sequence:
+          - service: light.turn_on
+            data: {}
+            target:
+              entity_id: light.livingroom_tv_led_strip
+      - conditions:
+          - condition: state
+            entity_id: media_player.sony_kd_55x8509c
+            state: "off"
+        sequence:
+          - service: light.turn_off
+            data: {}
+            target:
+              entity_id: light.livingroom_tv_led_strip

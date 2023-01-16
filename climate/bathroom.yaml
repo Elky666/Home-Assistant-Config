@@ -2,5 +2,10 @@
   name: Bathroom
   unique_id: '92433d60-ba39-4b02-bbd3-d1e36f9ac625'
   heater: switch.heating_bathroom_tado
-  target_sensor: sensor.lumi_lumi_weather_temperature
+  target_sensor: sensor.bathroom_average_temperature
+  min_temp: 5
+  max_temp: 25
+  ac_mode: false
+  cold_tolerance: 0.5
   away_temp: 5
+  sleep_temp: 10

@@ -88,7 +88,7 @@ notify_message_engine:
               value_template: >-
                 {{ who == 'home_app' }}
           sequence:
-            - service: notify.mobile_app_damian_s_phone
+            - service: notify.home_app_adults
               data:
                 title: '{{ title }}'
                 message: '{{ message }}'

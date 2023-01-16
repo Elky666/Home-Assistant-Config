@@ -1,6 +1,8 @@
-id: 'climate_livingroom_radiator_warning'
+id: '7d548e23-bdee-4b34-b2fb-0dc81688a0b3'
 alias: Climate Livingroom Radiator Warning
 initial_state: true
+description: ""
+mode: single
 trigger:
   - entity_id: binary_sensor.climate_livingroom_heating_warning
     for: 01:00:00
@@ -13,6 +15,7 @@ action:
       who: home_app
       title: "Heating Warning"
       message: 'Warning Livingroom Radiator has been heating for 30 minutes'
-  - service: switch.turn_off
-    data:
-      entity_id: switch.heating_livingroom_control_switch
+  - service: climate.turn_off
+    data: {}
+    target:
+      entity_id: climate.living_room

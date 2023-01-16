@@ -1,23 +1,15 @@
 - platform: template
   switches:
-    heating_hallway_control_switch:
+    heating_hallway_tado:
       friendly_name: 'Heating Hallway'
-      unique_id: 'b2c30623-54cf-4f1b-9f49-2b30af9bb1dd'
-      value_template: > 
-        {{ is_state('climate.tado_smart_thermostat_ru3754558976', 'heat')}}
+      unique_id: 'd142746d-71d1-40f5-b47b-180ad11efc36'
       turn_on:
-        - service: climate.set_hvac_mode
+        - service: climate.set_temperature
           data:
             entity_id: climate.tado_smart_thermostat_ru3754558976
-            hvac_mode: heat
+            temperature: 25
       turn_off:
-        - service: climate.set_hvac_mode
+        - service: climate.set_temperature
           data:
             entity_id: climate.tado_smart_thermostat_ru3754558976
-            hvac_mode: 'off'
-      icon_template: >-
-        {% if is_state('climate.tado_smart_thermostat_ru3754558976', 'heat') %}
-          mdi:radiator
-        {% else %}
-          mdi:radiator-off
-        {% endif %}
+            temperature: 5

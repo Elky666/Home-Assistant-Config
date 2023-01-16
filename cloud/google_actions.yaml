@@ -20,6 +20,8 @@ filter:
     - light.bedroom_2_lamp
     - light.bedroom_2_led
     - light.bedroom_2_light
+    # Media
+    - media_player.kitchen
     # Switchs
     - switch.bedroom_1_bedside_fan_plug
   exclude_entities:
@@ -79,6 +81,10 @@ entity_config:
   light.bedroom_2_light:
     name: Bedroom 2 Light
     room: Bedroom 2
+  # Media
+  media_player.kitchen:
+      name: Kitchen Speaker
+      room: Kitchen
   # Switchs
   switch.bedroom_1_bedside_fan_plug:
     name: Bedside Fan

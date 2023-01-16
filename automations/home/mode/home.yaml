@@ -1,0 +1,47 @@
+id: 'e6ac3b8c-0976-4fdb-84d1-26ff355e89b6'
+alias: Home Mode Home
+initial_state: true
+description: ''
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.person1_home
+    to: 'on'
+  - platform: state
+    entity_id:
+    - input_boolean.person2_home
+    to: 'on'
+  - platform: state
+    entity_id:
+    - input_boolean.person4_home
+    to: 'on'
+  - platform: state
+    entity_id:
+    - input_boolean.person5_home
+    to: 'on'
+condition:
+  - condition: and
+    conditions:
+    - condition: state
+      entity_id: input_boolean.person1_home
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.person2_home
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.person4_home
+      state: 'on'
+    - condition: state
+      entity_id: input_boolean.person5_home
+      state: 'on'
+action:
+  - service: input_boolean.turn_on
+    data: {}
+    target:
+      entity_id: 
+        - input_boolean.home_home
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.home_away

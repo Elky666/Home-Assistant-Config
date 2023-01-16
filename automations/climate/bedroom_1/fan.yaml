@@ -1,25 +1,77 @@
-id: '1231d79f-decf-465f-b760-4895c45d9ffb'
+id: '624d4a65-36a3-4f0e-b120-f3b4516d72a7'
 alias: Climate Bedroom 1 Fan
 initial_state: true
 description: ""
 mode: single
 trigger:
   - platform: state
-    entity_id: sensor.tado_smart_radiator_thermostat_va1775569408_current_temperature
-condition:
-    - condition: state
-      entity_id: fan.sonoff_1000cc2f24
-      state: 'on'
+    entity_id: sensor.bedroom_1_average_temperature
+  - platform: state
+    entity_id: fan.sonoff_1000cc2f24
+condition: []
 action:
-    - service: fan.set_percentage
-      target:
-        entity_id: fan.sonoff_1000cc2f24
-      data_template:
-        percentage: >
-          {% if states('sensor.tado_smart_radiator_thermostat_va1775569408_current_temperature') | float < 20 %}
-            33
-          {% elif states('sensor.tado_smart_radiator_thermostat_va1775569408_current_temperature') | float < 25 %}
-            66
-          {% elif states('sensor.tado_smart_radiator_thermostat_va1775569408_current_temperature') | float < 35 %}
-            100
-          {% endif %}
+  - choose:
+      - conditions:
+          - condition: and
+            conditions:
+              - condition: not
+                conditions:
+                  - condition: state
+                    entity_id: sensor.season
+                    state: winter
+              - condition: state
+                entity_id: fan.sonoff_1000cc2f24
+                state: "on"
+        sequence:
+          - service: fan.set_percentage
+            data_template:
+              percentage: >
+                {% if states('sensor.bedroom_1_average_temperature') | float <
+                20 %}
+                  33
+                {% elif states('sensor.bedroom_1_average_temperature') | float <
+                25 %}
+                  66
+                {% elif states('sensor.bedroom_1_average_temperature') | float <
+                35 %}
+                  100
+                {% endif %}
+            target:
+              entity_id: fan.sonoff_1000cc2f24
+      - conditions:
+          - condition: and
+            conditions:
+              - condition: state
+                entity_id: sensor.season
+                state: winter
+              - condition: state
+                entity_id: fan.sonoff_1000cc2f24
+                state: "on"
+        sequence:
+          - service: fan.set_percentage
+            data:
+              percentage: 33
+            target:
+              entity_id: fan.sonoff_1000cc2f24
+          - service: climate.set_preset_mode
+            data:
+              preset_mode: sleep
+            target:
+              entity_id:
+                - climate.bedroom_1
+      - conditions:
+          - condition: and
+            conditions:
+              - condition: state
+                entity_id: fan.sonoff_1000cc2f24
+                state: "off"
+              - condition: state
+                entity_id: input_boolean.home_sleep
+                state: "off"
+        sequence:
+          - service: climate.set_preset_mode
+            data:
+              preset_mode: none
+            target:
+              entity_id:
+                - climate.bedroom_1

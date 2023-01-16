@@ -8,7 +8,7 @@ cards:
     chips:
       - type: entity
         entity: >-
-          sensor.tado_smart_radiator_thermostat_va1775569408_current_temperature
+          sensor.lumi_lumi_weather_temperature_4
   - type: vertical-stack
     title: Fan
     cards:

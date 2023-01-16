@@ -1,0 +1,11 @@
+- platform: generic_thermostat
+  name: Toilet
+  unique_id: '09af731a-1061-4510-b34e-0e057f672c30'
+  heater: switch.heating_toilet_tado
+  target_sensor: sensor.toilet_average_temperature
+  min_temp: 5
+  max_temp: 25
+  ac_mode: false
+#  cold_tolerance: 0.5
+  away_temp: 5
+  sleep_temp: 10

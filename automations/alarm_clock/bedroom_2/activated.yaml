@@ -8,15 +8,30 @@ trigger:
     at: input_datetime.bedroom_2_alarm_clock
 condition: []
 action:
+  - variables:
+      old_volume: "{{ state_attr('media_player.bedroom_2_echo_show' , 'volume_level')|float }}"
+  - service: media_player.volume_set
+    data_template:
+      entity_id: media_player.bedroom_2_echo_show
+      volume_level: 0.37
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
   - service: media_player.play_media
     target:
       entity_id: media_player.bedroom_2_echo_show
     data:
       media_content_type: sound
-      media_content_id: amzn_sfx_scifi_alarm_04
-  - service: media_player.play_media
-    target:
+      media_content_id: video_tunes_09
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 10
+      milliseconds: 0
+  - service: media_player.volume_set
+    data_template:
       entity_id: media_player.bedroom_2_echo_show
-    data:
-      media_content_type: sound
-      media_content_id: amzn_sfx_scifi_alarm_04
+      volume_level: '{{ old_volume }}'
+# <audio src="soundbank://soundlibrary/video_tunes/video_tunes_09"/>

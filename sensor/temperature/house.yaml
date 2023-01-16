@@ -1,0 +1,15 @@
+- platform: min_max
+  name: House Average Temperature
+  unique_id: '7eebd2db-fe38-4e96-85fe-f2003338b23c'
+  type: mean
+  round_digits: 1
+  entity_ids:
+    - sensor.bedroom_1_average_temperature
+    - sensor.bedroom_2_average_temperature
+    - sensor.bedroom_3_average_temperature
+    - sensor.kitchen_dining_room_average_temperature
+    - sensor.living_room_average_temperature
+    - sensor.bathroom_average_temperature
+    - sensor.toilet_average_temperature
+    - sensor.hallway_average_temperature
+    - sensor.trisensor_air_temperature_2

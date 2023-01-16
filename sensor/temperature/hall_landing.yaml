@@ -1,0 +1,8 @@
+- platform: min_max
+  name: Hallway Average Temperature
+  unique_id: '851adb91-d1fc-44d4-bfc0-03ab3ba8de97'
+  type: mean
+  round_digits: 1
+  entity_ids:
+    - sensor.tado_smart_thermostat_ru3754558976_current_temperature
+    - sensor.trisensor_air_temperature

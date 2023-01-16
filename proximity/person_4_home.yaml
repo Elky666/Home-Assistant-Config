@@ -1,0 +1,5 @@
+person_4_home:
+  zone: home
+  devices:
+    - person.person_4
+  unit_of_measurement: mi

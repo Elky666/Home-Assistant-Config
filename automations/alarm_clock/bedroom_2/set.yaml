@@ -17,7 +17,7 @@ action:
       - conditions:
           - condition: state
             entity_id: sensor.bedroom_2_echo_show_next_alarm
-            state: unavailable
+            state: unknown
           - condition: state
             entity_id: person.person_5
             state: home
@@ -46,7 +46,7 @@ action:
             conditions:
               - condition: state
                 entity_id: sensor.bedroom_2_echo_show_next_alarm
-                state: unavailable
+                state: unknown
         sequence:
           - service: input_boolean.turn_on
             data: {}
@@ -61,7 +61,7 @@ action:
       - conditions:
           - condition: state
             entity_id: sensor.bedroom_2_echo_show_next_alarm
-            state: unavailable
+            state: unknown
           - condition: time
             weekday:
               - sat

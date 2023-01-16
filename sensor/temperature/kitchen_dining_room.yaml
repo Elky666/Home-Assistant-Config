@@ -1,0 +1,9 @@
+- platform: min_max
+  name: Kitchen / Dining Room Average Temperature
+  unique_id: '013ec276-591b-4e14-bb85-992909e3b9a2'
+  type: mean
+  round_digits: 1
+  entity_ids:
+    - sensor.lumi_lumi_weather_temperature_3
+    - sensor.tado_smart_radiator_thermostat_va0096931328_current_temperature
+    - sensor.multisensor_6_air_temperature

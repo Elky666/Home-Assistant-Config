@@ -1,6 +1,8 @@
 id: be7ec595-c382-4b59-a769-1183b79d8076
 alias: Climate Bedroom 3 Radiator Warning
 initial_state: true
+description: ""
+mode: single
 trigger:
   - entity_id: binary_sensor.climate_bedroom_3_heating_warning
     for: 01:00:00
@@ -13,6 +15,7 @@ action:
       who: home_app
       title: "Heating Warning"
       message: "Warning Bedroom 3 Radiator has been heating for 60 minutes"
-  - service: switch.turn_off
-    data:
-      entity_id: switch.heating_bedroom_3_control_switch
+  - service: climate.turn_off
+    data: {}
+    target:
+      entity_id: climate.bedroom_3

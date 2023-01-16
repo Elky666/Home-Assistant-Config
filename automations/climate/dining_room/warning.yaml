@@ -1,6 +1,8 @@
-id: 'climate_dining_room_radiator_warning'
+id: '145045bd-32f8-4823-afee-ebdc1950dcd6'
 alias: Climate Dining Room Radiator Warning
 initial_state: true
+description: ""
+mode: single
 trigger:
   - entity_id: binary_sensor.climate_dining_room_heating_warning
     for: 01:00:00
@@ -13,6 +15,7 @@ action:
       who: home_app
       title: "Heating Warning"
       message: 'Warning Dining Room Radiator has been heating for 60 minutes'
-  - service: switch.turn_off
-    data:
-      entity_id: switch.heating_dining_room_control_switch
+  - service: climate.turn_off
+    data: {}
+    target:
+      entity_id: climate.dining_room

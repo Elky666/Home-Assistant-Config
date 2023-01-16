@@ -1,0 +1,7 @@
+- platform: min_max
+  name: Bedroom 3 Average Temperature
+  unique_id: '3d877a6f-8bfa-4713-adf3-a9b330a6f487'
+  type: mean
+  round_digits: 1
+  entity_ids:
+    - sensor.tado_smart_radiator_thermostat_va0943328000_current_temperature

@@ -18,4 +18,9 @@ action:
     target:
       entity_id:
         - switch.livingroom_surge_protector_mss426_christmas_candles_plug
+  - service: climate.set_preset_mode
+    data:
+      preset_mode: "none"
+    target:
+      entity_id: climate.living_room
 mode: single

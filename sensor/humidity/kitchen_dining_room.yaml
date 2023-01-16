@@ -1,0 +1,9 @@
+- platform: min_max
+  name: Kitchen / Dining Room Average Humidity
+  unique_id: '1a22e7d0-e187-48f1-a1db-03a56c7cab85'
+  type: mean
+  round_digits: 1
+  entity_ids:
+    - sensor.lumi_lumi_weather_humidity_3
+    - sensor.tado_smart_radiator_thermostat_va0096931328_current_humidity
+    - sensor.multisensor_6_humidity

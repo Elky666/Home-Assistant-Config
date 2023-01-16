@@ -1,0 +1,8 @@
+proximity.person_1_home:
+  friendly_name: !secret name_person_1
+proximity.person_2_home:
+  friendly_name: !secret name_person_2
+proximity.person_4_home:
+  friendly_name: !secret name_person_4
+proximity.person_5_home:
+  friendly_name: !secret name_person_5

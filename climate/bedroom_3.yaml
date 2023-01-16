@@ -1,0 +1,11 @@
+- platform: generic_thermostat
+  name: Bedroom 3 Radiator
+  unique_id: '7aab85cf-1ff4-4446-8e18-14af89d263c0'
+  heater: switch.heating_bedroom_3_tado
+  target_sensor: sensor.bedroom_3_average_temperature
+  min_temp: 5
+  max_temp: 25
+  ac_mode: false
+  cold_tolerance: 0.5
+  away_temp: 5
+  sleep_temp: 10

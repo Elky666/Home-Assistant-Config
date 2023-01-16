@@ -1,0 +1,19 @@
+id: '089cd1df-70d2-4daa-9357-2057be820238'
+alias: Lights Living Room Off
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: time
+    at: "01:30:00"
+condition:
+  - condition: state
+    entity_id: remote.livingroom
+    state: "off"
+action:
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id:
+        - light.livingroom_lamp
+        - light.livingroom_tv_led_strip

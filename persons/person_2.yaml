@@ -2,3 +2,4 @@
   id: 9304fc77-0f2f-4e5e-848c-e80b931e51d3
   device_trackers:
     - !secret person_2_device_tracker_1
+    - !secret person_2_device_tracker_2

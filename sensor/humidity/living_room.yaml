@@ -1,0 +1,7 @@
+- platform: min_max
+  name: Living Room Average Humidity
+  unique_id: 'c5e88bb8-1011-41e6-97e9-ef55359d5fc7'
+  type: mean
+  entity_ids:
+    - sensor.lumi_lumi_weather_humidity_2
+    - sensor.tado_smart_radiator_thermostat_va0114429440_current_humidity

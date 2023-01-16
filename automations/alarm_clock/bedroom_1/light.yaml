@@ -4,6 +4,8 @@ description: ""
 initial_state: true
 mode: single
 trigger:
+  - platform: time
+    at: input_datetime.bedroom_1_alarm_clock
   - platform: template
     value_template: 
       "{% set alarm_time = states('sensor.bedroom_1_echo_show_next_alarm') | as_datetime %}

@@ -1,0 +1,21 @@
+id: 'eb7426b0-c8ae-490c-8d38-6c50d72c7236'
+alias: Home Sleep Off
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: time
+    at: input_datetime.bedroom_1_alarm_clock
+condition: []
+action:
+  - service: climate.set_preset_mode
+    data:
+      preset_mode: none
+    target:
+      entity_id:
+        - climate.bathroom
+        - climate.bedroom_1
+        - climate.living_room
+        - climate.dining_room
+        - climate.toilet
+        - climate.hallway_2

@@ -1,10 +1,13 @@
-id: '032f04e9-f93c-4434-9797-1a378686c708'
+id: '926f12bb-742d-4817-8bf4-fcee5f60e0a8'
 alias: Climate Control Heating
 initial_state: true
 description: ""
 mode: single
 trigger:
-  - platform: numeric_state
+  - platform: event
+    event_type:
+      - automation_reloaded
+  - platform: state
     entity_id: sensor.outdoor_module_temperature
     for:
       hours: 0
@@ -22,8 +25,14 @@ action:
             data: {}
             target:
               entity_id:
+                - climate.bedroom_1
                 - climate.bathroom
                 - climate.bedroom_2
+                - climate.living_room
+                - climate.bedroom_3
+                - climate.toilet
+                - climate.hallway_2
+                - climate.dining_room
       - conditions:
           - condition: numeric_state
             entity_id: sensor.outdoor_module_temperature
@@ -33,5 +42,11 @@ action:
             data: {}
             target:
               entity_id:
+                - climate.bedroom_1
                 - climate.bathroom
                 - climate.bedroom_2
+                - climate.living_room
+                - climate.bedroom_3
+                - climate.toilet
+                - climate.hallway_2
+                - climate.dining_room

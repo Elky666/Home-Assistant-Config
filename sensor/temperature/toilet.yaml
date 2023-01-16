@@ -1,0 +1,7 @@
+- platform: min_max
+  name: Toilet Average Temperature
+  unique_id: '9055daf3-c52d-4118-9117-7f4c11a7129b'
+  type: mean
+  round_digits: 1
+  entity_ids:
+    - sensor.tado_smart_radiator_thermostat_va1993674240_current_temperature

@@ -1,0 +1,11 @@
+- platform: generic_thermostat
+  name: Bedroom 1
+  unique_id: '9296d473-3b65-4025-a13e-d8afa1542454'
+  heater: switch.heating_bedroom_1_tado
+  target_sensor: sensor.bedroom_1_average_temperature
+  min_temp: 5
+  max_temp: 25
+  ac_mode: false
+#  cold_tolerance: 0.5
+  away_temp: 5
+  sleep_temp: 10

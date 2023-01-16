@@ -1,0 +1,82 @@
+id: 'e6d8aece-3176-439e-b588-4d6aeb3b1255'
+alias: Alarm Clock Bedroom 1 Set
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: homeassistant
+    event: start
+  - platform: time
+    at: "02:00:00"
+  - platform: event
+    event_type:
+      - automation_reloaded
+condition: []
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: sensor.bedroom_1_echo_show_next_alarm
+            state: unknown
+          - condition: state
+            entity_id: person.person_5
+            state: home
+          - condition: time
+            weekday:
+              - mon
+              - tue
+              - wed
+              - thu
+              - fri
+          - condition: state
+            entity_id: input_boolean.home_holiday
+            state: "off"
+        sequence:
+          - service: input_boolean.turn_on
+            data: {}
+            target:
+              entity_id: input_boolean.alarm_clock_bedroom_1
+          - service: input_datetime.set_datetime
+            data:
+              time: "07:00:00"
+            target:
+              entity_id: input_datetime.bedroom_1_alarm_clock
+      - conditions:
+          - condition: not
+            conditions:
+              - condition: state
+                entity_id: sensor.bedroom_1_echo_show_next_alarm
+                state: unknown
+        sequence:
+          - service: input_boolean.turn_on
+            data: {}
+            target:
+              entity_id: input_boolean.alarm_clock_bedroom_1
+          - service: input_datetime.set_datetime
+            data:
+              time: >-
+                {{ as_timestamp(states('sensor.bedroom_1_echo_show_next_alarm')) | timestamp_custom('%H:%M') }}
+            target:
+              entity_id: input_datetime.bedroom_1_alarm_clock
+      - conditions:
+          - condition: state
+            entity_id: sensor.bedroom_1_echo_show_next_alarm
+            state: unknown
+          - condition: time
+            weekday:
+              - sat
+              - sun
+        sequence:
+          - service: input_boolean.turn_off
+            data: {}
+            target:
+              entity_id: input_boolean.alarm_clock_bedroom_1
+#      - conditions:
+#          - condition: state
+#            entity_id: input_boolean.person5_home
+#            state: "off"
+#        sequence:
+#          - service: input_boolean.turn_off
+#            data: {}
+#            target:
+#              entity_id: input_boolean.alarm_clock_bedroom_2

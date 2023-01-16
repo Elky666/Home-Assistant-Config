@@ -1,0 +1,8 @@
+- platform: min_max
+  name: Living Room Average Temperature
+  unique_id: '6789f029-adba-4540-a9ad-95589d0acfab'
+  type: mean
+  round_digits: 1
+  entity_ids:
+    - sensor.lumi_lumi_weather_temperature_2
+    - sensor.tado_smart_radiator_thermostat_va0114429440_current_temperature

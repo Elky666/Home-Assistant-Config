@@ -1,0 +1,12 @@
+- platform: generic_thermostat
+  name: Living Room
+  unique_id: 'b5fc0bea-2871-44c7-a6f2-8640b909389c'
+  heater: switch.heating_living_room_tado
+  target_sensor: sensor.living_room_average_temperature
+  min_temp: 5
+  max_temp: 25
+  ac_mode: false
+#  cold_tolerance: 0.5
+  away_temp: 5
+  sleep_temp: 10
+  activity_temp: 15

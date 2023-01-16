@@ -1,0 +1,8 @@
+- platform: min_max
+  name: Bedroom 1 Average Temperature
+  unique_id: '24d75efe-0a0b-4031-a376-e50291cda1c6'
+  type: mean
+  round_digits: 1
+  entity_ids:
+    - sensor.lumi_lumi_weather_temperature_4
+    - sensor.tado_smart_radiator_thermostat_va1775569408_current_temperature

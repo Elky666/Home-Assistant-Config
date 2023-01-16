@@ -1,7 +1,8 @@
 id: '22bc56d4-1eaa-4f67-ac6a-7f30b965cef7'
 alias: Motion Backdoor
-description: ''
 initial_state: true
+description: ""
+mode: single
 trigger:
   - platform: state
     entity_id: binary_sensor.fibaro_door_window_sensor_2_window_door_is_open
@@ -30,12 +31,6 @@ action:
           data:
             type: announce
           message: "Backdoor Open"
-      - service: switch.turn_off
-        data:
-          entity_id:
-            - switch.heating_dining_room_control_switch
-            - switch.heating_livingroom_control_switch
-            - switch.heating_hallway_control_switch
     - conditions:
       - condition: state
         entity_id: media_player.sony_kd_55x8509c
@@ -54,12 +49,6 @@ action:
           message: Backdoor is open
           displaytime: 10000
           icon: warning
-      - service: switch.turn_off
-        data:
-          entity_id:
-            - switch.heating_dining_room_control_switch
-            - switch.heating_livingroom_control_switch
-            - switch.heating_hallway_control_switch
     - conditions:
       - condition: state
         entity_id: media_player.sony_kd_55x8509c
@@ -84,24 +73,3 @@ action:
           timeout: 5
           color: red
           interrupt: 0
-      - service: switch.turn_off
-        data:
-          entity_id:
-            - switch.heating_dining_room_control_switch
-            - switch.heating_livingroom_control_switch
-            - switch.heating_hallway_control_switch
-    - conditions:
-      - condition: state
-        entity_id: switch.heating_control_switch
-        state: "on"
-      - condition: state
-        entity_id: binary_sensor.fibaro_door_window_sensor_2_window_door_is_open
-        state: "off"
-      sequence:
-      - service: switch.turn_on
-        data:
-          entity_id:
-            - switch.heating_dining_room_control_switch
-            - switch.heating_livingroom_control_switch
-            - switch.heating_hallway_control_switch
-mode: single

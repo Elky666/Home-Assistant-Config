@@ -1,0 +1,11 @@
+- platform: generic_thermostat
+  name: Hallway
+  unique_id: '9cf51424-b974-4b84-b1bf-4b065228f436'
+  heater: switch.heating_hallway_tado
+  target_sensor: sensor.hallway_average_temperature
+  min_temp: 5
+  max_temp: 25
+  ac_mode: false
+#  cold_tolerance: 0.5
+  away_temp: 5
+  sleep_temp: 10

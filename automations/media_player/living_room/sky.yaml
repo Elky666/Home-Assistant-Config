@@ -1,7 +1,8 @@
-id: '8d212b81-34ce-4423-801a-ba515ff6d204'
-alias: Livingroom Sky
-initial_state: on
-description: ''
+id: '7a8097bb-b48d-4028-82d9-a76e4e76af4f'
+alias: Media Living Room Sky
+initial_state: true
+description: ""
+mode: single
 trigger:
   - platform: state
     entity_id:
@@ -14,7 +15,7 @@ action:
   - choose:
     - conditions:
       - condition: template
-        value_template: 'value_template: ''{{ trigger.to_state.attributes.skyq_media_type == "pvr" }}'''
+        value_template: '{{ trigger.to_state.attributes.skyq_media_type == "pvr" }}'
       sequence:
       - service: light.turn_on
         data:
@@ -30,7 +31,7 @@ action:
             - switch.livingroom_2_light_switch
     - conditions:
       - condition: template
-        value_template: 'value_template: ''{{ trigger.to_state.attributes.skyq_media_type == "live" }}'''
+        value_template: '{{ trigger.to_state.attributes.skyq_media_type == "live" }}'
       sequence:
       - service: light.turn_on
         data:
@@ -39,4 +40,3 @@ action:
             - light.livingroom_tv_led_strip
           brightness: 255
           transition: 2
-mode: single
