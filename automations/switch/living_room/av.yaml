@@ -18,8 +18,10 @@ action:
       sequence:
         - service: switch.turn_on
           entity_id:
-            - switch.av_surge_protector_mss426_projector_plug
-            - switch.av_surge_protector_mss426_projector_screen_plug
+            - switch.av_surge_protector_outlet_2
+            - switch.av_surge_protector_outlet_3
+            #- switch.av_surge_protector_mss426_projector_plug
+            #- switch.av_surge_protector_mss426_projector_screen_plug
     - conditions:
       - condition: time
         weekday:
@@ -28,7 +30,9 @@ action:
       sequence:
         - service: switch.turn_on
           entity_id:
-            - switch.av_surge_protector_mss426_projector_plug
-            - switch.av_surge_protector_mss426_projector_screen_plug
+            - switch.av_surge_protector_outlet_2
+            - switch.av_surge_protector_outlet_3
+            #- switch.av_surge_protector_mss426_projector_plug
+            #- switch.av_surge_protector_mss426_projector_screen_plug
     default: []
 mode: single 

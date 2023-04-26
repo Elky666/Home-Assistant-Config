@@ -20,3 +20,4 @@ action:
         - light.kitchen_led_strip
         - light.livingroom_lamp
         - light.livingroom_tv_led_strip
+        - light.kitchen_light_switch

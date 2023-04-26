@@ -1,0 +1,12 @@
+living_room_fan_off:
+  alias: Living Room Fan Off
+  sequence:
+  - service: rest_command.rest_govee_appliance
+    data:
+      device: 24:46:D4:AD:FC:18:4B:BC
+      model: H7101
+      cmd_name: turn
+      cmd_value: "off"
+  - service: input_boolean.turn_off
+    target:
+      entity_id: input_boolean.living_room_fan_state

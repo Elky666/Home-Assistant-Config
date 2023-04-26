@@ -3,4 +3,4 @@
 # https://www.home-assistant.io/integrations/timer/
 #
 
-timer: !include_dir_named ../timer/
+timer: !include_dir_named ../helper/timer/

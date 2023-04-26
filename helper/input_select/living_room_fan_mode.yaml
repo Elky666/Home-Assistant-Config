@@ -1,0 +1,6 @@
+name: Living Room Fan Mode
+options:
+  - 'Custom'
+  - 'Auto'
+  - 'Sleep'
+  - 'Nature'

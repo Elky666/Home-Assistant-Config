@@ -1,0 +1,19 @@
+id: '31f9ceac-8407-42e0-835c-b76014e67c7f'
+alias: Lights Bedroom 3 Lamp On
+initial_state: true
+description: ''
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - input_boolean.home_night
+    to: "on"
+condition:
+  - condition: state
+    entity_id: media_player.lg_webos_tv_uk6300plb
+    state: "on"
+action:
+  - service: light.turn_on
+    data: {}
+    target:
+      entity_id: light.bedroom_3_lamp

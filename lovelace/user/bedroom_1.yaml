@@ -8,7 +8,7 @@ cards:
     chips:
       - type: entity
         entity: >-
-          sensor.lumi_lumi_weather_temperature_4
+          sensor.bedroom_1_average_temperature
   - type: vertical-stack
     title: Fan
     cards:
@@ -24,3 +24,45 @@ cards:
           action: none
         secondary_info: none
         name: Ceiling Fan
+  - type: vertical-stack
+    title: Lights
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-light-card
+            entity: light.bedroom_1_lamp_1
+            fill_container: true
+            show_brightness_control: true
+            collapsible_controls: true
+            use_light_color: true
+          - type: custom:mushroom-light-card
+            entity: light.bedroom_1_lamp_2
+            fill_container: true
+            show_brightness_control: true
+            show_color_control: false
+            collapsible_controls: true
+            use_light_color: true
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-light-card
+            entity: light.bedroom_1_led_strip
+            fill_container: true
+            show_brightness_control: true
+            show_color_control: true
+            collapsible_controls: true
+            use_light_color: true
+          - type: custom:mushroom-light-card
+            entity: light.bedroom_1_light
+            fill_container: true
+            show_brightness_control: true
+            collapsible_controls: true
+            use_light_color: true
+  - type: vertical-stack
+    title: Media
+    cards:
+      - type: custom:mushroom-media-player-card
+        entity: media_player.bedroom_1
+        use_media_info: true
+        show_volume_level: false
+        fill_container: true
+        icon_type: entity-picture

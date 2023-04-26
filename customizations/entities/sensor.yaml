@@ -1,0 +1,3 @@
+sensor.bathroom_average_temperature:
+  friendly_name: Bathroom Average Temperature
+  icon: mdi:thermometer

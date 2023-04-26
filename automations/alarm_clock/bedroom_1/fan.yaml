@@ -15,7 +15,10 @@ trigger:
       {% else %} 
         False 
       {% endif %}"
-condition: []
+condition:
+  - condition: state
+    entity_id: input_boolean.alarm_clock_bedroom_1
+    state: "on"
 action:
   - delay: 00:16:00
   - service: switch.turn_off

@@ -1,0 +1,6 @@
+# This handles the loading of my fan
+#
+# https://www.home-assistant.io/integrations/fan.template/
+#
+
+fan: !include_dir_merge_list ../fan/

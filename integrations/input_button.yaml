@@ -3,4 +3,4 @@
 # https://www.home-assistant.io/components/input_button/
 #
 
-input_boolean: !include_dir_named ../input_button/
+input_button: !include_dir_named ../helper/input_button/

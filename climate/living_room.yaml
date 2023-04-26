@@ -1,5 +1,5 @@
 - platform: generic_thermostat
-  name: Living Room
+  name: Living Room Radiator
   unique_id: 'b5fc0bea-2871-44c7-a6f2-8640b909389c'
   heater: switch.heating_living_room_tado
   target_sensor: sensor.living_room_average_temperature

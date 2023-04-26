@@ -1,0 +1,20 @@
+id: '9a99e1a3-21ae-4d44-9015-e0fd3d9fe0f2'
+alias: Climate Bedroom 2 Fan Off
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - fan.sonoff_1000cc26b0
+    to: "off"
+condition:
+  - condition: state
+    entity_id: input_boolean.home_sleep
+    state: "off"
+action:
+  - service: climate.set_preset_mode
+    data:
+      preset_mode: none
+    target:
+      entity_id: climate.bedroom_2

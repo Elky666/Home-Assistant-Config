@@ -5,9 +5,9 @@ trigger:
   - platform: template
     value_template: >
       {% if is_state('input_boolean.home_holiday', 'off') %}
-        {{ is_state('sensor.time', '21:00') }}
+        {{ is_state('sensor.time', '21:30') }}
       {% else %}
-        {{ is_state('sensor.time', '22:00') }}
+        {{ is_state('sensor.time', '22:30') }}
       {% endif %}
 condition:
   - condition: time

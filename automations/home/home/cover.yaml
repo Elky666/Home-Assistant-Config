@@ -1,0 +1,19 @@
+id: '001922ec-f270-4b69-b936-42007e008aba'
+alias: Home Home Cover
+initial_state: true
+description: ''
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.home_home
+    to: "on"
+condition:
+  - condition: state
+    entity_id: input_boolean.home_night
+    state: "off"
+action:
+  - service: cover.open_cover
+    data: {}
+    target:
+      entity_id: cover.living_room_blind

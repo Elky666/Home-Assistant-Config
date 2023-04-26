@@ -1,0 +1,16 @@
+id: 'c605f936-9fb5-4b25-b5c6-9d3ec4a730e0'
+alias: Cover Livingroom Sunset
+initial_state: true
+description: ''
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - input_boolean.home_night
+    to: "on"
+condition: []
+action:
+  - service: cover.close_cover
+    data: {}
+    target:
+      entity_id: cover.living_room_blind

@@ -1,0 +1,22 @@
+- platform: template
+  sensors:
+    toilet_window:
+      friendly_name: "Toilet Window"
+      unique_id: '3fb2589f-3282-44ba-9603-677d77251f75'
+      device_class: window
+      value_template: >-
+        {% if is_state("binary_sensor.door_window_sensor_7_window_door_is_open_in_regular_position_2", "on") %}
+          On
+        {% elif is_state("binary_sensor.door_window_sensor_7_window_door_is_open_in_regular_position_2", "off") %}
+          Off
+        {% else %}
+          Closed
+        {% endif %}
+      icon_template: >-
+        {% if is_state("binary_sensor.door_window_sensor_7_window_door_is_open_in_regular_position_2", "on") %}
+          mdi:window-open
+        {% elif is_state("binary_sensor.door_window_sensor_7_window_door_is_open_in_regular_position_2", "off") %}
+          mdi:window-closed
+        {% else %}
+          mdi:blinds-horizontal-closed
+        {% endif %}

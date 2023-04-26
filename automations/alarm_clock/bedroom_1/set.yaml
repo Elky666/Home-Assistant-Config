@@ -71,12 +71,26 @@ action:
             data: {}
             target:
               entity_id: input_boolean.alarm_clock_bedroom_1
-#      - conditions:
-#          - condition: state
-#            entity_id: input_boolean.person5_home
-#            state: "off"
-#        sequence:
-#          - service: input_boolean.turn_off
-#            data: {}
-#            target:
-#              entity_id: input_boolean.alarm_clock_bedroom_2
+      - conditions:
+          - condition: state
+            entity_id: sensor.bedroom_1_echo_show_next_alarm
+            state: unknown
+        sequence:
+          - service: input_boolean.turn_off
+            data: {}
+            target:
+              entity_id: input_boolean.alarm_clock_bedroom_1
+          - service: input_datetime.set_datetime
+            data:
+              time: "08:00:00"
+            target:
+              entity_id: input_datetime.bedroom_1_alarm_clock
+      - conditions:
+          - condition: state
+            entity_id: input_boolean.person5_home
+            state: "off"
+        sequence:
+          - service: input_boolean.turn_off
+            data: {}
+            target:
+              entity_id: input_boolean.alarm_clock_bedroom_2

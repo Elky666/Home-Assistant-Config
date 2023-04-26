@@ -17,7 +17,7 @@ action:
       - service: switch.turn_on
         data: {}
         target:
-          entity_id: switch.livingroom_surge_protector_mss426_subwoofer_plug
+          entity_id: switch.livingroom_surge_protector_outlet_7
     - conditions:
       - condition: state
         entity_id: media_player.denon_avr_x2300w
@@ -26,5 +26,5 @@ action:
       - service: switch.turn_off
         data: {}
         target:
-          entity_id: switch.livingroom_surge_protector_mss426_subwoofer_plug
+          entity_id: switch.livingroom_surge_protector_outlet_7
 mode: single

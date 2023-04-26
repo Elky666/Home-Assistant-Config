@@ -1,0 +1,30 @@
+- platform: template
+  covers:
+    living_room_blind:
+      friendly_name: 'Livingroom Blind'
+      unique_id: '2ffb6600-630e-4c37-bdab-840773cc1fcd'
+      value_template: "{{ is_state('cover.living_room_blind_controller','open') }}"
+      device_class: blind
+      open_cover:
+        - service: cover.set_cover_position
+          data:
+            position: 65
+          target:
+            entity_id: cover.living_room_blind_controller
+      close_cover:
+        - service: cover.set_cover_position
+          data:
+            position: 0
+          target:
+            entity_id: cover.living_room_blind_controller
+      stop_cover:
+        - service: cover.stop_cover
+          data: {}
+          target:
+            entity_id: cover.living_room_blind_controller
+      set_cover_position:
+        - service: cover.set_cover_position 
+          target:
+            entity_id: cover.living_room_blind_controller
+          data:
+            position: "{{ position }}"

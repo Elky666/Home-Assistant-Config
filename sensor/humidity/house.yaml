@@ -1,0 +1,12 @@
+- platform: min_max
+  name: House Average Humidity
+  unique_id: '770938f5-e980-4e93-afe7-9dbfa349d200'
+  type: mean
+  round_digits: 1
+  entity_ids:
+    - sensor.bedroom_1_average_humidity
+    - sensor.bedroom_2_average_humidity
+    - sensor.bedroom_3_average_humidity
+    - sensor.kitchen_dining_room_average_humidity
+    - sensor.living_room_average_humidity
+    - sensor.bathroom_average_humidity

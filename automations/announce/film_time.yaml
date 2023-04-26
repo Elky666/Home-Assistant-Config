@@ -1,0 +1,25 @@
+id: '4985f5b0-5778-421a-8cf8-b2c98b5c32d1'
+alias: Announce Film Time
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: state
+    entity_id: input_button.film
+condition: []
+action:
+  - service: notify.alexa_media
+    data:
+      target:
+        - media_player.livingroom_2
+        - media_player.bedroom_2_echo_show
+        - media_player.bedroom_3_echo_show
+      data:
+        type: announce
+    data_template:
+      message: >
+        '{{ ["Film time", 
+          "If you don't want to watch disney princess films, i would come down now", 
+          "Yippee-ki-yay, lets watch a movie",
+          "The sights, the sounds, now playing in you'r local cinema",
+          "Movie Time"] | random }}'

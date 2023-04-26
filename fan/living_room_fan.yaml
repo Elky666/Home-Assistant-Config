@@ -1,0 +1,47 @@
+- platform: template
+  fans:
+    living_room_fan:
+      friendly_name: 'Livingroom Fan'
+      value_template: "{{ states('fan.living_room_fan') }}"
+      percentage_template: "{{ states('input_number.percentage') }}"
+      preset_mode_template: "{{ states('input_select.preset_mode') }}"
+      oscillating_template: "{{ states('input_select.osc') }}"
+      unique_id: '816c899e-3468-4484-8f2c-b0edab2ebb6a'
+      turn_on:
+        - service: input_boolean.turn_on
+          target:
+            entity_id: fan.living_room_fan
+        #- service: script.living_room_fan_on
+        - service: rest_command.rest_govee_appliance
+          data:
+            device: 24:46:D4:AD:FC:18:4B:BC
+            model: H7101
+            cmd_name: turn
+            cmd_value: "on"
+      turn_off:
+        - service: input_boolean.turn_off
+          target:
+            entity_id: fan.living_room_fan
+#        - service: script.living_room_fan_off
+        - service: rest_command.rest_govee_appliance
+          data:
+            device: 24:46:D4:AD:FC:18:4B:BC
+            model: H7101
+            cmd_name: turn
+            cmd_value: "off"
+      set_preset_mode:
+        - service: rest_command.rest_govee_appliance
+          data:
+            device: 24:46:D4:AD:FC:18:4B:BC
+            model: H7101
+            cmd_name: mode
+            cmd_value: >
+              {% set mapper = {'Sleep' : 5, 'Custom': 2, 'Auto': 3, 'Nature': 6} %}
+              {{ mapper[preset_mode] }}
+          # "{{ preset_mode }}"
+      speed_count: 8
+      preset_modes:
+        - 'Custom'
+        - 'Auto'
+        - 'Sleep'
+        - 'Nature'

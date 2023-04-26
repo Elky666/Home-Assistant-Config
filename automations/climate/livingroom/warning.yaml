@@ -14,8 +14,8 @@ action:
     data:
       who: home_app
       title: "Heating Warning"
-      message: 'Warning Livingroom Radiator has been heating for 30 minutes'
+      message: 'Warning Livingroom Radiator has been heating for 60 minutes'
   - service: climate.turn_off
     data: {}
     target:
-      entity_id: climate.living_room
+      entity_id: climate.livingroom_radiator

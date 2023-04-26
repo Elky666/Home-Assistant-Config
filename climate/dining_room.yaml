@@ -1,5 +1,5 @@
 - platform: generic_thermostat
-  name: Dining Room
+  name: Dining Room Radiator
   unique_id: '4564bf83-0698-4d77-8ccd-146ae0b53b62'
   heater: switch.heating_dining_room_tado
   target_sensor: sensor.kitchen_dining_room_average_temperature

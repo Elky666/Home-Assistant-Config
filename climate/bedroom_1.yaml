@@ -1,5 +1,5 @@
 - platform: generic_thermostat
-  name: Bedroom 1
+  name: Bedroom 1 Radiator
   unique_id: '9296d473-3b65-4025-a13e-d8afa1542454'
   heater: switch.heating_bedroom_1_tado
   target_sensor: sensor.bedroom_1_average_temperature

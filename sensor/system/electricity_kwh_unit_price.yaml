@@ -1,6 +1,6 @@
 ################################################################################
 #
-# electricity kwh price (33.38p kWh)
+# electricity kwh price
 #
 ################################################################################
 
@@ -8,5 +8,5 @@
   sensors:
     electricity_kwh_unit_price:
       friendly_name_template: "Electricity Unit Price"
-      value_template: "0.3338"
+      value_template: "0.3879"
       unit_of_measurement: "£/kWh"

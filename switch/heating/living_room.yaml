@@ -6,10 +6,10 @@
       turn_on:
         - service: climate.set_temperature
           data:
-            entity_id: climate.tado_smart_radiator_thermostat_va0114429440
+            entity_id: climate.livingroom_radiator
             temperature: 25
       turn_off:
         - service: climate.set_temperature
           data:
-            entity_id: climate.tado_smart_radiator_thermostat_va0114429440
+            entity_id: climate.livingroom_radiator
             temperature: 5

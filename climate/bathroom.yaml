@@ -1,5 +1,5 @@
 - platform: generic_thermostat
-  name: Bathroom
+  name: Bathroom Radiator
   unique_id: '92433d60-ba39-4b02-bbd3-d1e36f9ac625'
   heater: switch.heating_bathroom_tado
   target_sensor: sensor.bathroom_average_temperature

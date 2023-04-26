@@ -1,0 +1,16 @@
+id: 'cde6dcb7-2145-4617-93c0-a3172bd26660'
+alias: Home Away Cover
+initial_state: true
+description: ''
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.home_away
+    to: 'on'
+condition: []
+action:
+  - service: cover.close_cover
+    data: {}
+    target:
+      entity_id: cover.living_room_blind

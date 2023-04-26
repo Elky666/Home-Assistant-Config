@@ -1,0 +1,18 @@
+id: '4d04d803-61ea-4d51-b249-73b5d12f4779'
+alias: Home Home Switch
+initial_state: true
+description: ''
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+    - input_boolean.home_home
+    to: 'on'
+condition: []
+action:
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: 
+        - switch.kitchen_plug_socket_3
+        - switch.livingroom_plug_socket_4

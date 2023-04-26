@@ -6,6 +6,10 @@ mode: single
 trigger:
   - platform: state
     entity_id: sun.sun
+  - platform: state
+    entity_id:
+    - input_boolean.home_home
+    to: "on"
 condition:
   - condition: state
     entity_id: input_boolean.home_home

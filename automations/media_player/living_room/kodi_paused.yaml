@@ -1,0 +1,23 @@
+id: '55e15745-7769-403a-b658-8f6e9fa56eaf'
+alias: Media Living Room Kodi Paused
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - media_player.livingroom
+    from: playing
+    to: paused
+condition:
+  - condition: state
+    entity_id: input_boolean.home_night
+    state: "on"
+action:
+  - service: lifx.set_state
+    data:
+      power: true
+      brightness: 128
+      transition: 2
+    target:
+      entity_id: light.livingroom_lamp

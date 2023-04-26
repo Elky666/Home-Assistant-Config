@@ -13,6 +13,7 @@ trigger:
       - person.person_2
     zone: zone.cathedral_view
     event: leave
+condition: []
 action:
   - variables:
       event: "{{'has left' if trigger.event == 'leave' else 'arrived at' }}"

@@ -1,5 +1,5 @@
 - platform: generic_thermostat
-  name: Toilet
+  name: Toilet Radiator
   unique_id: '09af731a-1061-4510-b34e-0e057f672c30'
   heater: switch.heating_toilet_tado
   target_sensor: sensor.toilet_average_temperature

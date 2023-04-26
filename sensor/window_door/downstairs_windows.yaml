@@ -1,0 +1,7 @@
+- platform: template
+  sensors:
+    sensors_downstairs_windows_open:
+      friendly_name: 'Downstairs Windows Open'
+      unique_id: 'ff6c475d-57d6-455e-be80-34f45acf19e1'
+      value_template: >
+            {{ expand('group.downstairs_windows') | selectattr('state','eq','on') | list | count }}

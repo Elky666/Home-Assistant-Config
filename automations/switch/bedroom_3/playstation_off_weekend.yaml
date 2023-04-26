@@ -1,0 +1,16 @@
+id: '160b23dd-0f8b-4596-9e5a-fffefb0ad9d5'
+alias: Switch Playstation Off Weekend
+initial_state: on
+trigger:
+  - at: '22:30:00'
+    platform: time
+condition:
+  - condition: time
+    weekday:
+    - fri
+    - sat
+action:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.tyler_s_playstation
+mode: single

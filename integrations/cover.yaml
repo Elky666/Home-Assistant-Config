@@ -1,0 +1,6 @@
+# This handles the loading of my cover
+#
+# https://www.home-assistant.io/integrations/cover.template/
+#
+
+cover: !include_dir_merge_list ../cover/

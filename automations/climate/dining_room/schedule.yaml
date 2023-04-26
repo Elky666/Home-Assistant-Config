@@ -42,7 +42,7 @@ action:
           - condition: not
             conditions:
               - condition: template
-                value_template: "{{ now().hour in [7, 19, 20, 21, 22] }}"
+                value_template: "{{ now().hour in [7, 12, 16, 17, 18, 19, 20, 21] }}"
         sequence:
           - service: climate.set_temperature
             data_template:
@@ -52,7 +52,7 @@ action:
               entity_id: climate.dining_room
       - conditions:
           - condition: template
-            value_template: "{{ now().hour in [7, 19, 20, 21, 22] }}"
+            value_template: "{{ now().hour in [7, 12, 16, 17, 18, 19, 20, 21] }}"
         sequence:
           - service: climate.set_temperature
             data_template:

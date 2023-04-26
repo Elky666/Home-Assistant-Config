@@ -4,14 +4,11 @@ initial_state: true
 description: ""
 mode: single
 trigger:
-  - platform: state
-    entity_id:
-      - light.kitchen_led_strip
-    to: "on"
-condition:
-  - condition: state
-    entity_id: input_boolean.home_alarm_triggered
-    state: "off"
+  - platform: time
+    at: "23:01:00"
+  - platform: time
+    at: "07:01:00"
+condition: []
 action:
   - service: lifx.set_state
     data_template:

@@ -1,0 +1,6 @@
+- platform: min_max
+  name: Bedroom 3 Average Humidity
+  unique_id: '30afc73e-01f3-4407-ac53-92e18a3f605c'
+  type: mean
+  entity_ids:
+    - sensor.tado_smart_radiator_thermostat_va0943328000_current_humidity

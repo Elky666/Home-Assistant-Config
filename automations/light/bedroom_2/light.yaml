@@ -32,7 +32,7 @@ action:
             {% if is_state('sensor.holiday_name', 'Halloween') %}
               orange
             {% else %}
-              blue
+              white
             {% endif %}
         target:
           entity_id: light.bedroom_2_light
@@ -55,7 +55,7 @@ action:
             {% if is_state('sensor.holiday_name', 'Halloween') %}
               orange
             {% else %}
-              blue
+              white
             {% endif %}
         target:
           entity_id: light.bedroom_2_light
@@ -72,7 +72,7 @@ action:
       - service: light.turn_on
         data:
           brightness: 255
-          color_temp: 111
+#          color_temp: 111
         target:
           entity_id: light.bedroom_2_light
     - conditions:

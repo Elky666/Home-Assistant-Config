@@ -13,9 +13,9 @@ trigger:
       minutes: 0
       seconds: 30
 condition:
-  - condition: state
-    entity_id: climate.bedroom_1
-    state: "heat"
+  - condition: numeric_state
+    entity_id: sensor.outdoor_module_temperature
+    below: 13
 action:
   - choose:
     - conditions:

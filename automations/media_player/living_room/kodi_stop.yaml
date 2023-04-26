@@ -4,15 +4,21 @@ initial_state: on
 trigger:
   - entity_id: media_player.livingroom
     platform: state
+    for: '00:00:04'
     from: playing
     to: idle
-condition: []
+condition:
+  - condition: state
+    entity_id: input_boolean.home_night
+    state: 'on'
 action:
-  - service: light.turn_on
+  - service: lifx.set_state
     data:
-      entity_id:
-        - light.livingroom_lamp
+      power: true
+      brightness: 226
       transition: 2
+    target:
+      entity_id: light.livingroom_lamp
   - service: switch.turn_on
     data: {}
     target:

@@ -21,5 +21,6 @@ action:
         - switch.livingroom_2_light_switch
         - switch.livingroom_surge_protector_mss426_christmas_candles_plug
         - switch.livingroom_surge_protector_mss426_christmas_tree_lights_plug
-        - switch.av_surge_protector_mss426_projector_plug
-        - switch.av_surge_protector_mss426_projector_screen_plug
+        - switch.av_surge_protector_outlet_2
+        - switch.av_surge_protector_outlet_3
+        - switch.toilet_light_switch
