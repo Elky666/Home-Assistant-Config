@@ -1,5 +1,5 @@
-id: '926f12bb-742d-4817-8bf4-fcee5f60e0a8'
-alias: Climate Control Heating
+id: "926f12bb-742d-4817-8bf4-fcee5f60e0a8"
+alias: "Climate Control Heating"
 initial_state: true
 description: ""
 mode: single
@@ -36,7 +36,7 @@ action:
       - conditions:
           - condition: numeric_state
             entity_id: sensor.outdoor_module_temperature
-            below: 13
+            below: 14
         sequence:
           - service: climate.turn_on
             data: {}

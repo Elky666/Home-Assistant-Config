@@ -1,0 +1,20 @@
+id: "6d53abdd-338f-47ed-8ca4-288082389ebb"
+alias: "People Person 4 Light"
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - input_boolean.person4_home
+    to: "off"
+condition: []
+action:
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id:
+        - light.bedroom_3_lamp
+        - light.bedroom_3_led
+        - light.bedroom_3_tv_led
+        - light.bedroom_3_light

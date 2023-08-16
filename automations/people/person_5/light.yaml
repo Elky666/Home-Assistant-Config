@@ -1,0 +1,20 @@
+id: "f43cfbec-c886-42a3-b5d8-29062febcc6e"
+alias: "People Person 5 Light"
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - input_boolean.person5_home
+    to: "off"
+condition: []
+action:
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id:
+        - light.bedroom_2_lamp
+        - light.bedroom_2_led
+        - light.bedroom_2_tv_led
+        - light.bedroom_2_light

@@ -1,58 +1,63 @@
-id: '47c4b495-35f1-44e2-bffe-13c05b3cf071'
-alias: Light Kitchen LED Strip Theme
+id: "9d952365-406b-4a2c-9f8f-8b52aa07de1d"
+alias: "Light Kitchen Theme"
 initial_state: true
 description: ""
 mode: single
 trigger:
   - platform: state
-    entity_id:
-      - light.kitchen_led_strip
-    to: "on"
+    entity_id: sensor.hoilday_light
 condition: []
 action:
   - choose:
       - conditions:
           - condition: state
-            entity_id: sensor.holiday_name
-            state: Christmas
-          - condition: state
-            entity_id: input_boolean.home_alarm_triggered
-            state: "off"
+            entity_id: sensor.hoilday_light
+            state: none
         sequence:
           - service: lifx.effect_move
             data:
-              theme: santa
-              speed: 30
+              speed: 15
+              direction: right
+              theme: peaceful
               power_on: false
             target:
               entity_id: light.kitchen_led_strip
       - conditions:
           - condition: state
-            entity_id: sensor.holiday_name
+            entity_id: sensor.hoilday_light
             state: Halloween
-          - condition: state
-            entity_id: input_boolean.home_alarm_triggered
-            state: "off"
         sequence:
           - service: lifx.effect_move
             data:
-              speed: 30
+              speed: 15
+              direction: right
               theme: halloween
               power_on: false
             target:
               entity_id: light.kitchen_led_strip
       - conditions:
           - condition: state
-            entity_id: input_boolean.home_alarm_triggered
-            state: "on"
+            entity_id: sensor.hoilday_light
+            state: Christmas
         sequence:
-          - service: lifx.effect_stop
-            data: {}
+          - service: lifx.effect_move
+            data:
+              speed: 15
+              direction: right
+              theme: christmas
+              power_on: false
             target:
               entity_id: light.kitchen_led_strip
+      - conditions:
+          - condition: state
+            entity_id: sensor.hoilday_light
+            state: Valentine's
+        sequence:
           - service: lifx.set_state
             data:
-              brightness_pct: 100
-              color_name: red
+              rgb_color:
+                - 255
+                - 0
+                - 199
             target:
               entity_id: light.kitchen_led_strip

@@ -27,3 +27,6 @@ climate.tado_smart_radiator_thermostat_va4266461696:
 climate.tado_smart_thermostat_ru3754558976:
   friendly_name: Hallway Thermostat
   icon: mdi:radiator
+# Bedroom 3
+binary_sensor.va0943328000_battery_state:
+  friendly_name: Radiator Battery

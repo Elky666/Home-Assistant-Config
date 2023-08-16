@@ -1,0 +1,6 @@
+- platform: template
+  sensors:
+    climate_bathroom_heating:
+      friendly_name: "Heating in Bathroom"
+      unique_id: "b5f6b4c3-988e-4ec4-86da-8c9078202ea6"
+      value_template: '{{ state_attr("climate.tado_smart_radiator_thermostat_va4266461696","hvac_action") == "heating" }}'    

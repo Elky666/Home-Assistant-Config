@@ -1,8 +1,8 @@
 - platform: template
   switches:
     heating_bedroom_3_tado:
-      friendly_name: 'Heating Bedroom 3'
-      unique_id: 'c3b0135f-9b93-43ef-96af-ce58a07802e5'
+      friendly_name: "Heating Bedroom 3"
+      unique_id: "c3b0135f-9b93-43ef-96af-ce58a07802e5"
       turn_on:
         - service: climate.set_temperature
           data:

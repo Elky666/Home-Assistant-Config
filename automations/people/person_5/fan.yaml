@@ -1,0 +1,16 @@
+id: "50879185-f309-4614-8134-8bd7849dc17a"
+alias: "People Person 5 Fan"
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - input_boolean.person5_home
+    to: "off"
+condition: []
+action:
+  - service: fan.turn_off
+    data: {}
+    target:
+      entity_id: fan.sonoff_1000cc26b0

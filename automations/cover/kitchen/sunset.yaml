@@ -1,0 +1,19 @@
+id: "25a84197-65b9-49d8-a3a7-000eb615d9d2"
+alias: "Cover Kitchen Sunset"
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - input_boolean.home_night
+    to: "on"
+condition:
+  - condition: state
+    entity_id: binary_sensor.door_window_sensor_7_window_door_is_open_9
+    state: "off"
+action:
+  - service: cover.close_cover
+    data: {}
+    target:
+      entity_id: cover.kitchen_blind

@@ -1,14 +1,11 @@
-id: 'd87a2c30-5f49-48a1-807a-c6983acbeefa'
-alias: Climate Bathroom Radiator Schedule
+id: "d87a2c30-5f49-48a1-807a-c6983acbeefa"
+alias: "Climate Bathroom Radiator Schedule"
 initial_state: true
 description: ""
 mode: single
 trigger:
   - platform: event
-    event_type:
-      - automation_reloaded
-#  - platform: time_pattern
-#    minutes: /10
+    event_type: automation_reloaded
   - platform: state
     entity_id:
       - schedule.bathroom_thermostat_schedule
@@ -18,8 +15,9 @@ trigger:
     to: "heat"
   - platform: state
     entity_id:
-      - input_number.heating_minimum
-      - input_number.heating_maximum
+      - sensor.heating_min
+      - sensor.heating_max
+    for: "00:05:00"
   - platform: state
     entity_id:
       - climate.bathroom
@@ -45,27 +43,29 @@ action:
           - condition: state
             entity_id: schedule.bathroom_thermostat_schedule
             state: "off"
-#          - condition: not
-#            conditions:
-#              - condition: template
-#                value_template: "{{ now().hour in [7, 18, 19, 20] }}"
         sequence:
           - service: climate.set_temperature
             data_template:
               temperature: > 
-                {{ states('input_number.heating_minimum')| float(0) }}
+                {% if states('sensor.heating_min') | float(0) == 5 %}
+                  5
+                {% else %}
+                  {{ states('sensor.heating_min')| float(0)-2 }}
+                {% endif %}
             target:
               entity_id: climate.bathroom
       - conditions:
         - condition: state
           entity_id: schedule.bathroom_thermostat_schedule
           state: "on"
-#          - condition: template
-#            value_template: "{{ now().hour in [7, 18, 19, 20] }}"
         sequence:
           - service: climate.set_temperature
             data_template:
               temperature: >
-                {{ states('input_number.heating_maximum')| float(0) }}
+                {% if states('sensor.heating_max') | float(0) == 5 %}
+                  5
+                {% else %}
+                  {{ states('sensor.heating_max')| float(0)-2 }}
+                {% endif %}
             target:
-              entity_id: climate.bathroom
+              entity_id: climate.bathroom 

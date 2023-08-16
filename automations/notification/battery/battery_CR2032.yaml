@@ -1,0 +1,25 @@
+id: "53c06a70-7f04-424e-a304-5284f99da729"
+alias: "Notification CR2032 Battery Low"
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: numeric_state
+    entity_id:
+      - sensor.lumi_lumi_sensor_wleak_aq1_battery
+      - sensor.lumi_lumi_weather_battery
+      - sensor.lumi_lumi_weather_battery_4
+      - sensor.lumi_lumi_weather_battery_6
+      - sensor.lumi_lumi_weather_battery_5
+      - sensor.lumi_lumi_weather_battery_3
+      - sensor.lumi_lumi_weather_battery_2
+      - sensor.lumi_lumi_remote_b1acn01_battery
+    below: 10
+    for: "00:30:00"
+condition: []
+action:
+  - service: script.notify_message_engine
+    data:
+      who: home_app
+      title: "CR2032 Battery Low"
+      message: "{{ trigger.to_state.name }} Battery Low"

@@ -1,0 +1,17 @@
+- platform: template
+  sensors:
+    heating_min:
+      friendly_name: "Heating Min"
+      unique_id: "5fb99a43-e2d5-435c-971c-56c912509034"
+      icon_template: mdi:radiator
+      value_template: >
+        {% set state = states('sensor.outdoor_module_temperature') %}
+        {% if is_number(state) and state | float(0) < 5 %}
+          17
+        {% elif is_number(state) and state | float(0) < 10 %}
+          16
+        {% elif is_number(state) and state | float(0) < 13 %}
+          15
+        {% else %}
+          5
+        {% endif %}

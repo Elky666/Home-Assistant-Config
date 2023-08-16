@@ -1,0 +1,17 @@
+- platform: next_holiday
+  min_future_holidays: 5
+  custom_holidays:
+      "10-31": "Halloween"
+      "02-14": "Valentine's Day"
+      "03-17": "St. Patrick's Day"
+  sources: 
+    - country: "UK"
+      exclude:
+        - "New Year Holiday [Scotland]; New Year's Day (Observed)"
+        - "New Year Holiday [Scotland] (Observed)"
+        - "Summer Bank Holiday [Scotland]"
+        - "St. Andrew's Day [Scotland]"
+        - "Battle of the Boyne [Northern Ireland]"
+        - "St. Patrick's Day [Northern Ireland]"
+        - "St. Patrick's Day [Northern Ireland] (Observed)"
+        - "New Year Holiday [Scotland]"

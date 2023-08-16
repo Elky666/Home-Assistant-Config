@@ -1,5 +1,5 @@
 id: '2f76ec81-19cf-427b-972c-2c4c7c360cab'
-alias: Remotec Bedroom 1 Press Button Six 1x
+alias: Remote Remotec Bedroom 1 Press Button Six 1x
 initial_state: true
 trigger:
   - platform: event
@@ -10,9 +10,8 @@ trigger:
       value: "KeyPressed"
 condition: []
 action:
-  - service: fan.set_percentage
+  - service: cover.toggle
+    data: {}
     target:
-      entity_id: fan.sonoff_1000cc2f24
-    data:
-      percentage: 33
+      entity_id: cover.bedroom_1_blind
 mode: single

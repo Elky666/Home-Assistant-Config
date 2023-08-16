@@ -5,7 +5,7 @@ description: ''
 trigger:
   - platform: calendar
     event: end
-    offset: 0:0:0
+    offset: "-12:0:0"
     entity_id: calendar.school_holidays
 condition: []
 action:

@@ -1,4 +1,5 @@
-#device_tracker: !include_dir_merge_list ../device_tracker/
+device_tracker: !include_dir_merge_list ../device_tracker/
 # Example configuration.yaml entry
-device_tracker:
-  - platform: bluetooth_le_tracker
+#device_tracker:
+#  - platform: bluetooth_le_tracker
+#    track_new_devices: true

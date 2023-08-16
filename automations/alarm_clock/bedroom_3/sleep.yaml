@@ -1,0 +1,21 @@
+id: "9f52d98b-ae58-49b5-8319-e351fbb1c853"
+alias: "Alarm Clock Bedroom 3 Sleep Mode"
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: template
+    value_template: 
+      "{% set alarm_time = states('sensor.bedroom_3_echo_show_next_alarm') | as_datetime %}
+      {% set minutes_before = 1 %} 
+      {% if alarm_time != none %}
+      {{ now() >= alarm_time - timedelta(minutes = minutes_before) }}
+      {% else %} 
+        False 
+      {% endif %}"
+condition: []
+action:
+  - service: input_boolean.turn_off
+    data: {}
+    target:
+      entity_id: input_boolean.home_sleep

@@ -1,0 +1,33 @@
+id: "5ad95515-9377-495e-bcec-b8353ee741a9"
+alias: Media Bedroom 3 TV Led Strip
+initial_state: on
+description: ""
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - media_player.lg_webos_tv_uk6300plb
+condition:
+  - condition: state
+    entity_id: input_boolean.home_night
+    state: "on"
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: media_player.lg_webos_tv_uk6300plb
+            state: "on"
+        sequence:
+          - service: light.turn_on
+            data: {}
+            target:
+              entity_id: light.bedroom_3_tv_led
+      - conditions:
+          - condition: state
+            entity_id: media_player.lg_webos_tv_uk6300plb
+            state: "off"
+        sequence:
+          - service: light.turn_off
+            data: {}
+            target:
+              entity_id: light.bedroom_3_tv_led

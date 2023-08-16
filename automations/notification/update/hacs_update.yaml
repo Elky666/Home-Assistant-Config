@@ -1,24 +1,21 @@
-id: 'cfa4cabb-7fd5-4935-bbbe-3ba93b5d2fb2'
-alias: Notification HACS Update
-initial_state: on
+id: "5db81424-4a62-40eb-b050-01d29019c7b1"
+alias: "Notification HACS Update"
+description: ""
+initial_state: true
+mode: single
 trigger:
-  - platform: time
-    at: '19:00:00'
-condition:
-  - condition: template
-    value_template: "{{ states('sensor.hacs') != 'unknown'}}"
-  - condition: template
-    value_template: "{{ (states('sensor.hacs') | float) != 0}}"
+  - platform: numeric_state
+    entity_id: sensor.hacs
+    above: 0 
+#  - platform: state
+#    entity_id: sensor.hacs
+condition: []
 action:
   - service: script.notify_message_engine
     data:
-      who: pushover
+      who: home_app
       title: Updates ({{ states('sensor.hacs') }}) pending in HACS
       message: >-
         {% for repo in state_attr('sensor.hacs', 'repositories') %}
           **{{ repo.display_name }}** _{{ repo["installed version"] }}_ -> _{{ repo["available version"] }}_
         {% endfor %}
-      priority: 0
-      sound: incoming
-mode: single
-

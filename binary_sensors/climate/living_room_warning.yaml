@@ -1,6 +1,0 @@
-- platform: template
-  sensors:
-    climate_livingroom_heating_warning:
-      friendly_name: "Heating in Livingroom"
-      unique_id: '5a0497a1-54ea-49af-b2f0-a1631ca1a0ce'
-      value_template: '{{ state_attr("climate.tado_smart_radiator_thermostat_va0114429440","hvac_action") == "heating" }}'    

@@ -1,10 +1,25 @@
-id: '5d1eba9f-fe47-495e-a0d7-3dc42f8d058f'
-alias: Notification ZWave Firmware Update
-description: update
+id: "fd85aa77-5ecd-4bac-979a-933c61afc55e"
+alias: "Notification ZWave Firmware Update"
+description: ""
+initial_state: true
+mode: single
 trigger:
   - platform: state
     entity_id:
-      - update.window_blind_controller_firmware
+      - update.back_door_firmware
+      - update.bedroom_1_blind_controller_firmware
+      - update.dimmer_2_firmware
+      - update.door_window_sensor_7_firmware
+      - update.door_window_sensor_7_firmware_2
+      - update.door_window_sensor_7_firmware_3
+      - update.door_window_sensor_7_firmware_4
+      - update.door_window_sensor_7_firmware_5
+      - update.front_door_firmware_2
+      - update.kitchen_blind_firmware
+      - update.living_room_blind_firmware
+      - update.multisensor_6_firmware
+      - update.trisensor_firmware
+      - update.trisensor_firmware_2                             
     to: 'on'
 condition: []
 action:
@@ -12,9 +27,6 @@ action:
       device: "{{ trigger.to_state.attributes.friendly_name }}"
   - service: script.notify_message_engine
     data:
-      who: pushover
-      title: "ZWave Firmware Update"
-      message: "Home Assistant {{ device }} firmware update is available."
-      priority: 0
-      sound: incoming
-mode: single
+      who: home_app
+      title: "ZWave Update"
+      message: "ZWave {{ device }} firmware update is available."

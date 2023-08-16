@@ -1,0 +1,7 @@
+  - sensor:
+      name: "Living Room Total Power"
+      unique_id: '30e45fb0-d0fe-4f5f-9f92-e6513913454a'
+      unit_of_measurement: "W"
+      state: "{{ states('sensor.livingroom_plug_socket_1_power') |float(0) + states('sensor.livingroom_plug_socket_4_power') |float(0) }}"
+      state_class: measurement
+      device_class: power

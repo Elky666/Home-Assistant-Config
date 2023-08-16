@@ -1,0 +1,18 @@
+id: '61c98892-d885-4416-9937-6c365df04b59'
+alias: Notification Washing Machine
+description: ""
+initial_state: on
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - sensor.washing_machine_washer_machine_state
+    to: "stop"
+condition: []
+action:
+  - service: script.notify_message_engine
+    data:
+      who: home_app
+      title: Washing Machine
+      message: >-
+        "Washing Machine is done"

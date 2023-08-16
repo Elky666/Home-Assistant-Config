@@ -1,0 +1,16 @@
+- platform: template
+  sensors:
+    hoilday_light:
+      friendly_name: "Hoilday Light"
+      unique_id: "b20135d5-f9e3-4a6c-bf01-fe2f4f776805"
+      icon_template: "{{ 'mdi:party-popper' if states('sensor.hoilday_light') != 'none' else 'mdi:sleep' }}"
+      value_template: >
+        {% set m = now().month %}
+        {% set md = (m, now().day) %}
+        {% if md == (2,14) %} Valentine's
+        {% elif md == (10,31) %} Halloween
+        {% elif (m == 12) or ((1,1) <= md <= (1,7)) %} Christmas
+        {% elif md == (7,4) %} July4th
+        {% elif md == (3,17) %} stpaddys
+        {% else %} none
+        {% endif %}

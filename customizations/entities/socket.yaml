@@ -1,0 +1,7 @@
+# Bedroom 1
+switch.bedroom_1_plug_socket_1:
+  friendly_name: Socket 1
+  icon: mdi:power-socket-uk
+switch.bedroom_1_plug_socket_2:
+  friendly_name: Socket 2
+  icon: mdi:power-socket-uk

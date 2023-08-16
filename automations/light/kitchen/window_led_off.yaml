@@ -1,0 +1,14 @@
+id: "7f5ba2a5-218f-4e81-9ddb-7a12698f025b"
+alias: "Light Kitchen Window LED Off"
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: time
+    at: "22:00:00"
+condition: []
+action:
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id: light.kitchen_window_led

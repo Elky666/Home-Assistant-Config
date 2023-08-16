@@ -1,0 +1,10 @@
+name: Heating Schedule
+entities:
+  - schedule.dinning_room_schedule
+  - schedule.hallway_thermostat_schedule
+  - schedule.bathroom_thermostat_schedule
+  - schedule.bedroom_1_thermostat_schedule
+  - schedule.bedroom_2_thermostat_schedule
+  - schedule.bedroom_3_thermostat_schedule
+  - schedule.living_room_thermostat_schedule
+  - schedule.toilet_thermostat_schedule

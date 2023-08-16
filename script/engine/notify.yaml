@@ -93,6 +93,7 @@ notify_message_engine:
                 title: '{{ title }}'
                 message: '{{ message }}'
                 data:
+                  group: "HomeEx"
                   ttl: 0
                   priority: high
         - conditions:

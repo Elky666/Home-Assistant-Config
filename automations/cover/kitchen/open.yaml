@@ -1,0 +1,17 @@
+id: "a3aa7a6b-2837-419c-860b-f05fd193afd5"
+alias: "Cover Kitchen Open"
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: time
+    at: "09:00:00"
+condition:
+  - condition: state
+    entity_id: input_boolean.home_home
+    state: "on"
+action:
+  - service: cover.open_cover
+    data: {}
+    target:
+      entity_id: cover.kitchen_blind

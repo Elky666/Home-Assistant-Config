@@ -4,4 +4,14 @@ media_player.lg_webos_tv_up77006lb:
   friendly_name: Bedroom 2 TV
 media_player.lg_webos_tv_uk6300plb:
   friendly_name: Bedroom 3 TV
+media_player.kitchen:
+  friendly_name: Kitchen Sonos
+  icon: mdi:speaker
+media_player.living_room_3:
+  friendly_name: Living Room Sonos
+  icon: mdi:speaker
+media_player.bedroom_1_3:
+  friendly_name: Bedroom 1 Sonos
+  icon: mdi:speaker
+
 

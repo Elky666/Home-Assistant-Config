@@ -1,25 +1,26 @@
-id: 'a51bce11-75a4-447d-b1e5-6f7421e5f1b4'
-alias: Climate Dining Room Schedule
+id: "a51bce11-75a4-447d-b1e5-6f7421e5f1b4"
+alias: "Climate Dining Room Schedule"
 initial_state: true
 description: ""
 mode: single
 trigger:
   - platform: event
-    event_type:
-      - automation_reloaded
-  - platform: time_pattern
-    minutes: /10
+    event_type: automation_reloaded
+  - platform: state
+    entity_id:
+      - schedule.dinning_room_schedule
   - platform: state
     entity_id: 
       - climate.dining_room
     to: "heat"
   - platform: state
     entity_id:
-      - input_number.heating_minimum
-      - input_number.heating_maximum
+      - sensor.heating_min
+      - sensor.heating_max
+    for: "00:05:00"
   - platform: state
     entity_id:
-      - climate.dining_room
+      - climate.bathroom
     attribute: preset_mode
     to: none
   - platform: state
@@ -39,24 +40,32 @@ condition:
 action:
   - choose:
       - conditions:
-          - condition: not
-            conditions:
-              - condition: template
-                value_template: "{{ now().hour in [7, 12, 16, 17, 18, 19, 20, 21] }}"
+          - condition: state
+            entity_id: schedule.dinning_room_schedule
+            state: "off"
         sequence:
           - service: climate.set_temperature
             data_template:
               temperature: > 
-                {{ states('input_number.heating_minimum')| float(0) }}
+                {% if states('sensor.heating_min') | float(0) == 5 %}
+                  5
+                {% else %}
+                  {{ states('sensor.heating_min')| float(0) }}
+                {% endif %}
             target:
               entity_id: climate.dining_room
       - conditions:
-          - condition: template
-            value_template: "{{ now().hour in [7, 12, 16, 17, 18, 19, 20, 21] }}"
+        - condition: state
+          entity_id: schedule.dinning_room_schedule
+          state: "on"
         sequence:
           - service: climate.set_temperature
             data_template:
               temperature: >
-                {{ states('input_number.heating_maximum')| float(0) }}
+                {% if states('sensor.heating_max') | float(0) == 5 %}
+                  5
+                {% else %}
+                  {{ states('sensor.heating_max')| float(0) }}
+                {% endif %}
             target:
               entity_id: climate.dining_room

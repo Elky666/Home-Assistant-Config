@@ -1,0 +1,7 @@
+  - sensor:
+      name: "Total Power"
+      unique_id: '772d0d4e-c97d-4b22-a376-713b1c9e3f95'
+      unit_of_measurement: "W"
+      state: "{{ states('sensor.living_room_total_power') |float(0) + states('sensor.bedroom_1_total_power') |float(0) + states('sensor.tumble_dryer_switch_power') |float(0) }}"
+      state_class: measurement
+      device_class: power

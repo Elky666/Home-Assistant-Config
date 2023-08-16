@@ -1,0 +1,34 @@
+id: "27cbf031-7fa6-4a16-85fd-3f86591b4cdd"
+alias: "Light Bedroom 3 Brightness"
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - binary_sensor.lights_dim
+condition: []
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.lights_dim
+            state: "on"
+        sequence:
+          - service: lifx.set_state
+            data_template:
+              brightness_pct: 20
+            target:
+              entity_id:
+                - light.bedroom_3_lamp
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.lights_dim
+            state: "off"
+        sequence:
+          - service: lifx.set_state
+            data_template:
+              brightness_pct: 100
+            target:
+              entity_id:
+                - light.bedroom_3_lamp

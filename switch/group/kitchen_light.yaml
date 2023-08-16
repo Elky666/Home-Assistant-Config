@@ -1,6 +1,5 @@
 - platform: group
   name: "Kitchen Light"
-  unique_id: '043e628e-720b-45fd-88a2-3b806a6f8c56'
+  unique_id: "043e628e-720b-45fd-88a2-3b806a6f8c56"
   entities:
     - switch.diningroom_light_switch
-    - switch.kitchen_light_light_switch

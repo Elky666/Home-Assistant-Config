@@ -1,0 +1,7 @@
+#id: 'bf0be0ab-3771-4cf4-a7be-1241578d8716'
+name: Bathroom Blue
+entities:
+  light.bathroom_light:
+    state: "on"
+    color_name: blue
+    brightness: 255

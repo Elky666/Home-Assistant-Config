@@ -22,4 +22,6 @@ action:
           "If you don't want to watch disney princess films, i would come down now", 
           "Yippee-ki-yay, lets watch a movie",
           "The sights, the sounds, now playing in you'r local cinema",
-          "Movie Time"] | random }}'
+          "Movie Time",
+          "This is your house speeking it is now time for a film so in 1 minute i will block the internet for you both"
+          "If you say in a minute tyler, we will watch dora the explorer"] | random }}'

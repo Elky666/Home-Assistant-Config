@@ -5,12 +5,13 @@ description: ""
 mode: single
 trigger:
   - platform: time
-    at: "01:30:00"
+    at: "01:00:00"
 condition:
   - condition: state
     entity_id: remote.livingroom
     state: "off"
 action:
+  - delay: 00:{{ (range(1, 59)|random|int) }}:00
   - service: light.turn_off
     data: {}
     target:

@@ -1,0 +1,17 @@
+id: "21ddf55d-b26b-4bbb-86ba-c7445eb7e215"
+alias: "Motion Front Door On"
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: state
+    entity_id: binary_sensor.front_door_window_door_is_open_2
+    to: "on"
+condition: 
+  - condition: state
+    entity_id: input_boolean.home_night
+    state: 'on'
+action:
+  - service: light.turn_on
+    data:
+      entity_id: light.dimmer_2

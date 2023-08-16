@@ -4,44 +4,49 @@ initial_state: true
 description: ""
 mode: single
 trigger:
-  - platform: time
-    at: "23:01:00"
-  - platform: time
-    at: "06:01:00"
+  - platform: state
+    entity_id:
+      - binary_sensor.lights_dim
 condition: []
 action:
-  - service: lifx.set_state
-    data_template:
-      color_temp: >
-        {% if now().hour in [23, 0, 1, 2, 3, 4, 5] %} 
-          370
-        {% else %}
-          153
-        {% endif %}
-      brightness_pct: >
-        {% if now().hour in [23, 0, 1, 2, 3, 4, 5] %} 
-          50
-        {% else %}
-          100
-        {% endif %}
-    target:
-      entity_id:
-        - light.bedroom_1_lamp_1
-        - light.bedroom_1_lamp_2
-  - service: lifx.set_state
-    data_template:
-      color_temp: >
-        {% if now().hour in [23, 0, 1, 2, 3, 4, 5] %} 
-          454
-        {% else %}
-          153
-        {% endif %}   
-      brightness_pct: >
-        {% if now().hour in [23, 0, 1, 2, 3, 4, 5] %} 
-          50
-        {% else %}
-          100
-        {% endif %}
-    target:
-      entity_id:
-        - light.bedroom_1_light
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.lights_dim
+            state: "on"
+        sequence:
+          - service: lifx.set_state
+            data_template:
+              color_temp: 370
+              brightness_pct: 50
+            target:
+              entity_id:
+                - light.bedroom_1_lamp_1
+                - light.bedroom_1_lamp_2
+          - service: lifx.set_state
+            data_template:
+              color_temp: 454
+              brightness_pct: 50
+            target:
+              entity_id:
+                - light.bedroom_1_light
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.lights_dim
+            state: "off"
+        sequence:
+          - service: lifx.set_state
+            data_template:
+              color_temp: 153
+              brightness_pct: 100
+            target:
+              entity_id:
+                - light.bedroom_1_lamp_1
+                - light.bedroom_1_lamp_2
+          - service: lifx.set_state
+            data_template:
+              color_temp: 153  
+              brightness_pct: 100
+            target:
+              entity_id:
+                - light.bedroom_1_light

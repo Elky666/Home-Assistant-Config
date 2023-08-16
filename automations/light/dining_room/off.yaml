@@ -1,0 +1,14 @@
+id: "697b54d2-2bc4-4ddb-b0e3-19fea249f288"
+alias: "Light Dining Room Window LED Off"
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: time
+    at: "22:00:00"
+condition: []
+action:
+  - service: light.turn_off
+    data: {}
+    target:
+      entity_id: light.dining_room_window_led

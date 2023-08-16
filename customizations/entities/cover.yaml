@@ -1,0 +1,5 @@
+cover.bedroom_1_blind:
+  friendly_name: Bedroom 1 Blind
+#light.kitchen_blind:
+#  hidden: false
+#  device_class: cover

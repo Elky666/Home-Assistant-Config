@@ -1,0 +1,7 @@
+id: '305814d9-e808-4aed-8a92-cd5c4f5bf330'
+name: Bathroom Purple
+entities:
+  light.bathroom_light:
+    state: "on"
+    color_name: purple
+    brightness: 255

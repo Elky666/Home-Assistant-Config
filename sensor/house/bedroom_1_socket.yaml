@@ -1,0 +1,11 @@
+- platform: template
+  sensors:
+    bedroom_1_socket_on:
+      friendly_name: "Bedroom 1 Socket On"
+      unique_id: "6a65ba85-dc13-4785-b91e-5a542a800f1c"
+      value_template: >
+          {% set sockets = [
+            states.switch.bedroom_1_plug_socket_1,
+            states.switch.bedroom_1_plug_socket_2
+            ] %}
+          {{ sockets | selectattr('state','eq','on') | list | count }}

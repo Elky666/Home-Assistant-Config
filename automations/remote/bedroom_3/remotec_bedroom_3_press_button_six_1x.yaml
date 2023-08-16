@@ -10,9 +10,8 @@ trigger:
       value: "KeyPressed"
 condition: []
 action:
-  - service: fan.set_percentage
+  - service: light.toggle
+    data: {}
     target:
-      entity_id: fan.sonoff_1000cc1c61
-    data:
-      percentage: 33
+      entity_id: light.bedroom_3_tv_led
 mode: single

@@ -1,6 +1,8 @@
-id: 'd6b87309-0588-4a74-90bc-3c20cac97e56'
-alias: Notification Zone 1
-initial_state: on
+id: "d6b87309-0588-4a74-90bc-3c20cac97e56"
+alias: "Notification Zone 1"
+description: ""
+initial_state: true
+mode: single
 trigger:
   - platform: zone
     entity_id:
@@ -26,9 +28,6 @@ action:
       zone: "{{ trigger.zone.attributes.friendly_name }}"
   - service: script.notify_message_engine
     data:
-      who: pushover
+      who: home_app
       title: "Tracker"
       message: "{{ person }} {{ event }} {{ zone }}"
-      priority: -1
-      sound: incoming
-mode: single

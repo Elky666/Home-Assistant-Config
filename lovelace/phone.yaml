@@ -1,0 +1,16 @@
+title: Phone
+custom_header: !include custom_header.yaml
+views:
+  - !include phone/home.yaml
+  - !include phone/bedroom_1.yaml
+  - !include phone/bedroom_2.yaml
+  - !include phone/bedroom_3.yaml
+  - !include tablet/bedroom_1_sonos.yaml
+  - !include tablet/bedroom_1_more.yaml
+  - !include tablet/bathroom.yaml
+  - !include tablet/kitchen.yaml
+  - !include tablet/kitchen_sonos.yaml
+  - !include tablet/cctv.yaml
+  - !include tablet/dinning_room.yaml
+  - !include tablet/living_room.yaml
+  - !include tablet/living_room_sonos.yaml

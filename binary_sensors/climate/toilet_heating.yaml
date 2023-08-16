@@ -1,0 +1,6 @@
+- platform: template
+  sensors:
+    climate_toilet_heating:
+      friendly_name: "Heating in Toilet"
+      unique_id: "4a032b89-9fcf-4582-bcc9-0be494cd0e90"
+      value_template: '{{ state_attr("climate.tado_smart_radiator_thermostat_va1993674240","hvac_action") == "heating" }}'

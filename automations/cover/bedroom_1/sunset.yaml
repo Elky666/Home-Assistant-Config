@@ -1,0 +1,16 @@
+id: "68544f67-1530-4a75-b116-28129ada8aa3"
+alias: "Cover Bedroom 1 Sunset"
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - input_boolean.home_night
+    to: "on"
+condition: []
+action:
+  - service: cover.close_cover
+    data: {}
+    target:
+      entity_id: cover.bedroom_1_blind

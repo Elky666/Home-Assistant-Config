@@ -1,0 +1,24 @@
+id: "b02fab15-7b9a-4cd5-9367-d430c357a5f1"
+alias: "Notification AA Battery Low"
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - binary_sensor.va0096931328_battery_state
+      - binary_sensor.va0114429440_battery_state
+      - binary_sensor.va1775569408_battery_state
+      - binary_sensor.va1993674240_battery_state
+      - binary_sensor.va4266461696_battery_state
+      - binary_sensor.va2514946816_battery_state
+      - binary_sensor.va0943328000_battery_state
+    to: "on"
+    for: "00:30:00"
+condition: []
+action:
+  - service: script.notify_message_engine
+    data:
+      who: home_app
+      title: "AA Battery Low"
+      message: "{{ trigger.to_state.name }} Battery Low"

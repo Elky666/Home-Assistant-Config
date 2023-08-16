@@ -1,0 +1,16 @@
+id: "95e4ad85-4e99-484e-8bf4-c06cce56a3c9"
+alias: "Motion Toilet Off"
+initial_state: true
+description: ""
+mode: restart
+trigger:
+  - platform: state
+    entity_id: binary_sensor.lumi_lumi_motion_ac02_motion
+    to: "off"
+condition: []
+action:
+  - delay: 00:01:30
+  - service: switch.turn_off
+    data: {}
+    target:
+      entity_id: switch.toilet_light_switch

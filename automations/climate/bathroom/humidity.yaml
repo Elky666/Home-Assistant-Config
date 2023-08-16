@@ -1,34 +1,38 @@
-id: 'ebad34e0-671c-4c23-b0f9-5387bdea7442'
-alias: Climate Bathroom Humidity
-initial_state: false
+id: "c75a4930-ad37-4e14-af3b-f71a5b7cdde8"
+alias: "Climate Bathroom Humidity"
+initial_state: true
 description: ""
 mode: single
 trigger:
-- platform: state
-  entity_id: sensor.lumi_lumi_weather_humidity
+  - platform: state
+    entity_id:
+      - sensor.bathroom_average_humidity
 condition:
-  - condition: state
-    entity_id: input_boolean.home_home
-    state: "on"
-  - condition: state
-    entity_id: input_boolean.home_sleep
-    state: "off"
+  - condition: and
+    conditions:
+      - condition: state
+        entity_id: input_boolean.home_home
+        state: "on"
+      - condition: state
+        entity_id: input_boolean.home_sleep
+        state: "off"
 action:
-- choose:
-  - conditions:
-    - condition: numeric_state
-      entity_id: sensor.lumi_lumi_weather_humidity
-      above: "70"
-    sequence:
-    - service: switch.turn_on
-      data:
-        entity_id: switch.bathroom_fan_switch
-  - conditions:
-    - condition: numeric_state
-      entity_id: sensor.lumi_lumi_weather_humidity
-      below: "69"
-    sequence:
-    - service: switch.turn_off
-      data:
-        entity_id: switch.bathroom_fan_switch
-    default: []
+  - choose:
+      - conditions:
+          - condition: numeric_state
+            entity_id: sensor.bathroom_average_humidity
+            above: 75
+        sequence:
+          - service: switch.turn_on
+            data: {}
+            target:
+              entity_id: switch.bathroom_fan_switch
+      - conditions:
+          - condition: numeric_state
+            entity_id: sensor.bathroom_average_humidity
+            below: 74.9
+        sequence:
+          - service: switch.turn_off
+            data: {}
+            target:
+              entity_id: switch.bathroom_fan_switch

@@ -1,0 +1,52 @@
+- platform: template
+  switches:
+    alexa_fan:
+      friendly_name: "Alexa Fan"
+      unique_id: "3a617db2-1d39-4fd8-847f-a40010be64d0"
+      value_template: >-
+        {{ is_state('fan.living_room_fan', 'on')
+            or is_state('fan.sonoff_1000cc2f24', 'on')
+            or is_state('fan.sonoff_1000cc26b0', 'on')
+            or is_state('fan.sonoff_1000cc1c61', 'on')}}
+      turn_on:
+        - delay:
+            seconds: 0.5
+        - service: alexa_media.update_last_called
+        - delay:
+            seconds: 0.5
+        - service: fan.turn_on
+          data_template:
+            entity_id: >-
+              {% if is_state('sensor.sensors_last_alexa', 'media_player.bedroom_1_echo_show') %}
+                fan.sonoff_1000cc2f24
+              {% elif is_state('sensor.sensors_last_alexa', 'media_player.bedroom_2_echo_show') %}
+                fan.sonoff_1000cc26b0
+              {% elif is_state('sensor.sensors_last_alexa', 'media_player.bedroom_3_echo_show') %}
+                fan.sonoff_1000cc1c61
+              {% elif is_state('sensor.sensors_last_alexa', 'media_player.livingroom_2') %}  
+                fan.living_room_fan
+              {% endif %}
+      turn_off:
+        - delay:
+            seconds: 0.5
+        - service: alexa_media.update_last_called
+        - delay:
+            seconds: 0.5
+        - service: fan.turn_off
+          data_template:
+            entity_id: >-
+              {% if is_state('sensor.sensors_last_alexa', 'media_player.bedroom_1_echo_show') %}
+                fan.sonoff_1000cc2f24
+              {% elif is_state('sensor.sensors_last_alexa', 'media_player.bedroom_2_echo_show') %}
+                fan.sonoff_1000cc26b0
+              {% elif is_state('sensor.sensors_last_alexa', 'media_player.bedroom_3_echo_show') %}
+                fan.sonoff_1000cc1c61
+              {% elif is_state('sensor.sensors_last_alexa', 'media_player.livingroom_2') %}  
+                fan.living_room_fan
+              {% endif %}
+      icon_template: >-
+        {% if is_state('switch.alexa_fan', 'on') %}
+          mdi:fan
+        {% else %}
+          mdi:fan-off
+        {% endif %}

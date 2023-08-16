@@ -1,10 +1,10 @@
-id: '7d548e23-bdee-4b34-b2fb-0dc81688a0b3'
-alias: Climate Livingroom Radiator Warning
+id: "7d548e23-bdee-4b34-b2fb-0dc81688a0b3"
+alias: "Climate Livingroom Radiator Warning"
 initial_state: true
 description: ""
 mode: single
 trigger:
-  - entity_id: binary_sensor.climate_livingroom_heating_warning
+  - entity_id: binary_sensor.climate_livingroom_heating
     for: 01:00:00
     platform: state
     to: 'on'

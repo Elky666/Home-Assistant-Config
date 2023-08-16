@@ -1,0 +1,13 @@
+- platform: template
+  sensors:
+    total_blinds_open:
+      friendly_name: "Total Blinds Open"
+      unique_id: "96a2bea6-b5b7-475a-a09c-eb8403c9b213"
+      icon_template: "{{ 'mdi:blinds-horizontal' if states('sensor.total_blinds_open') != '0' else 'mdi:blinds-horizontal-closed' }}"
+      value_template: >
+          {% set blinds = [
+            states.cover.bedroom_1_blind,
+            states.cover.kitchen_blind,
+            states.cover.living_room_blind
+            ] %}
+          {{ blinds | selectattr('state','eq','open') | list | count }}

@@ -1,0 +1,17 @@
+id: "edb451f1-bf40-4fa0-9106-7db1011e8a48"
+alias: "Switch Living Room USB Off"
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: numeric_state
+    entity_id: sensor.janet_s_phone_battery_level
+    above: 84
+condition:
+  - condition: state
+    entity_id: input_boolean.person2_home
+    state: 'on'
+action:
+  - service: switch.turn_off
+    data:
+      entity_id: switch.sonoff_100149da02_1

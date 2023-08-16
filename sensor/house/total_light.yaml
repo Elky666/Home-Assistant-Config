@@ -1,0 +1,35 @@
+- platform: template
+  sensors:
+    total_lights_on:
+      friendly_name: "Total Lights On"
+      unique_id: "76053ac4-6f16-4b17-8ed6-fc8476c12d13"
+      icon_template: "{{ 'mdi:lightbulb-group' if states('sensor.total_lights_on') != '0' else 'mdi:lightbulb-group-off' }}"
+      value_template: >
+          {% set lights = [
+            states.light.kitchen_ceiling_light,
+            states.light.kitchen_led_strip,
+            states.light.bathroom_light,
+            states.light.bedroom_2_lamp,
+            states.light.bedroom_2_led,
+            states.light.bedroom_2_light,
+            states.light.bedroom_1_light,
+            states.light.bedroom_1_lamp_1,
+            states.light.bedroom_1_lamp_2,
+            states.light.bedroom_1_led_strip,
+            states.light.bedroom_3_lamp,
+            states.light.bedroom_3_led,
+            states.light.bedroom_3_light,
+            states.light.hallway_light_1,
+            states.light.hallway_light_2,
+            states.light.landing_light,
+            states.switch.toilet_light_switch,
+            states.switch.diningroom_light_switch,
+            states.light.livingroom_lamp,
+            states.switch.livingroom_1_light_switch,
+            states.switch.livingroom_2_light_switch,
+            states.light.bedroom_2_tv_led,
+            states.light.bedroom_3_tv_led,
+            states.light.livingroom_tv_led_strip,
+            states.light.dining_room_window_led
+            ] %}
+          {{ lights | selectattr('state','eq','on') | list | count }}

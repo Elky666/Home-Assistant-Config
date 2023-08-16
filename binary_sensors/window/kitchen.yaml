@@ -2,7 +2,7 @@
   sensors:
     kitchen_window:
       friendly_name: "Kitchen Window"
-      unique_id: '5f7054a5-393d-44e0-9323-5323b42fe943'
+      unique_id: "5f7054a5-393d-44e0-9323-5323b42fe943"
       device_class: window
       value_template: >-
         {% if is_state("binary_sensor.door_window_sensor_7_window_door_is_open_in_regular_position_5", "on") %}
@@ -18,5 +18,5 @@
         {% elif is_state("binary_sensor.door_window_sensor_7_window_door_is_open_in_regular_position_5", "off") %}
           mdi:window-closed
         {% else %}
-          mdi:blinds-horizontal-closed
+          false
         {% endif %}

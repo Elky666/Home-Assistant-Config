@@ -1,0 +1,51 @@
+id: "2678b35d-0de7-48fb-b4c3-a3f465175ff2"
+alias: "Light Dining Room Window LED Theme"
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: state
+    entity_id: sensor.hoilday_light
+condition: []
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: sensor.hoilday_light
+            state: none
+        sequence:
+          - service: select.select_option
+            data:
+              option: Default
+            target:
+              entity_id: select.dining_room_window_led_preset
+      - conditions:
+          - condition: state
+            entity_id: sensor.hoilday_light
+            state: Halloween
+        sequence:
+          - service: select.select_option
+            data:
+              option: Halloween
+            target:
+              entity_id: select.dining_room_window_led_preset
+      - conditions:
+          - condition: state
+            entity_id: sensor.hoilday_light
+            state: Christmas
+        sequence:
+          - service: select.select_option
+            data:
+              option: Christmas
+            target:
+              entity_id: select.dining_room_window_led_preset
+      - conditions:
+          - condition: state
+            entity_id: sensor.hoilday_light
+            state: Valentine's
+        sequence:
+          - service: select.select_option
+            data:
+              option: Valentines Day
+            target:
+              entity_id: select.dining_room_window_led_preset

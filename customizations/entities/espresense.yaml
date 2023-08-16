@@ -1,0 +1,6 @@
+sensor.damian_s_phone:
+  icon: mdi:cellphone
+sensor.janet_s_phone:
+  icon: mdi:cellphone
+sensor.damian_s_keys:
+  icon: mdi:key-chain

@@ -1,0 +1,18 @@
+bind = "0.0.0.0"
+
+[[cameras]]
+name = "side"
+# password = "0TWy##TBL$Q253"
+# username = "4MvW3kmBx%NXcU"
+username = "admin"
+password = "4MvW3kmBx%NXcU"
+uid = "952700056BJZJX7C"
+ mqtt.broker_addr = "192.168.1.167"
+ mqtt.port = 1883
+ mqtt.credentials = ["mqtt", "mqtt"]
+ mqtt.discovery.topic = "homeassistant" 
+ mqtt.discovery.features = ["floodlight", "battery", "motion", "ir"]
+ [cameras.pause]
+ on_motion = true 
+ on_client = true 
+ timeout = 2.1 

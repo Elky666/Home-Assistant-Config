@@ -1,0 +1,19 @@
+id: "991d08ea-0c32-41fd-956a-96266fffe53f"
+alias: "Notification CR123A Battery Low"
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - binary_sensor.trisensor_low_battery_level
+      - binary_sensor.trisensor_low_battery_level_2
+    to: "on"
+    for: "00:30:00"
+condition: []
+action:
+  - service: script.notify_message_engine
+    data:
+      who: home_app
+      title: "CR123A Battery Low"
+      message: "{{ trigger.to_state.name }} Battery Low"

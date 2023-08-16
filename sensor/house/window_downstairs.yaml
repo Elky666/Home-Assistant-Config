@@ -1,0 +1,14 @@
+- platform: template
+  sensors:
+    window_downstairs:
+      friendly_name: "Windows Open Downstairs"
+      unique_id: "7dceee43-e2e6-4262-a76d-b96b24a90402"
+      value_template: >
+          {% set windows = [
+            states.binary_sensor.dining_room_window,
+            states.binary_sensor.toilet_window,
+            states.binary_sensor.living_room_left_window,
+            states.binary_sensor.living_room_right_window,
+            states.binary_sensor.kitchen_window
+            ] %}
+          {{ windows | selectattr('state','eq','on') | list | count }}

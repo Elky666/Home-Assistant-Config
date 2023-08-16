@@ -1,0 +1,31 @@
+id: "94b4930b-0695-439b-a108-d116fb7f9715"
+alias: "Cover Livingroom Close"
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - binary_sensor.living_room_left_window
+    to: "off"
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
+  - platform: state
+    entity_id:
+      - binary_sensor.living_room_right_window
+    to: "off"
+    for:
+      hours: 0
+      minutes: 0
+      seconds: 30
+condition:
+  - condition: state
+    entity_id: input_boolean.home_night
+    state: "on"
+action:
+  - service: cover.close_cover
+    data: {}
+    target:
+      entity_id: cover.living_room_blind

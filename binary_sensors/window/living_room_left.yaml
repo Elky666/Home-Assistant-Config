@@ -2,7 +2,7 @@
   sensors:
     living_room_left_window:
       friendly_name: "Living Room Left Window"
-      unique_id: '01a5f1c8-5b19-4806-97b1-3412372d62d6'
+      unique_id: "01a5f1c8-5b19-4806-97b1-3412372d62d6"
       device_class: window
       value_template: >-
         {% if is_state("binary_sensor.door_window_sensor_7_window_door_is_open_in_regular_position_3", "on") %}
@@ -18,5 +18,5 @@
         {% elif is_state("binary_sensor.door_window_sensor_7_window_door_is_open_in_regular_position_3", "off") %}
           mdi:window-closed
         {% else %}
-          mdi:blinds-horizontal-closed
+          false
         {% endif %}

@@ -1,0 +1,17 @@
+id: 'bc9da746-c5c3-4036-98e4-91269ab75b36'
+alias: Remote Aqara Bedroom 1 Short Press
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - device_id: a1e6c391189c694b92602a934952fc92
+    domain: zha
+    platform: device
+    type: remote_button_short_press
+    subtype: remote_button_short_press
+condition: []
+action:
+  - service: switch.toggle
+    data: {}
+    target:
+      entity_id: switch.bedroom_1_bedside_fan_plug

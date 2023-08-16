@@ -5,16 +5,7 @@ description: ""
 mode: single
 trigger:
   - platform: template
-    value_template: >-
-      {{ states('sensor.time') == (
-      states.input_datetime.bedroom_2_light.attributes.timestamp | int - 300 ) |
-      timestamp_custom('%H:%M', False) }}
-#  - platform: time
-#    at: input_datetime.bedroom_2_light
-  - platform: state
-    entity_id:
-      - input_boolean.person5_home
-    to: "off"
+    value_template: "{{ states('sensor.time') == states('sensor.light_off') }}"
 condition: []
 action:
   - service: light.turn_off

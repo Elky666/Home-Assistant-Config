@@ -1,0 +1,34 @@
+id: "8213621f-00b8-449e-9cd9-c753830b08fd"
+alias: "Switch Projector Livingroom"
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - at: '20:00:00'
+    platform: time
+condition:
+  - condition: state
+    entity_id: input_boolean.home_home
+    state: 'on'
+action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.home_holiday
+        state: 'on'
+      sequence:
+        - service: switch.turn_on
+          entity_id:
+            - switch.av_surge_protector_outlet_2
+            - switch.av_surge_protector_outlet_3
+    - conditions:
+      - condition: time
+        weekday:
+        - fri
+        - sat
+      sequence:
+        - service: switch.turn_on
+          entity_id:
+            - switch.av_surge_protector_outlet_2
+            - switch.av_surge_protector_outlet_3
+    default: []

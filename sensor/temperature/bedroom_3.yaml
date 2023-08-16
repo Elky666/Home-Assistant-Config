@@ -5,3 +5,4 @@
   round_digits: 1
   entity_ids:
     - sensor.tado_smart_radiator_thermostat_va0943328000_current_temperature
+    - sensor.lumi_lumi_weather_temperature_5

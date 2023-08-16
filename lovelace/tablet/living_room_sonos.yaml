@@ -1,0 +1,9 @@
+  theme: Backend-selected
+  title: Sonos
+  path: living_room_sonos
+  type: panel
+  subview: true
+  badges: []
+  cards:
+    - type: media-control
+      entity: media_player.living_room_3

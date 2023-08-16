@@ -1,6 +1,9 @@
-#- climate.bedroom_1
 - fan.sonoff_1000cc2f24
 - light.bedroom_1_led_strip
 - light.bedroom_1_lamps
 - switch.bedroom_1_bedside_fan_plug
 - light.bedroom_1_light
+- light.bedroom_1_lamp_1
+- light.bedroom_1_lamp_2
+- switch.bedroom_1_hub_watch_kodi
+- cover.bedroom_1_blind

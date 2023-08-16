@@ -9,9 +9,8 @@ trigger:
       property_key: "007"
       value: "KeyPressed"
 action:
-  - service: fan.set_percentage
+  - service: light.toggle
+    data: {}
     target:
-      entity_id: fan.sonoff_1000cc26b0
-    data:
-      percentage: 66
+      entity_id: light.bedroom_2_led
 mode: single

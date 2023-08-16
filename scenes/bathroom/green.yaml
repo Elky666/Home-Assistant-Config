@@ -1,0 +1,7 @@
+id: '326a3381-207d-40ac-b96e-0e8f8dc834fd'
+name: Bathroom Green
+entities:
+  light.bathroom_light:
+    state: "on"
+    color_name: green
+    brightness: 255

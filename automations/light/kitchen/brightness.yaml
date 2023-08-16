@@ -1,22 +1,31 @@
 id: 'aefa91e8-e334-4b74-8106-c975fbc91a4d'
-alias: Light Kitchen LED Strip Brightness
+alias: "Light Kitchen LED Strip Brightness"
 initial_state: true
 description: ""
 mode: single
 trigger:
-  - platform: time
-    at: "23:01:00"
-  - platform: time
-    at: "07:01:00"
+  - platform: state
+    entity_id: binary_sensor.lights_dim
 condition: []
 action:
-  - service: lifx.set_state
-    data_template:
-      brightness: >
-        {% if now().hour in [23, 0, 1, 2, 3, 4, 5, 6] %} 
-          51
-        {% else %}
-          255
-        {% endif %}
-    target:
-      entity_id: light.kitchen_led_strip
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.lights_dim
+            state: "on"
+        sequence:
+          - service: lifx.set_state
+            data_template:
+              brightness_pct: 20
+            target:
+              entity_id: light.kitchen_led_strip
+      - conditions:
+          - condition: state
+            entity_id: binary_sensor.lights_dim
+            state: "off"
+        sequence:
+          - service: lifx.set_state
+            data_template:
+              brightness_pct: 100
+            target:
+              entity_id: light.kitchen_led_strip

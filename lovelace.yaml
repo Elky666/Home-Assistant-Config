@@ -1,10 +1,37 @@
 mode: yaml
-resources: !include lovelace/resources.yaml
+resources: #!include lovelace/resources.yaml
+  - url: /hacsfiles/lovelace-mushroom/mushroom.js
+    type: module
+  - url: /hacsfiles/lovelace-hass-aarlo/hass-aarlo.js
+    type: module
+  - url: /hacsfiles/clock-weather-card/clock-weather-card.js
+    type: module
+  - url: /hacsfiles/lovelace-layout-card/layout-card.js
+    type: module
+  - url: /hacsfiles/banner-card/banner-card.js
+    type: module
+  - url: /hacsfiles/button-card/button-card.js
+    type: module
+  - url: /hacsfiles/custom-brand-icons/custom-brand-icons.js
+    type: module
+  - url: /hacsfiles/vertical-stack-in-card/vertical-stack-in-card.js
+    type: module
+  - url: /hacsfiles/stack-in-card/stack-in-card.js
+    type: module
+  - url: /hacsfiles/lovelace-state-switch/state-switch.js
+    type: module
 dashboards:
-  lovelace-user:
+  lovelace-tablet:
     mode: yaml
-    filename: lovelace/user.yaml
-    title: User
-    icon: mdi:account-group
+    filename: lovelace/tablet.yaml
+    title: Tablet
+    icon: mdi:tablet
+    show_in_sidebar: true
+    require_admin: false
+  lovelace-phone:
+    mode: yaml
+    filename: lovelace/phone.yaml
+    title: Phone
+    icon: mdi:cellphone
     show_in_sidebar: true
     require_admin: false

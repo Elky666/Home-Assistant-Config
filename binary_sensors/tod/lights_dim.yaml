@@ -1,0 +1,5 @@
+- platform: tod
+  name: Lights Dim
+  before: sunrise
+  after: "22:00"
+  unique_id: ed84c30c-7316-44f9-8cac-d2eb5d7000ed

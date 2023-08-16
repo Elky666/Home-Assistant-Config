@@ -2,21 +2,21 @@
   sensors:
     back_door:
       friendly_name: "Back Door"
-      unique_id: 'd9a4a555-20b8-4dd9-bc91-4bd64a08503e'
+      unique_id: "d9a4a555-20b8-4dd9-bc91-4bd64a08503e"
       device_class: door
       value_template: >-
-        {% if is_state("binary_sensor.fibaro_door_window_sensor_2_window_door_is_open", "on") %}
+        {% if is_state("binary_sensor.back_door_window_door_is_open", "on") %}
           On
-        {% elif is_state("binary_sensor.fibaro_door_window_sensor_2_window_door_is_open", "off") %}
+        {% elif is_state("binary_sensor.back_door_window_door_is_open", "off") %}
           Off
         {% else %}
           Closed
         {% endif %}
       icon_template: >-
-        {% if is_state("binary_sensor.fibaro_door_window_sensor_2_window_door_is_open", "on") %}
+        {% if is_state("binary_sensor.back_door_window_door_is_open", "on") %}
           mdi:door-open
-        {% elif is_state("binary_sensor.fibaro_door_window_sensor_2_window_door_is_open", "off") %}
+        {% elif is_state("binary_sensor.back_door_window_door_is_open", "off") %}
           mdi:door-closed
         {% else %}
-          mdi:help
+          false
         {% endif %}

@@ -1,8 +1,8 @@
 - platform: template
   switches:
     heating_toilet_tado:
-      friendly_name: 'Heating Toilet'
-      unique_id: 'd3a912cb-67c1-47d1-9dde-46e89abfb13c'
+      friendly_name: "Heating Toilet"
+      unique_id: "d3a912cb-67c1-47d1-9dde-46e89abfb13c"
       turn_on:
         - service: climate.set_temperature
           data:

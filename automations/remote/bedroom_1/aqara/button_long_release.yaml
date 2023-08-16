@@ -1,0 +1,18 @@
+id: 'e28a5574-9465-41ef-90a8-ccf393ed02a4'
+alias: Remote Aqara Bedroom 1 Long Release
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - device_id: a1e6c391189c694b92602a934952fc92
+    domain: zha
+    platform: device
+    type: remote_button_long_release
+    subtype: remote_button_long_release
+condition: []
+action:
+  - service: light.toggle
+    data:
+      transition: 1
+    target:
+      entity_id: light.bedroom_1_light

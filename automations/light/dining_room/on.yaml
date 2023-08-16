@@ -1,0 +1,21 @@
+id: "48499f68-583a-4ffa-9941-30f5eaad555c"
+alias: "Light Dining Room Window LED On"
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - input_boolean.home_night
+    to: "on"
+condition:
+  - condition: not
+    conditions:
+      - condition: state
+        entity_id: sensor.hoilday_light
+        state: none
+action:
+  - service: light.turn_on
+    data: {}
+    target:
+      entity_id: light.dining_room_window_led

@@ -19,3 +19,21 @@ light.bedroom_3_light:
 light.bedroom_3_led:
   friendly_name: Bedroom 3 Led Strip
   icon: mdi:led-strip-variant
+light.bedroom_1_lamp_1:
+  friendly_name: Lamp 1
+  icon: mdi:lamp
+light.bedroom_1_lamp_2:
+  friendly_name: Lamp 2
+  icon: mdi:lamp
+light.bedroom_1_led_strip:
+  friendly_name: Led Strip
+  icon: mdi:led-strip-variant
+light.bedroom_1_light:
+  friendly_name: Ceiling Light
+  icon: mdi:ceiling-light
+light.bathroom_light:
+  friendly_name: Ceiling Light
+  icon: mdi:dome-light
+light.livingroom_tv_led_strip:
+  friendly_name: Led Strip
+  icon: mdi:led-strip-variant

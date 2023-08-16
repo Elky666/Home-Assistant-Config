@@ -61,20 +61,4 @@ action:
           brightness_pct: 100
         target:
           entity_id: light.landing_light
-    - conditions:
-        - condition: and
-          conditions:
-          - condition: state
-            entity_id: input_boolean.home_night
-            state: 'on'
-          - condition: state
-            entity_id: sensor.holiday_name
-            state: Halloween
-      sequence:
-      - service: light.turn_on
-        data:
-          color_name: green
-          brightness_pct: 100
-        target:
-          entity_id: light.landing_light
 mode: single

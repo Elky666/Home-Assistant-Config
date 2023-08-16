@@ -1,0 +1,22 @@
+id: "ca475e3f-31a6-4904-b276-07b41104651a"
+alias: "Cover Livingroom Open"
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: template
+    value_template: 
+      "{% set alarm_time = states('sensor.bedroom_1_echo_show_next_alarm') | as_datetime %}
+      {% set minutes_before = 1 %} 
+      {% if alarm_time != None %}
+      {{ now() >= alarm_time - timedelta(minutes = minutes_before) }}
+      {% else %} 
+        false 
+      {% endif %}"
+condition: []
+action:
+  - delay: 00:21:00
+  - service: cover.open_cover
+    data: {}
+    target:
+      entity_id: cover.living_room_blind

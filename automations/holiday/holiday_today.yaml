@@ -1,0 +1,54 @@
+id: '89e62a5e-357a-433f-9c56-fee6f11d1195'
+alias: Holiday Today
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: state
+    entity_id: input_button.test
+condition: []
+action:
+  - choose:
+      - conditions:
+          - condition: template
+            value_template: "{{ state_attr('sensor.next_holiday', 'today_is_holiday') == false }}"
+        sequence:
+          - service: lifx.effect_move
+            data:
+              speed: 10
+              direction: right
+              theme: cheerful
+              power_on: false
+            target:
+              entity_id: light.kitchen_led_strip
+      - conditions:
+          - condition: and
+            conditions:
+              - condition: template
+                value_template: >-
+                  "{{ state_attr('sensor.next_holiday', 'today_is_holiday') == false }}"
+              - condition: template
+                value_template: >-
+                  {{ ( now().month == 1 and now().day < 7 ) or ( now().month == 12 and now().day >= 12 ) }}
+        sequence:
+          - service: lifx.effect_move
+            data:
+              speed: 10
+              direction: right
+              theme: santa
+              power_on: false
+            target:
+              entity_id: light.kitchen_led_strip
+      - conditions:
+          - condition: and
+            conditions:
+              - condition: template
+                value_template: "{{ state_attr('sensor.next_holiday', 'today_is_holiday') == true }}"
+              - condition: state
+                entity_id: sensor.next_holiday
+                state: Spring Bank Holiday
+        sequence:
+          - service: switch.toggle
+            data: {}
+            target:
+              entity_id: switch.diningroom_light_switch

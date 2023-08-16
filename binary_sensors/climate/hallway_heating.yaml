@@ -1,0 +1,6 @@
+- platform: template
+  sensors:
+    climate_hallway_heating:
+      friendly_name: "Heating in Hallway"
+      unique_id: "4554a943-b455-4178-a727-dce38b0fbf8c"
+      value_template: '{{ state_attr("climate.tado_smart_thermostat_ru3754558976","hvac_action") == "heating" }}'

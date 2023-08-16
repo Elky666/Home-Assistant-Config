@@ -1,0 +1,33 @@
+id: "4d7e0e8e-f07f-41ea-bdf9-cdf9fb309fbe"
+alias: "Home Sleep Tablet"
+description: ""
+initial_state: true 
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - input_boolean.home_sleep
+condition: []
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: input_boolean.home_sleep
+            state: "on"
+        sequence:
+          - service: switch.turn_off
+            data: {}
+            target:
+              entity_id:
+                - switch.bedroom_1_fire_tablet_motion_detection
+      - conditions:
+          - condition: state
+            entity_id: input_boolean.home_sleep
+            state: "off"
+        sequence:
+          - service: switch.turn_on
+            data: {}
+            target:
+              entity_id:
+                - switch.bedroom_1_fire_tablet_motion_detection
+

@@ -1,0 +1,17 @@
+- platform: template
+  sensors:
+    total_rooms_heating:
+      friendly_name: "Total Rooms Heating"
+      unique_id: "82f04f5d-8858-41c7-8ea6-c38655458974"
+      icon_template: "{{ 'mdi:radiator' if states('sensor.total_rooms_heating') != '0' else 'mdi:radiator-off' }}"
+      value_template: >
+          {% set room = [
+            states.binary_sensor.climate_bathroom_heating,
+            states.binary_sensor.climate_bedroom_3_heating,
+            states.binary_sensor.climate_dining_room_heating,
+            states.binary_sensor.climate_hallway_heating,
+            states.binary_sensor.climate_toilet_heating,
+            states.binary_sensor.climate_bedroom_2_heating,
+            states.binary_sensor.climate_bedroom_1_heating
+            ] %}
+          {{ room | selectattr('state','eq','on') | list | count }}

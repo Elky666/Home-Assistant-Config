@@ -1,0 +1,26 @@
+id: "fc2693c5-72dc-40bc-9fec-ac206a486b69"
+alias: "Notification AAA Battery Low"
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: numeric_state
+    entity_id:
+      - sensor.outdoor_module_battery
+    below: 10
+    for: "00:30:00"
+  - platform: state
+    entity_id:
+      - binary_sensor.ru3754558976_battery_state
+      - binary_sensor.scene_master_8_button_remote_low_battery_level
+      - binary_sensor.scene_master_8_button_remote_low_battery_level_2
+      - binary_sensor.scene_master_8_button_remote_low_battery_level_3
+    to: "on"
+    for: "00:30:00"
+condition: []
+action:
+  - service: script.notify_message_engine
+    data:
+      who: home_app
+      title: "AAA Battery Low"
+      message: "{{ trigger.to_state.name }} Battery Low"

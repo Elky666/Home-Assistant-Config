@@ -1,0 +1,24 @@
+id: "2cc7a86c-ba34-4fe1-9860-420182f3c2f1"
+alias: "Notification ER14250 Battery Low"
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - sensor.back_door_battery_level
+      - binary_sensor.front_door_low_battery_level_2
+      - binary_sensor.door_window_sensor_7_low_battery_level
+      - binary_sensor.door_window_sensor_7_low_battery_level_2
+      - binary_sensor.door_window_sensor_7_low_battery_level_3
+      - binary_sensor.door_window_sensor_7_low_battery_level_4
+      - binary_sensor.door_window_sensor_7_low_battery_level_5
+    to: 'on'
+    for: "00:30:00"
+condition: []
+action:
+  - service: script.notify_message_engine
+    data:
+      who: home_app
+      title: "ER14250 Battery Low"
+      message: "{{ trigger.to_state.name }} Battery Low"

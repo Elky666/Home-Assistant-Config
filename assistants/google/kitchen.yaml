@@ -1,3 +1,5 @@
 - switch.fly_zapper_plug
 - media_player.kitchen
 - light.kitchen_ceiling_light
+- cover.kitchen_blind
+- light.kitchen_window_led

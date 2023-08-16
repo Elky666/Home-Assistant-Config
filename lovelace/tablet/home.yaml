@@ -1,0 +1,679 @@
+type: custom:grid-layout
+layout:
+  grid-gap: 1px 1px
+  grid-template-columns: 16% 16% 16% 16% 16% 16%
+  grid-template-rows: auto
+  justify-items: center
+  grid-template-areas: >
+    "clock clock welcome welcome person person" 
+    "chip chip chip blank chip1 chip1"  
+    "bedroom1 bedroom1 bedroom2 bedroom2 bedroom3 bedroom3"
+    "livingroom livingroom kitchen kitchen diningroom diningroom" 
+    "bathroom bathroom toilet toilet outside outside"
+icon: mdi:home
+title: Home
+badges: []
+cards:
+  - type: custom:clock-weather-card
+    entity: weather.met_office_maypole_green_3_hourly
+    sun_entity: sun.sun
+    temperature_sensor: sensor.outdoor_module_temperature
+    weather_icon_type: fill
+    animated_icon: true
+    forecast_days: 1
+    locale: en-GB
+    time_format: 24
+    date_pattern: P
+    hide_today_section: false
+    hide_forecast_section: true
+    hide_clock: false
+    hide_date: true
+    hourly_forecast: true
+    use_browser_time: true
+    view_layout:
+      grid-column: clock
+  - square: true
+    type: grid
+    cards:
+      - type: vertical-stack
+        cards:
+#          - type: custom:mushroom-person-card
+#            entity: person.person_1
+#            fill_container: true
+#            layout: vertical
+#            icon_type: entity-picture
+          - type: custom:stack-in-card
+            cards:
+              - type: custom:stack-in-card
+                mode: vertical
+                cards:
+                  - type: custom:layout-card
+                    layout_type: grid
+                    layout:
+                      width: 100%
+                      grid-template-columns: 60% 40%
+                      grid-template-rows: auto
+                    cards:
+                      - type: custom:mushroom-person-card
+                        entity: person.person_1
+                        use_entity_picture: true
+                        hide_name: true
+                        primary_info: state
+                        layout: vertical
+                        secondary_info: sensor.fitbit1_steps
+                        tap_action:
+                          action: fire-dom-event
+                          browser_mod:
+                            command: popup
+                            deviceID: this
+                            title: Mapa
+                            card:
+                              type: map
+                              entities:
+                                - zone.home
+                                - person.person_1
+#HERE
+                      - type: custom:mushroom-template-card
+                        primary: '{{ states(entity) }}%'
+                        secondary: >
+                          {{ 'Charging' if is_state('binary_sensor.damian_s_phone_is_charging_2', 'on' )
+                          else '' }}
+                        icon: |
+                          {% set battery_level = (states(entity) | int / 10) | round(0) | int * 10 %}
+                          {% if battery_level == 100 %}
+                            mdi:battery
+                          {% elif battery_level > 0 %}
+                            mdi:battery-{{ battery_level }}
+                          {% else %}
+                            mdi:battery-alert-variant-outline
+                          {% endif %}
+                        icon_color: |-
+                          {% set battery_level = states(entity) | int %}
+                          {% if battery_level > 90 %} 
+                            green
+                          {% elif battery_level > 60 %}
+                            light-green
+                          {% elif battery_level > 50 %}
+                            lime
+                          {% elif battery_level > 40 %}
+                            yellow
+                          {% elif battery_level > 30 %}
+                            amber
+                          {% elif battery_level > 20 %}
+                            orange
+                          {% elif battery_level > 10 %}
+                            deep-orange
+                          {% else %}
+                            red
+                          {% endif %} 
+                        entity: sensor.damian_s_phone_battery_level
+                        layout: vertical
+                        badge_icon: |-
+                          {% if is_state('binary_sensor.damian_s_phone_is_charging_2', 'on') %}
+                            mdi:lightning-bolt
+                          {% elif states(entity) | int < 10 %} 
+                            mdi:exclamation-thick
+                          {% endif %}
+                        badge_color: '{{ ''red'' if states(entity) | int < 10 else ''light-blue'' }}'
+                        tap_action:
+                          action: none
+                        hold_action:
+                          action: none
+                        double_tap_action:
+                          action: none
+                        card_mod:
+                          style:
+                            mushroom-shape-icon$: |
+                              .shape {
+
+                                /* Radial progress bar */
+                                background: radial-gradient(var(--card-background-color) 60%, 
+                                                            transparent calc(60% + 1px)), 
+                                            conic-gradient(var(--icon-color) {{ states(config.entity) }}% 0%, 
+                                                            var(--card-background-color) 0% 100%);
+                              }
+                              .shape:after {
+
+                                /* Add back icon shape */
+                                content: "";
+                                height: 100%;
+                                width: 100%;
+                                position: absolute;
+                                border-radius: var(--icon-border-radius);
+                                background: var(--shape-color);
+                              }
+                            .: |
+                              ha-state-icon {
+                                /* Icon charging animation */
+                                {{ '--icon-animation: charge 3s linear infinite;' if is_state('binary_sensor.damian_s_phone_is_charging_2', 'on') }}
+                              }
+                              @keyframes charge {
+                                0%, 80% { clip-path: inset(0 0 0 0); }
+                                10% { clip-path: polygon(0% 0%, 0% 100%, 34% 100%, 34% 24%, 67% 24%, 67% 84%, 34% 84%, 34% 100%, 100% 100%, 100% 0%); }
+                                20% { clip-path: polygon(0% 0%, 0% 100%, 34% 100%, 34% 24%, 67% 24%, 67% 74%, 34% 74%, 34% 100%, 100% 100%, 100% 0%); }
+                                30% { clip-path: polygon(0% 0%, 0% 100%, 34% 100%, 34% 24%, 67% 24%, 67% 64%, 34% 64%, 34% 100%, 100% 100%, 100% 0%); }
+                                40% { clip-path: polygon(0% 0%, 0% 100%, 34% 100%, 34% 24%, 67% 24%, 67% 54%, 34% 54%, 34% 100%, 100% 100%, 100% 0%); }
+                                50% { clip-path: polygon(0% 0%, 0% 100%, 34% 100%, 34% 24%, 67% 24%, 67% 44%, 34% 44%, 34% 100%, 100% 100%, 100% 0%); }
+                                60% { clip-path: polygon(0% 0%, 0% 100%, 34% 100%, 34% 24%, 67% 24%, 67% 34%, 34% 34%, 34% 100%, 100% 100%, 100% 0%); }
+                                70% { clip-path: polygon(0% 0%, 0% 100%, 34% 100%, 34% 24%, 67% 24%, 67% 24%, 34% 24%, 34% 100%, 100% 100%, 100% 0%); }
+                              }
+                              ha-card {
+
+                                /* Remove default card styling */
+                                --ha-card-background: none;
+                                --ha-card-box-shadow: none;
+                                --ha-card-border-width: 0;
+
+                                /* Center card on row */
+                                width: fit-content;
+                                margin: auto;
+
+                                /* Make card non-responsive to select and pointer */
+                                user-select: none;
+                                pointer-events: none;
+                              }
+# HERE
+#          - type: custom:mushroom-person-card
+#            entity: person.person_4
+#            fill_container: true
+#            icon_type: entity-picture
+#            layout: vertical
+          - type: custom:stack-in-card
+            cards:
+              - type: custom:stack-in-card
+                mode: vertical
+                cards:
+                  - type: custom:layout-card
+                    layout_type: grid
+                    layout:
+                      width: 100%
+                      grid-template-columns: 60% 40%
+                      grid-template-rows: auto
+                    cards:
+                      - type: custom:mushroom-person-card
+                        entity: person.person_4
+                        use_entity_picture: true
+                        hide_name: true
+                        primary_info: state
+                        layout: vertical
+                        secondary_info: last-changed
+                        tap_action:
+                          action: fire-dom-event
+                          browser_mod:
+                            command: popup
+                            deviceID: this
+                            title: Mapa
+                            card:
+                              type: map
+                              entities:
+                                - zone.home
+                                - person.person_4
+                      - type: conditional
+                        conditions:
+                          - entity: binary_sensor.damian_s_phone_is_charging_2
+                            state: 'on'
+                        card:
+                          type: custom:mushroom-template-card
+                          entity: sensor.damian_s_phone_battery_level
+                          layout: vertical
+                          fill_container: true
+                          hide_name: true
+                          icon: mdi:battery-charging-medium
+                          icon_color: light-green
+                          tap_action:
+                            action: more-info
+                          secondary: '{{ states(''sensor.damian_s_phone_battery_level'') }} %'
+                          card_mod:
+                            style: |
+                              mushroom-shape-icon {
+                                animation: blink 1s linear infinite;
+                              }          
+                              @keyframes blink {
+                                50% {opacity: 0;}
+                              }
+                              ha-card { 
+                                background: none;
+                                }
+                      - type: conditional
+                        conditions:
+                          - entity: binary_sensor.damian_s_phone_is_charging_2
+                            state: 'off'
+                        card:
+                          type: custom:mushroom-template-card
+                          entity: sensor.damian_s_phone_battery_level
+                          layout: vertical
+                          icon_color: |2-
+                                      {% set bl = states('sensor.damian_s_phone_battery_level') | int %}
+                                      {% if bl < 10 %} #cc0c16
+                                      {% elif bl < 20 %} #e61e28
+                                      {% elif bl < 30 %} #e3464e
+                                      {% elif bl < 40 %} orange
+                                      {% elif bl < 50 %} #f0b93a
+                                      {% elif bl < 60 %} #f3f56c
+                                      {% elif bl < 70 %} #f2f536
+                                      {% elif bl < 80 %} #69f095
+                                      {% elif bl < 90 %} #2ee669
+                                      {% elif bl < 100 %} #05ad3b
+                                      {% elif bl == 100 %} #03872d
+                                      {% else %} grey
+                                      {% endif %}
+                          secondary: '{{ states(''sensor.damian_s_phone_battery_level'') }} %'
+                          tap_action:
+                            action: more-info
+                          fill_container: true
+                          icon: mdi:battery-arrow-down
+      - type: vertical-stack
+        cards:
+#          - type: custom:mushroom-person-card
+#            entity: person.person_2
+#            fill_container: true
+#            layout: vertical
+#            icon_type: entity-picture
+          - type: custom:stack-in-card
+            cards:
+              - type: custom:stack-in-card
+                mode: vertical
+                cards:
+                  - type: custom:layout-card
+                    layout_type: grid
+                    layout:
+                      width: 100%
+                      grid-template-columns: 60% 40%
+                      grid-template-rows: auto
+                    cards:
+                      - type: custom:mushroom-person-card
+                        entity: person.person_2
+                        use_entity_picture: true
+                        hide_name: true
+                        primary_info: state
+                        layout: vertical
+                        secondary_info: last-changed
+                        tap_action:
+                          action: fire-dom-event
+                          browser_mod:
+                            command: popup
+                            deviceID: this
+                            title: Mapa
+                            card:
+                              type: map
+                              entities:
+                                - zone.home
+                                - person.person_2
+                      - type: conditional
+                        conditions:
+                          - entity: binary_sensor.janet_s_phone_is_charging
+                            state: 'on'
+                        card:
+                          type: custom:mushroom-template-card
+                          entity: sensor.janet_s_phone_battery_level
+                          layout: vertical
+                          fill_container: true
+                          hide_name: true
+                          icon: mdi:battery-charging-medium
+                          icon_color: light-green
+                          tap_action:
+                            action: more-info
+                          secondary: '{{ states(''sensor.janet_s_phone_battery_level'') }} %'
+                          card_mod:
+                            style: |
+                              mushroom-shape-icon {
+                                animation: blink 1s linear infinite;
+                              }          
+                              @keyframes blink {
+                                50% {opacity: 0;}
+                              }
+                              ha-card { 
+                                background: none;
+                                }
+                      - type: conditional
+                        conditions:
+                          - entity: binary_sensor.janet_s_phone_is_charging
+                            state: 'off'
+                        card:
+                          type: custom:mushroom-template-card
+                          entity: sensor.janet_s_phone_battery_level
+                          layout: vertical
+                          icon_color: |2-
+                                      {% set bl = states('sensor.janet_s_phone_battery_level') | int %}
+                                      {% if bl < 10 %} #cc0c16
+                                      {% elif bl < 20 %} #e61e28
+                                      {% elif bl < 30 %} #e3464e
+                                      {% elif bl < 40 %} orange
+                                      {% elif bl < 50 %} #f0b93a
+                                      {% elif bl < 60 %} #f3f56c
+                                      {% elif bl < 70 %} #f2f536
+                                      {% elif bl < 80 %} #69f095
+                                      {% elif bl < 90 %} #2ee669
+                                      {% elif bl < 100 %} #05ad3b
+                                      {% elif bl == 100 %} #03872d
+                                      {% else %} grey
+                                      {% endif %}
+                          secondary: '{{ states(''sensor.janet_s_phone_battery_level'') }} %'
+                          tap_action:
+                            action: more-info
+                          fill_container: true
+                          icon: mdi:battery-arrow-down
+#          - type: custom:mushroom-person-card
+#            entity: person.person_5
+#            fill_container: true
+#            layout: vertical
+#            icon_type: entity-picture
+          - type: custom:stack-in-card
+            cards:
+              - type: custom:stack-in-card
+                mode: vertical
+                cards:
+                  - type: custom:layout-card
+                    layout_type: grid
+                    layout:
+                      width: 100%
+                      grid-template-columns: 60% 40%
+                      grid-template-rows: auto
+                    cards:
+                      - type: custom:mushroom-person-card
+                        entity: person.person_5
+                        use_entity_picture: true
+                        hide_name: true
+                        primary_info: state
+                        layout: vertical
+                        secondary_info: last-changed
+                        tap_action:
+                          action: fire-dom-event
+                          browser_mod:
+                            command: popup
+                            deviceID: this
+                            title: Mapa
+                            card:
+                              type: map
+                              entities:
+                                - zone.home
+                                - person.person_5
+                      - type: conditional
+                        conditions:
+                          - entity: binary_sensor.amelia_s_phone_is_charging
+                            state: 'on'
+                        card:
+                          type: custom:mushroom-template-card
+                          entity: sensor.amelia_s_phone_battery_level
+                          layout: vertical
+                          fill_container: true
+                          hide_name: true
+                          icon: mdi:battery-charging-medium
+                          icon_color: light-green
+                          tap_action:
+                            action: more-info
+                          secondary: '{{ states(''sensor.amelia_s_phone_battery_level'') }} %'
+                          card_mod:
+                            style: |
+                              mushroom-shape-icon {
+                                animation: blink 1s linear infinite;
+                              }          
+                              @keyframes blink {
+                                50% {opacity: 0;}
+                              }
+                              ha-card { 
+                                background: none;
+                                }
+                      - type: conditional
+                        conditions:
+                          - entity: binary_sensor.amelia_s_phone_is_charging
+                            state: 'off'
+                        card:
+                          type: custom:mushroom-template-card
+                          entity: sensor.amelia_s_phone_battery_level
+                          layout: vertical
+                          icon_color: |2-
+                                      {% set bl = states('sensor.amelia_s_phone_battery_level') | int %}
+                                      {% if bl < 10 %} #cc0c16
+                                      {% elif bl < 20 %} #e61e28
+                                      {% elif bl < 30 %} #e3464e
+                                      {% elif bl < 40 %} orange
+                                      {% elif bl < 50 %} #f0b93a
+                                      {% elif bl < 60 %} #f3f56c
+                                      {% elif bl < 70 %} #f2f536
+                                      {% elif bl < 80 %} #69f095
+                                      {% elif bl < 90 %} #2ee669
+                                      {% elif bl < 100 %} #05ad3b
+                                      {% elif bl == 100 %} #03872d
+                                      {% else %} grey
+                                      {% endif %}
+                          secondary: '{{ states(''sensor.amelia_s_phone_battery_level'') }} %'
+                          tap_action:
+                            action: more-info
+                          fill_container: true
+                          icon: mdi:battery-arrow-down
+    columns: 2
+    view_layout:
+      grid-column: person
+  - type: custom:mushroom-chips-card
+    chips:
+      - type: template
+        entity: sensor.house_average_temperature
+        icon: mdi:thermometer
+        icon_color: >-
+          {% if states('sensor.house_average_temperature') | float(0) < 18 %}
+            blue
+          {% elif states('sensor.house_average_temperature') | float(0) < 22 %}
+            green
+          {% elif states('sensor.house_average_temperature') | float(0) < 60 %}
+            red
+          {% endif %}
+        content: '{{ states(''sensor.house_average_temperature'', with_unit=True) }}'
+        double_tap_action:
+          action: none
+        tap_action:
+          action: none
+        hold_action:
+          action: none
+      - type: template
+        entity: sensor.house_average_humidity
+        icon: mdi:water-percent
+        icon_color: >-
+          {% if states('sensor.house_average_humidity') | float(0) < 40 %}
+            blue
+          {% elif states('sensor.house_average_humidity') | float(0) < 60 %}
+            green
+          {% elif states('sensor.house_average_humidity') | float(0) < 99 %}
+            red
+          {% endif %}
+        content: '{{ states(''sensor.house_average_humidity'', with_unit=True) }}'
+        double_tap_action:
+          action: none
+        tap_action:
+          action: none
+        hold_action:
+          action: none
+      - type: template
+        entity: sensor.total_power
+        icon: mdi:flash
+        icon_color: >-
+          {% if states('sensor.total_power') | float(0) < 1000 %}
+            green
+          {% elif states('sensor.total_power') | float(0) < 2000 %}
+            amber
+          {% elif states('sensor.total_power') | float(0) < 9000 %}
+            red
+          {% endif %}
+        content: '{{ states(''sensor.total_power'', with_unit=True) }}'
+        double_tap_action:
+          action: none
+        tap_action:
+          action: none
+        hold_action:
+          action: none
+      - type: template
+        entity: sensor.total_rooms_heating
+        icon: >-
+          {% if states('sensor.total_rooms_heating') | float(0) == 0 %}
+            mdi:radiator-off
+          {% elif states('sensor.total_rooms_heating') | float(0) < 60 %}
+            mdi:radiator
+          {% endif %}
+        icon_color: >-
+          {% if states('sensor.total_rooms_heating') | float(0) < 1 %}
+            white
+          {% elif states('sensor.total_rooms_heating') | float(0) < 60 %}
+            orange
+          {% endif %}
+        content: '{{ states(''sensor.total_rooms_heating'', with_unit=True) }}'
+        double_tap_action:
+          action: none
+        tap_action:
+          action: none
+        hold_action:
+          action: none
+      - type: template
+        entity: sensor.total_lights_on
+        icon: >-
+          {% if states('sensor.total_lights_on') | float(0) == 0 %}
+            mdi:lightbulb-off
+          {% elif states('sensor.total_lights_on') | float(0) > 0 %}
+            mdi:lightbulb
+          {% endif %}
+        icon_color: >-
+          {% if states('sensor.total_lights_on') | float(0) < 1 %}
+            white
+          {% elif states('sensor.total_lights_on') | float(0) < 60 %}
+            yellow
+          {% endif %}
+        content: '{{ states(''sensor.total_lights_on'', with_unit=True) }}'
+        double_tap_action:
+          action: none
+        tap_action:
+          action: none
+        hold_action:
+          action: none
+      # Windows
+      - type: template
+        entity: sensor.window_downstairs
+        icon: >-
+          {% if states('sensor.window_downstairs') | float(0) < 1 %}
+            mdi:window-closed-variant
+          {% elif states('sensor.window_downstairs') | float(0) < 60 %}
+            mdi:window-open-variant
+          {% endif %}
+        icon_color: >-
+          {% if states('sensor.window_downstairs') | float(0) < 1 %}
+            white
+          {% elif states('sensor.window_downstairs') | float(0) < 60 %}
+            purple
+          {% endif %}
+        content: '{{ states(''sensor.window_downstairs'', with_unit=True) }}'
+        double_tap_action:
+          action: none
+        tap_action:
+          action: none
+        hold_action:
+          action: none
+      # Doors
+      - type: template
+        entity: sensor.door_downstairs
+        icon: >-
+          {% if states('sensor.door_downstairs') | float(0) < 1 %}
+            mdi:door-closed
+          {% elif states('sensor.door_downstairs') | float(0) < 60 %}
+            mdi:door-open
+          {% endif %}
+        icon_color: >-
+          {% if states('sensor.door_downstairs') | float(0) < 1 %}
+            white
+          {% elif states('sensor.door_downstairs') | float(0) < 60 %}
+            brown
+          {% endif %}
+        content: '{{ states(''sensor.door_downstairs'', with_unit=True) }}'
+        double_tap_action:
+          action: none
+        tap_action:
+          action: none
+        hold_action:
+          action: none
+      # Doors
+      - type: template
+        entity: sensor.total_blinds_open
+        icon: >-
+          {% if states('sensor.total_blinds_open') | float(0) < 1 %}
+            mdi:blinds-horizontal-closed
+          {% elif states('sensor.total_blinds_open') | float(0) < 60 %}
+            mdi:blinds-horizontal
+          {% endif %}
+        icon_color: >-
+          {% if states('sensor.total_blinds_open') | float(0) < 1 %}
+            white
+          {% elif states('sensor.total_blinds_open') | float(0) < 60 %}
+            pink
+          {% endif %}
+        content: '{{ states(''sensor.total_blinds_open'', with_unit=True) }}'
+        double_tap_action:
+          action: none
+        tap_action:
+          action: none
+        hold_action:
+          action: none
+    view_layout:
+      grid-column: chip
+  - type: custom:mushroom-chips-card
+    chips:
+      - type: spacer
+      - type: action
+        tap_action:
+          action: navigate
+          navigation_path: /lovelace-tablet/cctv-tablet
+        icon: mdi:cctv
+      - type: alarm-control-panel
+        entity: alarm_control_panel.house_alarm
+    view_layout:
+      grid-column: chip1
+  - type: custom:banner-card
+    heading: 🛏 Bedroom 1
+    link: /lovelace-tablet/bedroom-1-tablet
+    entities: null
+    view_layout:
+      grid-column: bedroom1
+  - type: custom:banner-card
+    heading: 🛌 Bedroom 2
+    link: /lovelace-tablet/bedroom-2-tablet
+    entities: null
+    view_layout:
+      grid-column: bedroom2
+  - type: custom:banner-card
+    heading: 🛌 Bedroom 3
+    link: /lovelace-tablet/bedroom-3-tablet
+    entities: null
+    view_layout:
+      grid-column: bedroom3
+  - type: custom:banner-card
+    heading: 🛋 Living room
+    link: /lovelace-tablet/living_room_tablet
+    entities: null
+    view_layout:
+      grid-column: livingroom
+  - type: custom:banner-card
+    heading: 🍳 Kitchen
+    link: /lovelace-tablet/kitchen-tablet
+    entities: null
+    view_layout:
+      grid-column: kitchen
+  - type: custom:banner-card
+    heading: 🍽 Dining Room
+    link: /lovelace-tablet/dinning-room-tablet
+    entities: null
+    view_layout:
+      grid-column: diningroom
+  - type: custom:banner-card
+    heading: 🛁 Bathroom
+    link: /lovelace-tablet/bathroom-tablet
+    entities: null
+    view_layout:
+      grid-column: bathroom
+  - type: custom:banner-card
+    heading: 🚽 Toilet
+    link: /lovelace-tablet/bathroom-tablet
+    entities: null
+    view_layout:
+      grid-column: toilet
+  - type: custom:banner-card
+    heading: "\U0001F332 Garden"
+    link: /lovelace/0
+    entities: null
+    view_layout:
+      grid-column: outside

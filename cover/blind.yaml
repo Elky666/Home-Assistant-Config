@@ -1,0 +1,44 @@
+- platform: template
+  covers:
+    blinds:
+      device_class: blind
+      friendly_name: "Blinds"
+      unique_id: "664b84fd-41cb-404e-bd0e-ec41bbe3351c"
+      value_template: >-
+        {{ is_state('cover.bedroom_1_blind', 'open')
+            or is_state('cover.kitchen_blind', 'open')
+            or is_state('cover.living_room_blind', 'open')}}
+      open_cover:
+        - delay:
+            seconds: 0.5
+        - service: alexa_media.update_last_called
+        - delay:
+            seconds: 0.5
+        - service: cover.open_cover
+          data_template:
+            entity_id: >-
+              {% if is_state('sensor.sensors_last_alexa', 'media_player.livingroom_2') %}
+                cover.living_room_blind
+              {% elif is_state('sensor.sensors_last_alexa', 'media_player.kitchen_sonos') %}
+                cover.kitchen_blind
+              {% elif is_state('sensor.sensors_last_alexa', 'media_player.bedroom_1_echo_show') %}
+                cover.bedroom_1_blind
+              {% endif %}
+          data: {}
+      close_cover:
+        - delay:
+            seconds: 0.5
+        - service: alexa_media.update_last_called
+        - delay:
+            seconds: 0.5
+        - service: cover.close_cover
+          data_template:
+            entity_id: >-
+              {% if is_state('sensor.sensors_last_alexa', 'media_player.livingroom_2') %}
+                cover.living_room_blind
+              {% elif is_state('sensor.sensors_last_alexa', 'media_player.kitchen_sonos') %}
+                cover.kitchen_blind
+              {% elif is_state('sensor.sensors_last_alexa', 'media_player.bedroom_1_echo_show') %}
+                cover.bedroom_1_blind
+              {% endif %}
+          data: {}

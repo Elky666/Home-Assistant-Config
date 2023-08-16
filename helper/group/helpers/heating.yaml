@@ -1,4 +1,0 @@
-name: Heating Control
-entities:
-  - input_number.heating_maximum
-  - input_number.heating_minimum

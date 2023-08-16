@@ -1,0 +1,24 @@
+title: bedroom_1
+path: bedroom-tablet-1-more
+subview: true
+type: custom:grid-layout
+layout:
+  grid-gap: 1px 1px
+  grid-template-columns: 16% 16% 16% 16% 16% 16%
+  grid-template-rows: auto
+  justify-items: center
+  grid-template-areas: >
+    "button1 button2 button3 button4 button5 button6"  
+    "button7 button8 button9 button10 button11 button12"
+    "button13 button14 button15 button16 button17 button18"
+    "button19 button20 button21 button22 button23 button24"
+badges: []
+cards:
+  - type: custom:mushroom-entity-card
+    entity: switch.bedroom_1_sky_plug
+    fill_container: true
+    layout: vertical
+    tap_action:
+      action: toggle
+    view_layout:
+      grid-column: button1

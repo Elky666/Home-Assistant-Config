@@ -21,3 +21,5 @@ action:
         - light.livingroom_lamp
         - light.livingroom_tv_led_strip
         - light.kitchen_light_switch
+        - light.bedroom_2_tv_led
+        - light.bedroom_3_tv_led

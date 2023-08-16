@@ -20,11 +20,11 @@ goodnight:
           activity: "Watch Kodi"
         target:
           entity_id: remote.bedroom_1_hub
-#      - service: light.turn_on
-#        data:
-#          entity_id:
-#            - light.bedroom_1_led_strip
-#          transition: 2
+      - service: light.turn_on
+        data:
+          entity_id:
+            - light.bedroom_1_led_strip
+          transition: 2
     - conditions:
       - condition: state
         entity_id: switch.bedroom_1_bedside_fan_plug
@@ -33,6 +33,9 @@ goodnight:
         entity_id: input_boolean.person2_home
         state: 'off'
       sequence:
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.home_sleep
       - service: light.turn_on
         data: {}
         target:
@@ -48,23 +51,19 @@ goodnight:
           entity_id: remote.bedroom_1_hub
         data:
           activity: "Watch Kodi"
-#      - service: light.turn_on
-#        data:
-#          entity_id:
-#            - light.bedroom_1_led_strip
-#          transition: 2
+      - service: light.turn_on
+        data:
+          entity_id:
+            - light.bedroom_1_led_strip
+          transition: 2
       - service: fan.toggle
         data: {}
         target:
           entity_id: fan.sonoff_1000cc2f24
-      - service: input_boolean.turn_on
-        target:
-          entity_id: input_boolean.home_sleep
-    # person 2 away
     - conditions:
-#      - condition: state
-#        entity_id: fan.sonoff_1000cc2f24
-#        state: 'off'
+      - condition: state
+        entity_id: fan.sonoff_1000cc2f24
+        state: 'off'
       - condition: state
         entity_id: switch.bedroom_1_bedside_fan_plug
         state: 'off'
@@ -72,6 +71,9 @@ goodnight:
         entity_id: input_boolean.person2_home
         state: 'on'
       sequence:
+      - service: input_boolean.turn_on
+        target:
+          entity_id: input_boolean.home_sleep
       - service: light.turn_on
         data: {}
         target:
@@ -80,25 +82,24 @@ goodnight:
       - service: switch.turn_on
         data:
           entity_id: switch.bedroom_1_bedside_fan_plug
+      - service: fan.toggle
+        data: {}
+        target:
+          entity_id: fan.sonoff_1000cc2f24
       - service: select.select_option
         data:
           option: power_off
         target:
           entity_id: select.livingroom_activities
         alias: Turn off Livingroom TV
-      # Turn on Bedroom 1 Harmony Hub
       - service: remote.turn_on
         target:
           entity_id: remote.bedroom_1_hub
         data:
           activity: "Watch Kodi"
-#      - service: light.turn_on
-#        data:
-#          entity_id:
-#            - light.bedroom_1_led_strip
-#          transition: 2
-#      - delay: "00:05:00"
-      - service: input_boolean.turn_on
-        target:
-          entity_id: input_boolean.home_sleep
+      - service: light.turn_on
+        data:
+          entity_id:
+            - light.bedroom_1_led_strip
+          transition: 2
   mode: single

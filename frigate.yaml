@@ -1,0 +1,18 @@
+mqtt:
+  enabled: False
+
+cameras:
+  Kitchen: # <------ Name the camera
+    ffmpeg:
+      inputs:
+        - path: rtsps://192.168.1.251:7441/zu3hoZp2Pgw3vOv2?enableSrtp #rtsp://10.0.10.10:554/rtsp # <----- The stream you want to use for detection
+          roles:
+            - detect
+    detect:
+      enabled: False # <---- disable detection until you have a working camera feed
+      width: 1920 # <---- update for your camera's resolution
+      height: 1080 # <---- update for your camera's resolution
+    record: # <----- Enable recording
+      enabled: True
+    snapshots: # <----- Enable snapshots
+      enabled: True

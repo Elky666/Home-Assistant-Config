@@ -1,0 +1,26 @@
+id: "135aa4ea-4c16-4037-9981-37c755d87df5"
+alias: "Motion Toilet On"
+initial_state: true
+description: ""
+mode: restart
+trigger:
+  - platform: state
+    entity_id: binary_sensor.lumi_lumi_motion_ac02_motion
+    to: "on"
+condition:
+  - condition: or
+    conditions:
+      - condition: state
+        entity_id: input_boolean.home_night
+        state: "on"
+      - condition: numeric_state
+        entity_id: sensor.lumi_lumi_motion_ac02_illuminance
+        above: 300
+      - condition: numeric_state
+        entity_id: sensor.lumi_lumi_motion_ac02_illuminance
+        below: 15
+action:
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.toilet_light_switch

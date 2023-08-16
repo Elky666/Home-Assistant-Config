@@ -1,10 +1,10 @@
-id: '3b513c6b-b67e-4fd7-a339-b7ffb272df76'
-alias: Climate Toilet Warning
+id: "3b513c6b-b67e-4fd7-a339-b7ffb272df76"
+alias: "Climate Toilet Warning"
 initial_state: true
 description: ""
 mode: single
 trigger:
-  - entity_id: binary_sensor.climate_toilet_heating_warning
+  - entity_id: binary_sensor.climate_toilet_heating
     for: 01:00:00
     platform: state
     to: 'on'

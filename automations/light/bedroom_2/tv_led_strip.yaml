@@ -1,0 +1,19 @@
+id: 'fedfa465-7191-44a2-a6d8-e5536a3ead15'
+alias: Lights Bedroom 2 TV Led Strip
+initial_state: true
+description: ''
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - input_boolean.home_night
+    to: "on"
+condition:
+  - condition: state
+    entity_id: media_player.lg_webos_tv_up77006lb
+    state: "on"
+action:
+  - service: light.turn_on
+    data: {}
+    target:
+      entity_id: light.bedroom_2_tv_led

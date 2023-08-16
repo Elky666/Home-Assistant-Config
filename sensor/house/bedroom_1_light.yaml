@@ -1,0 +1,13 @@
+- platform: template
+  sensors:
+    bedroom_1_lights_on:
+      friendly_name: "Bedroom 1 Light On"
+      unique_id: "81f0f2fd-4fc4-4a29-a714-c20dbf4a6fa5"
+      value_template: >
+          {% set lights = [
+            states.light.bedroom_1_lamp_1,
+            states.light.bedroom_1_lamp_2,
+            states.light.bedroom_1_led_strip,
+            states.light.bedroom_1_light
+            ] %}
+          {{ lights | selectattr('state','eq','on') | list | count }}

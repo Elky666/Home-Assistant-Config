@@ -1,0 +1,135 @@
+title: Bedroom 3
+path: bedroom-3-phone
+subview: true
+type: custom:grid-layout
+layout:
+  grid-gap: 1px 1px
+  grid-template-columns: 25% 25% 25% 25%
+  grid-template-rows: auto
+  justify-items: center
+  grid-template-areas: >
+    "chip chip chip chip"
+    "light light light light"
+    "fan fan fan fan"
+    "light3 light3 light4 light4"
+badges: []
+cards:
+  - type: custom:mushroom-chips-card
+    chips:
+      - type: template
+        entity: sensor.bedroom_3_average_temperature
+        icon: mdi:thermometer
+        icon_color: >-
+          {% if states('sensor.bedroom_3_average_temperature') | float(0) < 16 %}
+            blue
+          {% elif states('sensor.bedroom_3_average_temperature') | float(0) < 19 %}
+            green
+          {% elif states('sensor.bedroom_3_average_temperature') | float(0) < 60 %}
+            red
+          {% endif %}
+        content: >-
+          {{ states('sensor.bedroom_3_average_temperature', with_unit=True) }}
+        double_tap_action:
+          action: none
+        tap_action:
+          action: none
+        hold_action:
+          action: none
+      - type: template
+        entity: sensor.bedroom_3_average_humidity
+        icon: mdi:water-percent
+        icon_color: >-
+          {% if states('sensor.bedroom_3_average_humidity') | float(0) < 40 %}
+            blue
+          {% elif states('sensor.bedroom_3_average_humidity') | float(0) < 61 %}
+            green
+          {% elif states('sensor.bedroom_3_average_humidity') | float(0) < 99 %}
+            red
+          {% endif %}
+        content: >-
+          {{ states('sensor.bedroom_3_average_humidity', with_unit=True) }}
+        double_tap_action:
+          action: none
+        tap_action:
+          action: none
+        hold_action:
+          action: none
+      - type: template
+        entity: binary_sensor.climate_bedroom_3_heating
+        icon: >-
+          {% if is_state('binary_sensor.climate_bedroom_3_heating','on') %} 
+            mdi:radiator
+          {% else %} 
+            mdi:radiator-off
+          {% endif %}
+        icon_color: >-
+          {% if is_state('binary_sensor.climate_bedroom_3_heating','on') %} 
+            orange
+          {% else %} 
+            white
+          {% endif %}
+        double_tap_action:
+          action: none
+        tap_action:
+          action: none
+        hold_action:
+          action: none
+    view_layout:
+      grid-column: chip
+  - type: vertical-stack
+    title: Lights
+    cards:
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-light-card
+            entity: light.bedroom_3_lamp
+            name: Lamp
+            fill_container: true
+            use_light_color: true
+            layout: vertical
+            show_brightness_control: true
+          - type: custom:mushroom-light-card
+            name: Light
+            entity: light.bedroom_3_light
+            fill_container: true
+            use_light_color: true
+            layout: vertical
+            show_brightness_control: true
+      - type: horizontal-stack
+        cards:
+          - type: custom:mushroom-light-card
+            entity: light.bedroom_3_led
+            name: LED Strip
+            fill_container: true
+            use_light_color: true
+            layout: vertical
+            show_brightness_control: true
+          - type: custom:mushroom-light-card
+            entity: light.bedroom_3_tv_led
+            name: TV LED
+            fill_container: true
+            layout: vertical
+            use_light_color: true
+            show_brightness_control: true
+            show_color_temp_control: true
+            show_color_control: true
+    view_layout:
+      grid-column: light
+  - type: vertical-stack
+    title: Fan
+    cards:
+      - type: custom:mushroom-fan-card
+        entity: fan.sonoff_1000cc1c61
+        name: Ceiling
+        icon_animation: true
+        fill_container: true
+        tap_action:
+          action: toggle
+        hold_action:
+          action: none
+        double_tap_action:
+          action: none
+        secondary_info: none
+        layout: vertical
+    view_layout:
+      grid-column: fan

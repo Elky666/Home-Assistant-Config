@@ -1,0 +1,30 @@
+- platform: template
+  covers:
+    bedroom_1_blind:
+      friendly_name: "Bedroom 1 Blind"
+      unique_id: "3e19f4f2-68ee-4dc0-858b-7d471f892b81"
+      value_template: "{{ is_state('cover.bedroom_1_blind_controller','open') }}"
+      device_class: blind
+      open_cover:
+        - service: cover.set_cover_position
+          data:
+            position: 50
+          target:
+            entity_id: cover.bedroom_1_blind_controller
+      close_cover:
+        - service: cover.set_cover_position
+          data:
+            position: 0
+          target:
+            entity_id: cover.bedroom_1_blind_controller
+      stop_cover:
+        - service: cover.stop_cover
+          data: {}
+          target:
+            entity_id: cover.bedroom_1_blind_controller
+      set_cover_position:
+        - service: cover.set_cover_position 
+          target:
+            entity_id: cover.bedroom_1_blind_controller
+          data:
+            position: "{{ position }}"

@@ -1,5 +1,5 @@
-id: '21c68f73-2fb0-4a3b-b42f-8de09af0aece'
-alias: Camera Aarlo Snapshot
+id: "21c68f73-2fb0-4a3b-b42f-8de09af0aece"
+alias: "Camera Aarlo Snapshot"
 description: ""
 initial_state: true
 mode: single

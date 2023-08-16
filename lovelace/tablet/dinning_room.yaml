@@ -1,0 +1,124 @@
+title: Dinning Room
+path: dinning-room-tablet
+subview: true
+type: custom:grid-layout
+layout:
+  grid-gap: 1px 1px
+  grid-template-columns: 16% 16% 16% 16% 16% 16%
+  grid-template-rows: auto
+  justify-items: center
+  grid-template-areas: >
+    "clock clock welcome welcome media media"  
+    "chip chip blank blank chip1 chip1"
+    "button1 button2 button3 button4 fan fan"
+    "button7 button8 button9 button10 blind blind"
+badges: []
+cards:
+  - type: custom:clock-weather-card
+    entity: weather.met_office_maypole_green_3_hourly
+    title: Home
+    sun_entity: sun.sun
+    temperature_sensor: sensor.outdoor_module_temperature
+    weather_icon_type: fill
+    animated_icon: true
+    forecast_days: 1
+    locale: en-GB
+    time_format: 24
+    date_pattern: P
+    hide_today_section: false
+    hide_forecast_section: true
+    hide_clock: false
+    hide_date: false
+    hourly_forecast: false
+    use_browser_time: true
+    view_layout:
+      grid-column: clock
+  - type: custom:mushroom-media-player-card
+    entity: media_player.bedroom_1
+    fill_container: true
+    icon_type: entity-picture
+    use_media_info: true
+    show_volume_level: false
+    volume_controls:
+      - volume_mute
+      - volume_set
+      - volume_buttons
+    media_controls:
+      - previous
+      - play_pause_stop
+      - next
+    layout: vertical
+    tap_action:
+      action: navigate
+      navigation_path: /lovelace-tablet/bedroom_1_sonos
+    view_layout:
+      grid-column: media
+  - type: custom:mushroom-chips-card
+    chips:
+      - type: template
+        entity: sensor.kitchen_dining_room_average_temperature
+        icon: mdi:thermometer
+        icon_color: >-
+          {% if states('sensor.kitchen_dining_room_average_temperature') | float < 18 %}
+            blue
+          {% elif states('sensor.kitchen_dining_room_average_temperature') | float < 20 %}
+            green
+          {% elif states('sensor.kitchen_dining_room_average_temperature') | float < 60 %}
+            red
+          {% endif %}
+        content: >-
+          {{ states('sensor.kitchen_dining_room_average_temperature', with_unit=True) }}
+      - type: template
+        entity: sensor.kitchen_dining_room_average_humidity
+        icon: mdi:water-percent
+        icon_color: >-
+          {% if states('sensor.kitchen_dining_room_average_humidity') | float < 40 %}
+            blue
+          {% elif states('sensor.kitchen_dining_room_average_humidity') | float < 60 %}
+            green
+          {% elif states('sensor.kitchen_dining_room_average_humidity') | float < 99 %}
+            red
+          {% endif %}
+        content: >-
+          {{ states('sensor.kitchen_dining_room_average_humidity', with_unit=True) }}
+      - type: template
+        entity: sensor.dining_room_switch_2_power
+        icon: mdi:flash
+        icon_color: >-
+          {% if states('sensor.dining_room_switch_2_power') | float == 0 %}
+            green
+          {% elif states('sensor.dining_room_switch_2_power') | float > 0 %}
+            yellow
+          {% endif %}
+        content: >-
+          {{ states('sensor.dining_room_switch_2_power', with_unit=True) }}
+    view_layout:
+      grid-column: chip
+  - type: custom:mushroom-entity-card
+    entity: switch.diningroom_light_switch
+    layout: vertical
+    fill_container: true
+    icon_type: entity-picture
+    tap_action:
+      action: toggle
+    view_layout:
+      grid-column: button1
+  - type: custom:mushroom-light-card
+    entity: light.dining_room_window_led
+    fill_container: true
+    layout: vertical
+    use_light_color: true
+    show_brightness_control: true
+    show_color_temp_control: true
+    show_color_control: true
+    view_layout:
+      grid-column: button2
+  - type: custom:mushroom-entity-card
+    entity: switch.dining_room_switch_2
+    layout: vertical
+    fill_container: true
+    icon_type: entity-picture
+    tap_action:
+      action: toggle
+    view_layout:
+      grid-column: button9

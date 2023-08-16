@@ -1,0 +1,32 @@
+id: "aaf1d933-0548-4bea-b435-4a702aae23f8"
+alias: "People Person 5 Switch"
+initial_state: true
+description: ''
+mode: single
+trigger:
+  - platform: state
+    entity_id: input_boolean.person5_home
+condition: []
+action:
+  - choose:
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.person5_home
+        state: 'off'
+      sequence:
+      - service: switch.turn_off
+        data: {}
+        target:
+          entity_id: 
+            - switch.bedroom_2_tv_plug
+            - switch.sonoff_1000f535fe_1
+    - conditions:
+      - condition: state
+        entity_id: input_boolean.person5_home
+        state: 'on'
+      sequence:
+      - service: switch.turn_on
+        data: {}
+        target:
+          entity_id: 
+            - switch.bedroom_2_tv_plug

@@ -1,0 +1,17 @@
+id: "28c47fbe-557e-416c-88f8-34a11b9ce453"
+alias: "Motion Hallway On"
+initial_state: true
+description: ""
+mode: restart
+trigger:
+  - platform: state
+    entity_id: binary_sensor.trisensor_motion_detection
+    to: "on"
+condition: 
+  - condition: state
+    entity_id: input_boolean.home_night
+    state: 'on'
+action:
+  - service: light.turn_on
+    data:
+      entity_id: light.dimmer_2

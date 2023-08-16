@@ -1,0 +1,24 @@
+id: "a770ccfb-4694-4634-96dd-aae1cea4ace2"
+alias: "Switch Living Room USB On"
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: template
+    value_template: 
+      "{% set alarm_time = states('sensor.bedroom_1_echo_show_next_alarm') | as_datetime %}
+      {% set minutes_before = 120 %} 
+      {% if alarm_time != None %}
+      {{ now() >= alarm_time - timedelta(minutes = minutes_before) }}
+      {% else %} 
+        False 
+      {% endif %}"
+condition: []
+action:
+  - service: switch.turn_on
+    data:
+      entity_id: switch.sonoff_100149da02_1
+  - delay: "02:40:00"
+  - service: switch.turn_off
+    data:
+      entity_id: switch.sonoff_100149da02_1

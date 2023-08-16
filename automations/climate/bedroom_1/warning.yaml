@@ -1,10 +1,10 @@
-id: '0b93b910-efde-444e-847d-70662cd6ceff'
-alias: Climate Bedroom 1 Radiator Warning
+id: "0b93b910-efde-444e-847d-70662cd6ceff"
+alias: "Climate Bedroom 1 Radiator Warning"
 initial_state: true
 description: ""
 mode: single
 trigger:
-  - entity_id: binary_sensor.climate_bedroom_1_heating_warning
+  - entity_id: binary_sensor.climate_bedroom_1_heating
     platform: state
     to: 'on'
     for: '01:00:00'

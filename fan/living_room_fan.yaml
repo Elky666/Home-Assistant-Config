@@ -1,47 +1,95 @@
+# fan.livingroom_tower_fan
 - platform: template
   fans:
     living_room_fan:
       friendly_name: 'Livingroom Fan'
-      value_template: "{{ states('fan.living_room_fan') }}"
-      percentage_template: "{{ states('input_number.percentage') }}"
-      preset_mode_template: "{{ states('input_select.preset_mode') }}"
-      oscillating_template: "{{ states('input_select.osc') }}"
-      unique_id: '816c899e-3468-4484-8f2c-b0edab2ebb6a'
+      unique_id: 'c2ee140f-a74e-4a70-b61c-3f920c4cae09'
+      value_template: "{{ states('fan.livingroom_tower_fan') }}"
       turn_on:
-        - service: input_boolean.turn_on
+        - service: fan.turn_on
           target:
-            entity_id: fan.living_room_fan
-        #- service: script.living_room_fan_on
-        - service: rest_command.rest_govee_appliance
-          data:
-            device: 24:46:D4:AD:FC:18:4B:BC
-            model: H7101
-            cmd_name: turn
-            cmd_value: "on"
+            entity_id: fan.livingroom_tower_fan
       turn_off:
-        - service: input_boolean.turn_off
+        - service: fan.turn_off
           target:
-            entity_id: fan.living_room_fan
-#        - service: script.living_room_fan_off
-        - service: rest_command.rest_govee_appliance
+            entity_id: fan.livingroom_tower_fan
+      percentage_template: >
+        {{ state_attr('fan.livingroom_tower_fan', 'percentage') }}
+      oscillating_template: > 
+        {{ state_attr('fan.livingroom_tower_fan', 'oscillating') }}
+      speed_count: 9
+      set_percentage:
+        - service: fan.set_percentage
+          target:
+            entity_id: fan.livingroom_tower_fan
           data:
-            device: 24:46:D4:AD:FC:18:4B:BC
-            model: H7101
-            cmd_name: turn
-            cmd_value: "off"
-      set_preset_mode:
-        - service: rest_command.rest_govee_appliance
-          data:
-            device: 24:46:D4:AD:FC:18:4B:BC
-            model: H7101
-            cmd_name: mode
-            cmd_value: >
-              {% set mapper = {'Sleep' : 5, 'Custom': 2, 'Auto': 3, 'Nature': 6} %}
-              {{ mapper[preset_mode] }}
-          # "{{ preset_mode }}"
-      speed_count: 8
+            percentage: "{{ percentage }}"
       preset_modes:
-        - 'Custom'
-        - 'Auto'
-        - 'Sleep'
-        - 'Nature'
+        - "Speed 1"
+        - "Speed 2"
+        - "Speed 3"
+        - "Speed 4"
+        - "Speed 5"
+        - "Speed 6"
+        - "Speed 7"
+        - "Speed 8"      
+      preset_mode_template: >
+        {% if is_state('fan.livingroom_tower_fan', 'on') %}
+          {% if state_attr('fan.livingroom_tower_fan', 'percentage') == 11  %}
+            Speed 1
+          {% elif state_attr('fan.livingroom_tower_fan', 'percentage') == 22 %}
+            Speed 2
+          {% elif state_attr('fan.livingroom_tower_fan', 'percentage') == 33 %}
+            Speed 3
+          {% elif state_attr('fan.livingroom_tower_fan', 'percentage') == 44 %}
+            Speed 4
+          {% elif state_attr('fan.livingroom_tower_fan', 'percentage') == 55 %}
+            Speed 5
+          {% elif state_attr('fan.livingroom_tower_fan', 'percentage') == 66 %}
+            Speed 6
+          {% elif state_attr('fan.livingroom_tower_fan', 'percentage') == 77 %}
+            Speed 7
+          {% elif state_attr('fan.livingroom_tower_fan', 'percentage') == 88 %}
+            Speed 8
+          {% else %}
+            low
+          {% endif %}
+        {% else %}
+          off
+        {% endif %}
+      set_preset_mode:
+        - service: fan.set_percentage
+          target:
+            entity_id: fan.livingroom_tower_fan
+          data:
+            percentage: >-
+              {% if preset_mode == 'Speed 1' %}
+                11
+              {% elif preset_mode == 'Speed 2' %}
+                22
+              {% elif preset_mode == 'Speed 3' %}
+                33
+              {% elif preset_mode == 'Speed 4' %}
+                44
+              {% elif preset_mode == 'Speed 5' %}
+                55
+              {% elif preset_mode == 'Speed 6' %}
+                66
+              {% elif preset_mode == 'Speed 7' %}
+                77
+              {% elif preset_mode == 'Speed 8' %}
+                88
+              {% else %}
+                0
+              {% endif %}
+      set_oscillating:
+        - service: fan.oscillate
+          target:
+            entity_id: fan.livingroom_tower_fan
+          data_template:
+            oscillating: >-
+              {% if state_attr('fan.livingroom_tower_fan', 'oscillating') == true  %}
+                false
+              {% elif state_attr('fan.livingroom_tower_fan', 'oscillating') == false  %}
+                true
+              {% endif %}

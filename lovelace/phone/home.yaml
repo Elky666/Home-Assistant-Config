@@ -1,0 +1,74 @@
+type: custom:grid-layout
+layout:
+  grid-gap: 1px 1px
+  grid-template-columns: 25% 25% 25% 25%
+  grid-template-rows: auto
+  justify-items: center
+  grid-template-areas: >
+    "title1 title1 title1 title1"
+    "room1 room1 room2 room2"
+    "room3 room3 room4 room4"
+    "bedroom1 bedroom1 bedroom1 bedroom1"
+    "bedroom2 bedroom2 bedroom2 bedroom2"
+    "bedroom3 bedroom3 bedroom3 bedroom3"
+icon: mdi:home
+title: Home
+badges: []
+cards:
+  - type: custom:mushroom-template-card
+    primary: Hello, {{ user }}
+    secondary: How are you?
+    icon: mdi:home
+    multiline_secondary: true
+    entity: weather.met_office_maypole_green_daily
+    card_mod:
+      style:
+        mushroom-state-info$: |
+          .primary {
+            font-family: 'Bungee Spice', cursive;
+            --card-primary-font-size: 30px;
+          }
+    view_layout:
+      grid-column: title1
+  - type: custom:button-card
+    name: Bedroom 1
+    icon: mdi:bed
+    tap_action:
+      action: navigate
+      navigation_path: /lovelace-phone/bedroom-1-phone
+    view_layout:
+      grid-column: room1
+  - type: custom:button-card
+    name: Bedroom 2
+    icon: mdi:bed
+    tap_action:
+      action: navigate
+      navigation_path: /lovelace-phone/bedroom-2-phone
+    view_layout:
+      grid-column: room2
+  - type: custom:button-card
+    name: Bedroom 3
+    icon: mdi:bed
+    tap_action:
+      action: navigate
+      navigation_path: /lovelace-phone/bedroom-3-phone
+    view_layout:
+      grid-column: room3
+#  - type: custom:banner-card
+#    heading: 🛏 Bedroom 1
+#    link: /lovelace-phone/bedroom-1-phone
+#    entities: null
+#    view_layout:
+#      grid-column: bedroom1
+#  - type: custom:banner-card
+#    heading: 🛌 Bedroom 2
+#    link: /lovelace-phone/bedroom-2-phone
+#    entities: null
+#    view_layout:
+#      grid-column: bedroom2
+#  - type: custom:banner-card
+#    heading: 🛌 Bedroom 3
+#    link: /lovelace-phone/bedroom-3-phone
+#    entities: null
+#    view_layout:
+#      grid-column: bedroom3

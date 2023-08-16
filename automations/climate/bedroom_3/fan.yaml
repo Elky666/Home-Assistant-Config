@@ -26,14 +26,11 @@ action:
           - service: fan.set_percentage
             data_template:
               percentage: >
-                {% if states('sensor.bedroom_3_average_temperature') | float <
-                20 %}
+                {% if states('sensor.bedroom_3_average_temperature') | float(0) < 20 %}
                   33
-                {% elif states('sensor.bedroom_3_average_temperature') | float <
-                25 %}
+                {% elif states('sensor.bedroom_3_average_temperature') | float(0) < 25 %}
                   66
-                {% elif states('sensor.bedroom_3_average_temperature') | float <
-                35 %}
+                {% elif states('sensor.bedroom_3_average_temperature') | float(0) < 35 %}
                   100
                 {% endif %}
             target:
@@ -59,19 +56,3 @@ action:
             target:
               entity_id:
                 - climate.bedroom_3
-#      - conditions:
-#          - condition: and
-#            conditions:
-#              - condition: state
-#                entity_id: fan.sonoff_1000cc1c61
-#                state: "off"
-#              - condition: state
-#                entity_id: input_boolean.home_sleep
-#                state: "off"
-#        sequence:
-#          - service: climate.set_preset_mode
-#            data:
-#              preset_mode: none
-#            target:
-#              entity_id:
-#                - climate.bedroom_3

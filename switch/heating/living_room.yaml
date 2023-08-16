@@ -1,8 +1,8 @@
 - platform: template
   switches:
     heating_living_room_tado:
-      friendly_name: 'Heating Living Room'
-      unique_id: '54eab1da-6414-4421-8fec-91f727a697de'
+      friendly_name: "Heating Living Room"
+      unique_id: "54eab1da-6414-4421-8fec-91f727a697de"
       turn_on:
         - service: climate.set_temperature
           data:

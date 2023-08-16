@@ -1,0 +1,6 @@
+- platform: template
+  sensors:
+    climate_dining_room_heating:
+      friendly_name: "Heating in Dining Room"
+      unique_id: "030e55fe-6769-4db8-a798-52f106033c53"
+      value_template: '{{ state_attr("climate.tado_smart_radiator_thermostat_va0096931328","hvac_action") == "heating" }}'

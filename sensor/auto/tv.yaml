@@ -1,0 +1,15 @@
+- platform: template
+  sensors:
+    tv_off:
+      friendly_name: "TV Off"
+      unique_id: "bb16bb5e-5394-49d5-b615-b865645a58f5"
+      value_template: >
+        {% if is_state('input_boolean.home_holiday', 'off') and now().isoweekday() == 5 %}
+            23:55
+        {% elif is_state('input_boolean.home_holiday', 'off') and now().isoweekday() == 6 %}
+            23:55
+        {% elif is_state('input_boolean.home_holiday', 'off') %}
+            23:00
+        {% elif is_state('input_boolean.home_holiday', 'on') %}
+            23:55
+        {% endif %}

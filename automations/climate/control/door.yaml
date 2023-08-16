@@ -1,13 +1,13 @@
-id: '57fa7e86-c3b4-4cf2-bb41-23f1f55dcd43'
-alias: Climate Control Door
+id: "57fa7e86-c3b4-4cf2-bb41-23f1f55dcd43"
+alias: "Climate Control Door"
 initial_state: true
 description: ""
 mode: single
 trigger:
   - platform: state
     entity_id: 
-      - binary_sensor.fibaro_door_window_sensor_2_window_door_is_open_2
-      - binary_sensor.fibaro_door_window_sensor_2_window_door_is_open
+      - binary_sensor.front_door
+      - binary_sensor.back_door
     for:
       hours: 0
       minutes: 0
@@ -22,10 +22,10 @@ action:
       - condition: or
         conditions:
         - condition: state
-          entity_id: binary_sensor.fibaro_door_window_sensor_2_window_door_is_open_2
+          entity_id: binary_sensor.front_door
           state: 'on'
         - condition: state
-          entity_id: binary_sensor.fibaro_door_window_sensor_2_window_door_is_open
+          entity_id: binary_sensor.back_door
           state: 'on'
       sequence:
       - service: climate.turn_off
@@ -38,10 +38,10 @@ action:
       - condition: or
         conditions:
         - condition: state
-          entity_id: binary_sensor.fibaro_door_window_sensor_2_window_door_is_open_2
+          entity_id: binary_sensor.front_door
           state: 'off'
         - condition: state
-          entity_id: binary_sensor.fibaro_door_window_sensor_2_window_door_is_open
+          entity_id: binary_sensor.back_door
           state: 'off'
       sequence:
       - service: climate.turn_on

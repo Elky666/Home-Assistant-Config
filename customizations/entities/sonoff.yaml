@@ -14,3 +14,6 @@ light.sonoff_1000cc26b0_1:
 light.sonoff_1000cc1c61_1:
   friendly_name: Bedroom 3 Ceiling Light
   icon: mdi:ceiling-fan-light
+switch.sonoff_100149da02_1:
+  friendly_name: USB Chager
+  icon: mdi:usb-port

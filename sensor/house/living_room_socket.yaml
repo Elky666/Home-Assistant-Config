@@ -1,0 +1,11 @@
+- platform: template
+  sensors:
+    living_room_socket_on:
+      friendly_name: "Living Room Socket On"
+      unique_id: "5333a743-4735-4d40-8eea-bd6d20a9b5fd"
+      value_template: >
+          {% set sockets = [
+            states.switch.livingroom_plug_socket_1,
+            states.switch.livingroom_plug_socket_4
+            ] %}
+          {{ sockets | selectattr('state','eq','on') | list | count }}

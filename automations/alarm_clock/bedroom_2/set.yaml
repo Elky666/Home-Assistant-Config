@@ -1,82 +1,47 @@
-id: '78d72ff0-919d-46af-8461-55e8fdd00816'
-alias: Alarm Clock Bedroom 2 Set
+id: "78d72ff0-919d-46af-8461-55e8fdd00816"
+alias: "Alarm Clock Bedroom 2 Set"
 description: ""
 initial_state: true
 mode: single
 trigger:
-  - platform: homeassistant
-    event: start
   - platform: time
-    at: "02:00:00"
-  - platform: event
-    event_type:
-      - automation_reloaded
-condition: []
+    at: "01:00:00"
+condition:
+  - condition: and
+    conditions:
+      - condition: state
+        entity_id: sensor.bedroom_2_echo_show_next_alarm
+        state: "OFF"
+        attribute: status
+      - condition: state
+        entity_id: person.person_5
+        state: home
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+      - condition: state
+        entity_id: calendar.school_holidays
+        state: "off"
 action:
-  - choose:
-      - conditions:
-          - condition: state
-            entity_id: sensor.bedroom_2_echo_show_next_alarm
-            state: unknown
-          - condition: state
-            entity_id: person.person_5
-            state: home
-          - condition: time
-            weekday:
-              - mon
-              - tue
-              - wed
-              - thu
-              - fri
-          - condition: state
-            entity_id: input_boolean.home_holiday
-            state: "off"
-        sequence:
-          - service: input_boolean.turn_on
-            data: {}
-            target:
-              entity_id: input_boolean.alarm_clock_bedroom_2
-          - service: input_datetime.set_datetime
-            data:
-              time: "07:00:00"
-            target:
-              entity_id: input_datetime.bedroom_2_alarm_clock
-      - conditions:
-          - condition: not
-            conditions:
-              - condition: state
-                entity_id: sensor.bedroom_2_echo_show_next_alarm
-                state: unknown
-        sequence:
-          - service: input_boolean.turn_on
-            data: {}
-            target:
-              entity_id: input_boolean.alarm_clock_bedroom_2
-          - service: input_datetime.set_datetime
-            data:
-              time: >-
-                {{ as_timestamp(states('sensor.bedroom_2_echo_show_next_alarm')) | timestamp_custom('%H:%M') }}
-            target:
-              entity_id: input_datetime.bedroom_2_alarm_clock
-      - conditions:
-          - condition: state
-            entity_id: sensor.bedroom_2_echo_show_next_alarm
-            state: unknown
-          - condition: time
-            weekday:
-              - sat
-              - sun
-        sequence:
-          - service: input_boolean.turn_off
-            data: {}
-            target:
-              entity_id: input_boolean.alarm_clock_bedroom_2
-      - conditions:
-          - condition: state
-            entity_id: input_boolean.person5_home
-            state: "off"
-        sequence:
-          - service: input_boolean.turn_off
-            data: {}
-            target:
-              entity_id: input_boolean.alarm_clock_bedroom_2
+  - service: media_player.volume_mute
+    data:
+      is_volume_muted: true
+    target:
+      entity_id: media_player.bedroom_2_echo_show
+  - delay: 00:01:00
+  - service: media_player.play_media
+    data:
+      media_content_type: custom
+      media_content_id: set alarm for 7:00 am
+    target:
+      entity_id: media_player.bedroom_2_echo_show
+  - delay: 00:01:00
+  - service: media_player.volume_mute
+    data:
+      is_volume_muted: false
+    target:
+      entity_id: media_player.bedroom_2_echo_show

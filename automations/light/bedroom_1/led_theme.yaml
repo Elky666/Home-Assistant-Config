@@ -1,0 +1,40 @@
+id: '0b909e8a-3634-427c-a196-1bcabc39e96a'
+alias: Light Bedroom 1 LED Theme
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - input_boolean.home_alarm_triggered
+condition: []
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: input_boolean.home_alarm_triggered
+            state: "off"
+        sequence:
+          - service: lifx.set_state
+            data:
+              color_mode: hs
+              brightness: 26
+              hs_color:
+                - 156.503
+                - 100
+            target:
+              entity_id: light.bedroom_1_led_strip
+      - conditions:
+          - condition: state
+            entity_id: input_boolean.home_alarm_triggered
+            state: "on"
+        sequence:
+          - service: lifx.set_state
+            data:
+              color_mode: hs
+              brightness: 126
+              hs_color:
+                - 156.503
+                - 100
+            target:
+              entity_id: light.bedroom_1_led_strip

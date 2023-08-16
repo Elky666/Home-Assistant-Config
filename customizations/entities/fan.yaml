@@ -1,0 +1,4 @@
+# Bedroom 1
+fan.sonoff_1000cc2f24:
+  friendly_name: Ceiling Fan
+  icon: mdi:ceiling-fan

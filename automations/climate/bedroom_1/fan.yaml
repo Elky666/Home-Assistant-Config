@@ -1,5 +1,5 @@
-id: '624d4a65-36a3-4f0e-b120-f3b4516d72a7'
-alias: Climate Bedroom 1 Fan
+id: "624d4a65-36a3-4f0e-b120-f3b4516d72a7"
+alias: "Climate Bedroom 1 Fan"
 initial_state: true
 description: ""
 mode: single
@@ -26,18 +26,21 @@ action:
           - service: fan.set_percentage
             data_template:
               percentage: >
-                {% if states('sensor.bedroom_1_average_temperature') | float <
-                21 %}
+                {% if states('sensor.bedroom_1_average_temperature') | float(0) < 21 %}
                   33
-                {% elif states('sensor.bedroom_1_average_temperature') | float <
-                31 %}
+                {% elif states('sensor.bedroom_1_average_temperature') | float(0) < 31 %}
                   66
-                {% elif states('sensor.bedroom_1_average_temperature') | float <
-                41 %}
+                {% elif states('sensor.bedroom_1_average_temperature') | float(0) < 41 %}
                   100
                 {% endif %}
             target:
               entity_id: fan.sonoff_1000cc2f24
+          - service: climate.set_preset_mode
+            data:
+              preset_mode: sleep
+            target:
+              entity_id:
+                - climate.bedroom_1
       - conditions:
           - condition: and
             conditions:

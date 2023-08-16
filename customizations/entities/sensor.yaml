@@ -1,3 +1,23 @@
+#Temperature
 sensor.bathroom_average_temperature:
-  friendly_name: Bathroom Average Temperature
+  friendly_name: Temperature
   icon: mdi:thermometer
+sensor.bedroom_1_average_temperature:
+  friendly_name: Temperature
+  icon: mdi:thermometer
+sensor.house_average_temperature:
+  friendly_name: House Average Temperature
+  icon: mdi:thermometer
+sensor.bedroom_3_average_temperature:
+  friendly_name: Temperature
+  icon: mdi:thermometer
+# Humidity
+sensor.bedroom_1_average_humidity:
+  friendly_name: Humidity
+  icon: mdi:water-percent
+sensor.bathroom_average_humidity:
+  friendly_name: Humidity
+  icon: mdi:water-percent
+sensor.bedroom_3_average_humidity:
+  friendly_name: Humidity
+  icon: mdi:water-percent

@@ -1,0 +1,30 @@
+id: '234ba170-1285-484d-ab3d-87e0d2679260'
+alias: USB Bedroom 1
+description: ''
+initial_state: true
+trigger:
+  - platform: state
+    entity_id:
+    - sensor.bedroom_1_fire_tablet_battery
+condition: []
+action:
+  - choose:
+    - conditions:
+      - condition: numeric_state
+        entity_id: sensor.bedroom_1_fire_tablet_battery
+        above:  80
+      sequence:
+      - service: switch.turn_off
+        data: {}
+        target:
+          entity_id: switch.sonoff_100149da2f_1
+    - conditions:
+      - condition: numeric_state
+        entity_id: sensor.bedroom_1_fire_tablet_battery
+        below: 21
+      sequence:
+      - service: switch.turn_on
+        data: {}
+        target:
+          entity_id: switch.sonoff_100149da2f_1
+mode: single

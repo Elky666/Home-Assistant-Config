@@ -1,0 +1,11 @@
+- platform: template
+  sensors:
+    door_downstairs:
+      friendly_name: "Doors Open Downstairs"
+      unique_id: "ef317d47-05de-4983-bb78-146fadfd3021"
+      value_template: >
+          {% set doors = [
+            states.binary_sensor.back_door,
+            states.binary_sensor.front_door
+            ] %}
+          {{ doors | selectattr('state','eq','on') | list | count }}

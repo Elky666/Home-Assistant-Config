@@ -1,24 +1,19 @@
-id: '7c02e8aa-5196-41a2-964a-51703e5be3df'
-alias: Alarm Clock Bedroom 2 Fan
+id: "7c02e8aa-5196-41a2-964a-51703e5be3df"
+alias: "Alarm Clock Bedroom 2 Fan"
 description: ""
 initial_state: true
 mode: single
 trigger:
-  - platform: time
-    at: input_datetime.bedroom_2_alarm_clock
-#  - platform: template
-#    value_template: 
-#      "{% set alarm_time = states('sensor.bedroom_2_echo_show_next_alarm') | as_datetime %}
-#      {% set minutes_before = 1 %} 
-#      {% if alarm_time != None %}
-#      {{ now() >= alarm_time - timedelta(minutes = minutes_before) }}
-#      {% else %} 
-#        False 
-#      {% endif %}"
-condition:
-  - condition: state
-    entity_id: input_boolean.alarm_clock_bedroom_2
-    state: "on"
+  - platform: template
+    value_template: 
+      "{% set alarm_time = states('sensor.bedroom_2_echo_show_next_alarm') | as_datetime %}
+      {% set minutes_before = 1 %} 
+      {% if alarm_time != none %}
+      {{ now() >= alarm_time - timedelta(minutes = minutes_before) }}
+      {% else %} 
+        False 
+      {% endif %}"
+condition: []
 action:
   - delay: 00:01:00
   - service: fan.turn_off

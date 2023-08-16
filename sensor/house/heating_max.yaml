@@ -1,0 +1,17 @@
+- platform: template
+  sensors:
+    heating_max:
+      friendly_name: "Heating Max"
+      unique_id: "89e63220-1cd7-4489-b5b2-6a3a3e185457"
+      icon_template: mdi:radiator
+      value_template: >
+        {% set state = states('sensor.outdoor_module_temperature') %}
+        {% if is_number(state) and state | float(0) < 5 %}
+          19
+        {% elif is_number(state) and state | float(0) < 10 %}
+          18
+        {% elif is_number(state) and state | float(0) <= 13 %}
+          16
+        {% else %}
+          5
+        {% endif %}

@@ -1,0 +1,42 @@
+id: "8dee7314-8a34-463e-979f-4e9f14599864"
+alias: "People Person 2 Blind"
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - input_boolean.person2_home
+condition:
+  - condition: state
+    entity_id: fan.sonoff_1000cc2f24
+    state: "on"
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: input_boolean.person2_home
+            state: "off"
+        sequence:
+          - service: cover.close_cover
+            data: {}
+            target:
+              entity_id: 
+                - cover.living_room_blind
+                - cover.kitchen_blind
+      - conditions:
+          - condition: and
+            conditions:
+              - condition: state
+                entity_id: input_boolean.person2_home
+                state: "on"
+              - condition: state
+                entity_id: input_boolean.home_night
+                state: "off"
+        sequence:
+          - service: cover.open_cover
+            data: {}
+            target:
+              entity_id:
+                - cover.living_room_blind
+                - cover.kitchen_blind

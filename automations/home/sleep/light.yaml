@@ -1,5 +1,5 @@
-id: '60565a07-62da-4a09-95b5-953e2ec074ec'
-alias: Home Sleep Light
+id: "60565a07-62da-4a09-95b5-953e2ec074ec"
+alias: "Home Sleep Light"
 description: ""
 initial_state: true
 mode: single
@@ -26,3 +26,5 @@ action:
         - light.livingroom_lamp
         - light.livingroom_tv_led_strip
         - light.kitchen_light_switch
+        - light.bedroom_2_tv_led
+        - light.bedroom_3_tv_led

@@ -1,0 +1,14 @@
+id: "d900cf94-7232-4cc6-b23b-55454a32b1c6"
+alias: "Motion Hallway Off"
+initial_state: true
+description: ""
+mode: restart
+trigger:
+  - platform: state
+    entity_id: binary_sensor.trisensor_motion_detection
+    to: "off"
+condition: []
+action:
+  - service: light.turn_off
+    data:
+      entity_id: light.dimmer_2

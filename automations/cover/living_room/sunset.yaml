@@ -1,5 +1,5 @@
-id: 'c605f936-9fb5-4b25-b5c6-9d3ec4a730e0'
-alias: Cover Livingroom Sunset
+id: "c605f936-9fb5-4b25-b5c6-9d3ec4a730e0"
+alias: "Cover Livingroom Sunset"
 initial_state: true
 description: ''
 mode: single
@@ -8,7 +8,15 @@ trigger:
     entity_id:
       - input_boolean.home_night
     to: "on"
-condition: []
+condition:
+  - condition: and
+    conditions:
+      - condition: state
+        entity_id: binary_sensor.living_room_left_window
+        state: "off"
+      - condition: state
+        entity_id: binary_sensor.living_room_right_window
+        state: "off"
 action:
   - service: cover.close_cover
     data: {}

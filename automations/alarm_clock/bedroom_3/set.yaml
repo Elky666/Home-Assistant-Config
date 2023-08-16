@@ -1,0 +1,46 @@
+id: "27cb9a1c-3cdb-4df9-90b0-84afe9696a48"
+alias: "Alarm Clock Bedroom 3 Set"
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: time
+    at: "01:00:00"
+condition:
+  - condition: and
+    conditions:
+      - condition: state
+        entity_id: sensor.bedroom_3_echo_show_next_alarm
+        state: unknown
+      - condition: state
+        entity_id: person.person_4
+        state: home
+      - condition: time
+        weekday:
+          - mon
+          - tue
+          - wed
+          - thu
+          - fri
+      - condition: state
+        entity_id: calendar.school_holidays
+        state: "off"
+action:
+  - service: media_player.volume_mute
+    data:
+      is_volume_muted: true
+    target:
+      entity_id: media_player.bedroom_3_echo_show
+  - delay: 00:01:00
+  - service: media_player.play_media
+    data:
+      media_content_type: custom
+      media_content_id: set alarm for 7:00 am
+    target:
+      entity_id: media_player.bedroom_3_echo_show
+  - delay: 00:01:00
+  - service: media_player.volume_mute
+    data:
+      is_volume_muted: false
+    target:
+      entity_id: media_player.bedroom_2_echo_show

@@ -1,24 +1,19 @@
-id: '45467345-2ec9-4ec5-ae7d-db9daba33ee6'
-alias: Alarm Clock Bedroom 1 Fan
+id: "45467345-2ec9-4ec5-ae7d-db9daba33ee6"
+alias: "Alarm Clock Bedroom 1 Fan"
 description: ""
 initial_state: true
 mode: single
 trigger:
-  - platform: time
-    at: input_datetime.bedroom_1_alarm_clock
   - platform: template
     value_template: 
       "{% set alarm_time = states('sensor.bedroom_1_echo_show_next_alarm') | as_datetime %}
       {% set minutes_before = 1 %} 
-      {% if alarm_time != None %}
+      {% if alarm_time != none %}
       {{ now() >= alarm_time - timedelta(minutes = minutes_before) }}
       {% else %} 
         False 
       {% endif %}"
-condition:
-  - condition: state
-    entity_id: input_boolean.alarm_clock_bedroom_1
-    state: "on"
+condition: []
 action:
   - delay: 00:16:00
   - service: switch.turn_off

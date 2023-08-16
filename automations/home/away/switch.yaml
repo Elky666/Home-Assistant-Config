@@ -14,5 +14,8 @@ action:
     data: {}
     target:
       entity_id: 
+        - switch.livingroom_plug_socket_4
+        - switch.livingroom_plug_socket_1
+        - switch.dining_room_switch_2
         - switch.kitchen_plug_socket_3
         - switch.livingroom_plug_socket_4

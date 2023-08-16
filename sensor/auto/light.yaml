@@ -1,0 +1,16 @@
+- platform: template
+  sensors:
+    light_off:
+      friendly_name: "Light Off"
+      unique_id: "788ca17f-2e8c-4d64-b7c3-22d517ed40ed"
+      icon_template: mdi:lightbulb-auto
+      value_template: >
+        {% if is_state('input_boolean.home_holiday', 'off') and now().isoweekday() == 5 %}
+            23:50
+        {% elif is_state('input_boolean.home_holiday', 'off') and now().isoweekday() == 6 %}
+            23:50
+        {% elif is_state('input_boolean.home_holiday', 'off') %}
+            22:55
+        {% elif is_state('input_boolean.home_holiday', 'on') %}
+            23:50
+        {% endif %}

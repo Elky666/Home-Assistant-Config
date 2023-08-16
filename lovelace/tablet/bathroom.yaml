@@ -1,0 +1,122 @@
+title: Bathroom
+path: bathroom-tablet
+subview: true
+type: custom:grid-layout
+layout:
+  grid-gap: 1px 1px
+  grid-template-columns: 16% 16% 16% 16% 16% 16%
+  grid-template-rows: auto
+  justify-items: center
+  grid-template-areas: >
+    "clock clock welcome welcome media media"  
+    "chip chip blank blank chip1 chip1"
+    "light light light fan fan fan"
+    "title1 title2 title3 title4 title5 title6"
+    "scene1 scene2 scene3 scene4 scene5 scene6"
+badges: []
+cards:
+  - type: custom:clock-weather-card
+    entity: weather.met_office_maypole_green_3_hourly
+    title: Home
+    sun_entity: sun.sun
+    temperature_sensor: sensor.outdoor_module_temperature
+    weather_icon_type: fill
+    animated_icon: true
+    forecast_days: 1
+    locale: en-GB
+    time_format: 24
+    date_pattern: P
+    hide_today_section: false
+    hide_forecast_section: true
+    hide_clock: false
+    hide_date: false
+    hourly_forecast: false
+    use_browser_time: true
+    view_layout:
+      grid-column: clock
+  - type: custom:mushroom-chips-card
+    chips:
+      - type: template
+        entity: sensor.bathroom_average_temperature
+        icon: mdi:thermometer
+        icon_color: >-
+          {% if states('sensor.bathroom_average_temperature') | float(0) < 22 %}
+            blue
+          {% elif states('sensor.bathroom_average_temperature') | float(0) < 24 %}
+            green
+          {% elif states('sensor.bathroom_average_temperature') | float(0) < 99 %}
+            red
+          {% endif %}
+        content: >-
+          {{ states('sensor.bathroom_average_temperature', with_unit=True) }}
+      - type: template
+        entity: sensor.bathroom_average_humidity
+        icon: mdi:water-percent
+        icon_color: >-
+          {% if states('sensor.bathroom_average_humidity') | float(0) < 41 %}
+            blue
+          {% elif states('sensor.bathroom_average_humidity') | float(0) < 61 %}
+            green
+          {% elif states('sensor.bathroom_average_humidity') | float(0) < 99 %}
+            red
+          {% endif %}
+        content: >-
+          {{ states('sensor.bathroom_average_humidity', with_unit=True) }}
+    view_layout:
+      grid-column: chip
+  - type: custom:mushroom-light-card
+    entity: light.bathroom_light
+    fill_container: true
+    layout: vertical
+    use_light_color: true
+    show_brightness_control: true
+    show_color_temp_control: true
+    show_color_control: true
+    view_layout:
+      grid-column: light
+  - type: custom:mushroom-entity-card
+    entity: switch.bathroom_fan_switch
+    fill_container: true
+    layout: vertical
+    tap_action:
+      action: toggle
+    view_layout:
+      grid-column: fan
+#  - type: custom:mushroom-title-card
+#    title: Scenes
+#    title_tap_action:#
+#      action: none
+#    subtitle_tap_action:
+#      action: none
+#    view_layout:
+#      grid-column: title1
+  - type: custom:mushroom-entity-card
+    entity: scene.bathroom_blue
+    fill_container: true
+    layout: vertical
+    icon_color: blue
+    secondary_info: none
+    tap_action:
+      action: toggle
+    view_layout:
+      grid-column: scene1
+  - type: custom:mushroom-entity-card
+    entity: scene.bathroom_green
+    fill_container: true
+    layout: vertical
+    icon_color: green
+    secondary_info: none
+    tap_action:
+      action: toggle
+    view_layout:
+      grid-column: scene2
+  - type: custom:mushroom-entity-card
+    entity: scene.bathroom_purple
+    fill_container: true
+    layout: vertical
+    icon_color: purple
+    secondary_info: none
+    tap_action:
+      action: toggle
+    view_layout:
+      grid-column: scene3

@@ -1,0 +1,49 @@
+title: CCTV
+path: cctv-tablet
+subview: true
+type: custom:grid-layout
+layout:
+  grid-gap: 1px 1px
+  grid-template-columns: 50% 50%
+  grid-template-rows: auto
+  justify-items: center
+  grid-template-areas: |
+    "cam1 cam2"  
+    "cam3 cam4"
+badges: []
+cards:
+  - show_state: false
+    show_name: true
+    camera_view: live
+    type: picture-entity
+    image: https://demo.home-assistant.io/stub_config/bedroom.png
+    camera_image: camera.kitchen_high
+    entity: camera.kitchen_high
+    view_layout:
+      grid-column: cam1
+  - show_state: false
+    show_name: true
+    camera_view: live
+    type: picture-entity
+    image: https://demo.home-assistant.io/stub_config/bedroom.png
+    camera_image: camera.livingroom_high
+    entity: camera.livingroom_high
+    view_layout:
+      grid-column: cam2
+  - type: custom:aarlo-glance
+    entity: camera.aarlo_side
+    image_bottom:
+      - name
+      - stream
+      - motion
+      - battery
+    view_layout:
+      grid-column: cam3
+  - type: custom:aarlo-glance
+    entity: camera.aarlo_garden
+    image_bottom:
+      - name
+      - stream
+      - motion
+    view_layout:
+      grid-column: cam4

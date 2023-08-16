@@ -1,14 +1,14 @@
 - platform: template
   covers:
     living_room_blind:
-      friendly_name: 'Livingroom Blind'
-      unique_id: '2ffb6600-630e-4c37-bdab-840773cc1fcd'
+      friendly_name: "Livingroom Blind"
+      unique_id: "2ffb6600-630e-4c37-bdab-840773cc1fcd"
       value_template: "{{ is_state('cover.living_room_blind_controller','open') }}"
       device_class: blind
       open_cover:
         - service: cover.set_cover_position
           data:
-            position: 65
+            position: 50
           target:
             entity_id: cover.living_room_blind_controller
       close_cover:

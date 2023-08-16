@@ -1,0 +1,16 @@
+id: "da747880-8e83-4e6f-a550-0274d04846cc"
+alias: "People Person 4 Fan"
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - input_boolean.person4_home
+    to: "off"
+condition: []
+action:
+  - service: fan.turn_off
+    data: {}
+    target:
+      entity_id: fan.sonoff_1000cc1c61

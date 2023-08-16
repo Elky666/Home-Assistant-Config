@@ -1,8 +1,8 @@
 - platform: template
   switches:
     heating_dining_room_tado:
-      friendly_name: 'Dining Room'
-      unique_id: 'c8ecbedb-6d26-44d1-af6d-ea187dad3432'
+      friendly_name: "Heating Dining Room"
+      unique_id: "c8ecbedb-6d26-44d1-af6d-ea187dad3432"
       turn_on:
         - service: climate.set_temperature
           data:

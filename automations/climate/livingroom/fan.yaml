@@ -1,0 +1,80 @@
+id: "1e2c4758-a885-4c4a-ac39-a6108b1f554b"
+alias: "Climate Livingroom Fan"
+initial_state: true
+description: ""
+mode: single
+trigger:
+  - platform: state
+    entity_id: sensor.living_room_average_temperature
+  - platform: state
+    entity_id: fan.living_room_fan
+condition: []
+action:
+  - choose:
+      - conditions:
+          - condition: and
+            conditions:
+              - condition: not
+                conditions:
+                  - condition: state
+                    entity_id: sensor.season
+                    state: winter
+              - condition: state
+                entity_id: fan.living_room_fan
+                state: "on"
+        sequence:
+          - service: fan.set_percentage
+            data_template:
+              percentage: >
+                {% if states('sensor.living_room_average_temperature') | float(0) < 21 %}
+                  33
+                {% elif states('sensor.living_room_average_temperature') | float(0) < 31 %}
+                  66
+                {% elif states('sensor.living_room_average_temperature') | float(0) < 41 %}
+                  100
+                {% endif %}
+            target:
+              entity_id: fan.living_room_fan
+          - service: climate.set_preset_mode
+            data:
+              preset_mode: sleep
+            target:
+              entity_id:
+                - climate.living_room
+      - conditions:
+          - condition: and
+            conditions:
+              - condition: state
+                entity_id: sensor.season
+                state: winter
+              - condition: state
+                entity_id: fan.living_room_fan
+                state: "on"
+        sequence:
+          - service: fan.set_percentage
+            data:
+              percentage: 33
+            target:
+              entity_id: fan.living_room_fan
+          - service: climate.set_preset_mode
+            data:
+              preset_mode: sleep
+            target:
+              entity_id:
+                - climate.living_room
+      - conditions:
+          - condition: and
+            conditions:
+              - condition: state
+                entity_id: fan.living_room_fan
+                state: "off"
+              - condition: state
+                entity_id: input_boolean.home_sleep
+                state: "off"
+        sequence:
+          - service: climate.set_preset_mode
+            data:
+              preset_mode: none
+            target:
+              entity_id:
+                - climate.living_room

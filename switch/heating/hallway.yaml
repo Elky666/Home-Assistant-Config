@@ -1,8 +1,8 @@
 - platform: template
   switches:
     heating_hallway_tado:
-      friendly_name: 'Heating Hallway'
-      unique_id: 'd142746d-71d1-40f5-b47b-180ad11efc36'
+      friendly_name: "Heating Hallway"
+      unique_id: "d142746d-71d1-40f5-b47b-180ad11efc36"
       turn_on:
         - service: climate.set_temperature
           data:

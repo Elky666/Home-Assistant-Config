@@ -9,7 +9,7 @@ trigger:
       - media_player.sony_kd_55x8509c
 condition:
   - condition: state
-    entity_id: input_boolean.home_sleep
+    entity_id: input_boolean.home_night
     state: "on"
 action:
   - choose:

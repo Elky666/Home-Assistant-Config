@@ -24,6 +24,7 @@ cards:
           action: none
         secondary_info: none
         name: Ceiling Fan
+        icon: mdi:fan
   - type: vertical-stack
     title: Lights
     cards:
@@ -48,15 +49,16 @@ cards:
             entity: light.bedroom_1_led_strip
             fill_container: true
             show_brightness_control: true
-            show_color_control: true
             collapsible_controls: true
             use_light_color: true
+            show_color_control: true
           - type: custom:mushroom-light-card
             entity: light.bedroom_1_light
             fill_container: true
             show_brightness_control: true
             collapsible_controls: true
             use_light_color: true
+            show_color_control: true
   - type: vertical-stack
     title: Media
     cards:

@@ -1,0 +1,9 @@
+  theme: Backend-selected
+  title: Sonos
+  path: bedroom_1_sonos
+  type: panel
+  subview: true
+  badges: []
+  cards:
+    - type: media-control
+      entity: media_player.bedroom_1_3

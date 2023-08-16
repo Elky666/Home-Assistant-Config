@@ -1,18 +1,11 @@
-id: 'e6e0d9e2-90fe-4001-a2df-e71525fddddb'
-alias: Switch Fly Zapper
+id: "8ac0522d-93ac-447a-b4da-79c85556cfb0"
+alias: "Switch Fly Zapper"
 initial_state: true
 description: ''
 trigger:
   - platform: state
-    entity_id:
-    - input_boolean.home_night
+    entity_id: input_boolean.home_night
     to: 'on'
-    for:
-      hours: 0
-      minutes: 0
-      seconds: 0
-  - platform: time
-    at: '20:00:00'
 condition:
   - condition: not
     conditions:
@@ -20,7 +13,12 @@ condition:
       entity_id: sensor.season
       state: winter
 action:
-  - service: switch.toggle
+  - service: switch.turn_on
+    data: {}
+    target:
+      entity_id: switch.fly_zapper_plug
+  - delay: 02:00:00
+  - service: switch.turn_off
     data: {}
     target:
       entity_id: switch.fly_zapper_plug

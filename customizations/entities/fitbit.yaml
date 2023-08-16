@@ -1,0 +1,10 @@
+sensor.aria_2_battery_2:
+  hidden: true
+sensor.versa_2_battery_2:
+  friendly_name: Janets Watch
+  icon: mdi:battery-bluetooth
+sensor.versa_2_battery:
+  friendly_name: Damians Watch
+  icon: mdi:battery-bluetooth
+sensor.fitbit2_steps:
+  friendly_name: !secret fitbit_2_steps

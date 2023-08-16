@@ -1,0 +1,13 @@
+- platform: template
+  sensors:
+    sensors_living_room_lights_on:
+      friendly_name: "Living Room Light On"
+      unique_id: "df11fd79-9627-4104-8e36-4c40b1249446"
+      value_template: >
+          {% set lights = [
+            states.light.livingroom_lamp,
+            states.switch.livingroom_1_light_switch,
+            states.switch.livingroom_2_light_switch,
+            states.light.livingroom_tv_led_strip
+            ] %}
+          {{ lights | selectattr('state','eq','on') | list | count }}

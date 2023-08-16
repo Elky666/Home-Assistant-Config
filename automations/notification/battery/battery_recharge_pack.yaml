@@ -1,0 +1,20 @@
+id: "a7c8c651-4708-47c9-8387-dcae83cf6907"
+alias: "Notification Rechargeable Battery Low"
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - binary_sensor.bedroom_1_blind_controller_low_battery_level
+      - binary_sensor.kitchen_blind_controller_low_battery_level
+      - binary_sensor.living_room_blind_low_battery_level
+    to: 'on'
+    for: "00:30:00"
+condition: []
+action:
+  - service: script.notify_message_engine
+    data:
+      who: home_app
+      title: "Rechargeable Battery Low"
+      message: "{{ trigger.to_state.name }} Battery Low"

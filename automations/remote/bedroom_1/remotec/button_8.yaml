@@ -1,5 +1,5 @@
 id: '01f4c141-2750-459a-a547-49452d30b344'
-alias: Remotec Bedroom 1 Press Button Eight 1x
+alias: Remote Remotec Bedroom 1 Press Button Eight 1x
 initial_state: true
 trigger:
   - platform: event

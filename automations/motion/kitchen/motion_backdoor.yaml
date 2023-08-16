@@ -5,11 +5,11 @@ description: ""
 mode: single
 trigger:
   - platform: state
-    entity_id: binary_sensor.fibaro_door_window_sensor_2_window_door_is_open
+    entity_id: binary_sensor.back_door
     for:
       hours: 0
       minutes: 0
-      seconds: 7
+      seconds: 10
 condition: []
 action:
   - choose:
@@ -21,7 +21,7 @@ action:
         entity_id: media_player.livingroom
         state: idle
       - condition: state
-        entity_id: binary_sensor.fibaro_door_window_sensor_2_window_door_is_open
+        entity_id: binary_sensor.back_door
         state: "on"
       sequence:
       - service: notify.alexa_media
@@ -39,8 +39,8 @@ action:
         entity_id: media_player.livingroom
         state: playing
       - condition: state
-        entity_id: binary_sensor.fibaro_door_window_sensor_2_window_door_is_open
-        state: "off"
+        entity_id: binary_sensor.back_door
+        state: "on"
       sequence:
       - service: script.notify_message_engine
         data:
@@ -57,7 +57,7 @@ action:
         entity_id: media_player.livingroom
         state: idle
       - condition: state
-        entity_id: binary_sensor.fibaro_door_window_sensor_2_window_door_is_open
+        entity_id: binary_sensor.back_door
         state: "on"
       sequence:
       - service: script.notify_message_engine

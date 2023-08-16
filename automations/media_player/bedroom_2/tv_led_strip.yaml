@@ -1,0 +1,33 @@
+id: '31e868f1-c5e2-41e6-a8f9-fd50663e7335'
+alias: Media Bedroom 2 TV Led Strip
+initial_state: on
+description: ""
+mode: single
+trigger:
+  - platform: state
+    entity_id:
+      - media_player.lg_webos_tv_up77006lb
+condition:
+  - condition: state
+    entity_id: input_boolean.home_night
+    state: "on"
+action:
+  - choose:
+      - conditions:
+          - condition: state
+            entity_id: media_player.lg_webos_tv_up77006lb
+            state: "on"
+        sequence:
+          - service: light.turn_on
+            data: {}
+            target:
+              entity_id: light.bedroom_2_tv_led
+      - conditions:
+          - condition: state
+            entity_id: media_player.lg_webos_tv_up77006lb
+            state: "off"
+        sequence:
+          - service: light.turn_off
+            data: {}
+            target:
+              entity_id: light.bedroom_2_tv_led

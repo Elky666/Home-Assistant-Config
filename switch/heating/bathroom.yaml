@@ -1,8 +1,8 @@
 - platform: template
   switches:
     heating_bathroom_tado:
-      friendly_name: 'Heating Bathroom'
-      unique_id: '0cdae812-5d74-438f-a691-34b956bf93bd'
+      friendly_name: "Heating Bathroom"
+      unique_id: "0cdae812-5d74-438f-a691-34b956bf93bd"
       turn_on:
         - service: climate.set_temperature
           data:

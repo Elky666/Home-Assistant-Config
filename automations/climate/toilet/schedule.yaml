@@ -1,14 +1,11 @@
-id: '3bafb9dc-dd3a-4cba-9965-260c85493a7c'
-alias: Climate Toilet Radiator Schedule
+id: "3bafb9dc-dd3a-4cba-9965-260c85493a7c"
+alias: "Climate Toilet Radiator Schedule"
 initial_state: true
 description: ""
 mode: single
 trigger:
   - platform: event
-    event_type:
-      - automation_reloaded
-#  - platform: time_pattern
-#    minutes: /10
+    event_type: automation_reloaded
   - platform: state
     entity_id:
       - schedule.toilet_thermostat_schedule
@@ -18,8 +15,9 @@ trigger:
     to: "heat"
   - platform: state
     entity_id:
-      - input_number.heating_minimum
-      - input_number.heating_maximum
+      - sensor.heating_min
+      - sensor.heating_max
+    for: "00:05:00"
   - platform: state
     entity_id:
       - climate.toilet
@@ -45,27 +43,21 @@ action:
           - condition: state
             entity_id: schedule.toilet_thermostat_schedule
             state: "off"
-#          - condition: not
-#            conditions:
-#              - condition: template
-#                value_template: "{{ now().hour in [7, 12, 16, 17, 18, 19, 20, 21] }}"
         sequence:
           - service: climate.set_temperature
             data_template:
               temperature: > 
-                {{ states('input_number.heating_minimum')| float(0)-1 }}
+                {{ states('sensor.heating_min')| float(0) }}
             target:
               entity_id: climate.toilet
       - conditions:
           - condition: state
             entity_id: schedule.toilet_thermostat_schedule
             state: "on"
-#          - condition: template
-#            value_template: "{{ now().hour in [7, 12, 16, 17, 18, 19, 20, 21] }}"
         sequence:
           - service: climate.set_temperature
             data_template:
               temperature: >
-                {{ states('input_number.heating_maximum')| float(0) }}
+                {{ states('sensor.heating_max')| float(0) }}
             target:
               entity_id: climate.toilet

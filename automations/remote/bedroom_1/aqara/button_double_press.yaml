@@ -1,0 +1,17 @@
+id: '8b9b8571-649a-43ff-8ea3-69bad032b16d'
+alias: Remote Aqara Bedroom 1 Double Press
+description: ""
+initial_state: true
+mode: single
+trigger:
+  - device_id: a1e6c391189c694b92602a934952fc92
+    domain: zha
+    platform: device
+    type: remote_button_double_press
+    subtype: remote_button_double_press
+condition: []
+action:
+  - service: fan.toggle
+    data: {}
+    target:
+      entity_id: fan.sonoff_1000cc2f24

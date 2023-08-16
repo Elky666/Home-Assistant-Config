@@ -1,35 +1,34 @@
-id: 'a7c4a997-5c9b-40d5-b37c-4dbba0625890'
-alias: Climate Control Window
+id: "a7c4a997-5c9b-40d5-b37c-4dbba0625890"
+alias: "Climate Control Window"
 initial_state: true
 description: ""
 mode: single
 trigger:
   - platform: state
-    entity_id: 
-      - binary_sensor.door_window_sensor_7_window_door_is_open_in_regular_position
+    entity_id:
+      - binary_sensor.dining_room_window
+      - binary_sensor.kitchen_window
+      - binary_sensor.living_room_left_window
+      - binary_sensor.living_room_right_window
       - binary_sensor.toilet_window
-      - binary_sensor.door_window_sensor_7_window_door_is_open_in_regular_position_3
-      - binary_sensor.door_window_sensor_7_window_door_is_open_in_regular_position_4
-      - binary_sensor.door_window_sensor_7_window_door_is_open_in_regular_position_5
     for:
       hours: 0
       minutes: 0
       seconds: 30
 condition:
-  - condition: state
-    entity_id: climate.bedroom_1
-    state: "heat"
+  - condition: numeric_state
+    entity_id: sensor.outdoor_module_temperature
+    below: 14
 action:
   - choose:
-      # Dining Room
       - conditions:
           - condition: or
             conditions:
               - condition: state
-                entity_id: binary_sensor.door_window_sensor_7_window_door_is_open_in_regular_position_5
+                entity_id: binary_sensor.dining_room_window
                 state: "on"
               - condition: state
-                entity_id: binary_sensor.door_window_sensor_7_window_door_is_open_in_regular_position
+                entity_id: binary_sensor.kitchen_window
                 state: "on"
         sequence:
           - service: climate.turn_off
@@ -42,10 +41,10 @@ action:
           - condition: or
             conditions:
               - condition: state
-                entity_id: binary_sensor.door_window_sensor_7_window_door_is_open_in_regular_position_5
+                entity_id: binary_sensor.dining_room_window
                 state: "off"
               - condition: state
-                entity_id: binary_sensor.door_window_sensor_7_window_door_is_open_in_regular_position
+                entity_id: binary_sensor.kitchen_window
                 state: "off"
         sequence:
           - service: climate.turn_on
@@ -54,7 +53,6 @@ action:
               entity_id: 
                 - climate.dining_room
                 - climate.hallway_2
-      # Toilet
       - conditions:
           - condition: state
             entity_id: binary_sensor.toilet_window
@@ -77,15 +75,14 @@ action:
               entity_id: 
                 - climate.toilet
                 - climate.hallway_2
-      # Living Room
       - conditions:
           - condition: or
             conditions:
               - condition: state
-                entity_id: binary_sensor.door_window_sensor_7_window_door_is_open_in_regular_position_4
+                entity_id: binary_sensor.living_room_left_window
                 state: "on"
               - condition: state
-                entity_id: binary_sensor.door_window_sensor_7_window_door_is_open_in_regular_position_3
+                entity_id: binary_sensor.living_room_right_window
                 state: "on"
         sequence:
           - service: climate.turn_off
@@ -98,10 +95,10 @@ action:
           - condition: or
             conditions:
               - condition: state
-                entity_id: binary_sensor.door_window_sensor_7_window_door_is_open_in_regular_position_4
+                entity_id: binary_sensor.living_room_left_window
                 state: "off"
               - condition: state
-                entity_id: binary_sensor.door_window_sensor_7_window_door_is_open_in_regular_position_3
+                entity_id: binary_sensor.living_room_right_window
                 state: "off"
         sequence:
           - service: climate.turn_on

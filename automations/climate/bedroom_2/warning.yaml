@@ -1,10 +1,10 @@
-id: 'dd0747a6-1d9f-4aa1-af5a-b0bd5f6ca2fb'
-alias: Climate Bedroom 2 Radiator Warning
+id: "dd0747a6-1d9f-4aa1-af5a-b0bd5f6ca2fb"
+alias: "Climate Bedroom 2 Radiator Warning"
 initial_state: true
 description: ""
 mode: single
 trigger:
-  - entity_id: binary_sensor.climate_bedroom_2_heating_warning
+  - entity_id: binary_sensor.climate_bedroom_2_heating
     for: 01:00:00
     platform: state
     to: 'on'
